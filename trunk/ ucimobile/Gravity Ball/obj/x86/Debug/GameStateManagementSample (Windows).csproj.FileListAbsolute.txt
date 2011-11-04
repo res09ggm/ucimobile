@@ -1,0 +1,13 @@
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\bin\x86\Debug\Content\background.xnb
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\bin\x86\Debug\Content\blank.xnb
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\bin\x86\Debug\Content\gradient.xnb
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\bin\x86\Debug\Content\menufont.xnb
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\bin\x86\Debug\Content\gamefont.xnb
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\bin\x86\Debug\GameStateManagementSample.exe
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\bin\x86\Debug\GameStateManagementSample.pdb
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\bin\x86\Debug\GameStateManagement.dll
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\bin\x86\Debug\GameStateManagement.pdb
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\obj\x86\Debug\GameStateManagementSample.exe
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagementSample\obj\x86\Debug\GameStateManagementSample.pdb

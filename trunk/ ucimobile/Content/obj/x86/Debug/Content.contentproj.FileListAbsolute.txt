@@ -1,0 +1,1 @@
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Content\obj\x86\Debug\ResolveAssemblyReference.cache
