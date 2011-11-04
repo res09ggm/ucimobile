@@ -1,0 +1,6 @@
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagement\bin\x86\Debug\GameStateManagement.dll
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagement\bin\x86\Debug\GameStateManagement.pdb
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagement\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagement\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagement\obj\x86\Debug\GameStateManagement.dll
+C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagement\obj\x86\Debug\GameStateManagement.pdb
