@@ -4,3 +4,9 @@ C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagement\obj
 C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagement\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagement\obj\x86\Debug\GameStateManagement.dll
 C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\GameStateManagement\obj\x86\Debug\GameStateManagement.pdb
+C:\SVN\Gravity Ball\GameStateManagement\bin\x86\Debug\GameStateManagement.dll
+C:\SVN\Gravity Ball\GameStateManagement\bin\x86\Debug\GameStateManagement.pdb
+C:\SVN\Gravity Ball\GameStateManagement\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\SVN\Gravity Ball\GameStateManagement\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\SVN\Gravity Ball\GameStateManagement\obj\x86\Debug\GameStateManagement.dll
+C:\SVN\Gravity Ball\GameStateManagement\obj\x86\Debug\GameStateManagement.pdb

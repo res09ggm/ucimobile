@@ -11,9 +11,14 @@
 using System;
 using System.Threading;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Media;
+
 using GameStateManagement;
 #endregion
 
@@ -31,6 +36,7 @@ namespace GameState
         ContentManager content;
         SpriteFont gameFont;
 
+        bool IsIntro = true;
         Vector2 playerPosition = new Vector2(100, 100);
         Vector2 enemyPosition = new Vector2(100, 100);
 
@@ -39,6 +45,10 @@ namespace GameState
         float pauseAlpha;
 
         InputAction pauseAction;
+
+        Video video;
+        VideoPlayer player;
+        Texture2D videoTexture;
 
         #endregion
 
@@ -71,7 +81,8 @@ namespace GameState
                     content = new ContentManager(ScreenManager.Game.Services, "Content");
 
                 gameFont = content.Load<SpriteFont>("gamefont");
-
+                video = content.Load<Video>("intro");
+                player = new VideoPlayer();
                 // A real game would probably have more content than this sample, so
                 // it would take longer to load. We simulate that by delaying for a
                 // while, giving you a chance to admire the beautiful loading screen.
@@ -138,25 +149,36 @@ namespace GameState
                 pauseAlpha = Math.Min(pauseAlpha + 1f / 32, 1);
             else
                 pauseAlpha = Math.Max(pauseAlpha - 1f / 32, 0);
-
-            if (IsActive)
+            if(IsIntro)
             {
-                // Apply some random jitter to make the enemy move around.
-                const float randomization = 10;
-
-                enemyPosition.X += (float)(random.NextDouble() - 0.5) * randomization;
-                enemyPosition.Y += (float)(random.NextDouble() - 0.5) * randomization;
-
-                // Apply a stabilizing force to stop the enemy moving off the screen.
-                Vector2 targetPosition = new Vector2(
-                    ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2, 
-                    200);
-
-                enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.05f);
-
-                // TODO: this game isn't very fun! You could probably improve
-                // it by inserting something more interesting in this space :-)
+                player.IsLooped = false;
+                player.Play(video);
+                IsIntro = false;
             }
+
+            if(player.State == MediaState.Stopped)
+            {
+                if(IsActive)
+                {
+                    // Apply some random jitter to make the enemy move around.
+                    const float randomization = 10;
+
+                    enemyPosition.X += (float) (random.NextDouble() - 0.5) * randomization;
+                    enemyPosition.Y += (float) (random.NextDouble() - 0.5) * randomization;
+
+                    // Apply a stabilizing force to stop the enemy moving off the screen.
+                    Vector2 targetPosition = new Vector2(
+                        ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2,
+                        200);
+
+                    enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.05f);
+
+                    // TODO: this game isn't very fun! You could probably improve
+                    // it by inserting something more interesting in this space :-)
+                }
+
+            }
+            
         }
 
 
@@ -238,15 +260,33 @@ namespace GameState
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
                                                Color.CornflowerBlue, 0, 0);
 
+            if(player.State != MediaState.Stopped)
+                videoTexture = player.GetTexture();
             // Our player and enemy are both actually just text strings.
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
 
+            Rectangle screen = new Rectangle(ScreenManager.GraphicsDevice.Viewport.X,
+                ScreenManager.GraphicsDevice.Viewport.Y,
+                ScreenManager.GraphicsDevice.Viewport.Width,
+                ScreenManager.GraphicsDevice.Viewport.Height);
+
             spriteBatch.Begin();
 
-            spriteBatch.DrawString(gameFont, "// TODO", playerPosition, Color.Green);
+            if(player.State == MediaState.Stopped)
+                videoTexture = null;
+            if(videoTexture != null)
+            {
+                spriteBatch.Draw(videoTexture, screen, Color.White);
 
-            spriteBatch.DrawString(gameFont, "Insert Gameplay Here",
-                                   enemyPosition, Color.DarkRed);
+            }
+            else
+            {
+                spriteBatch.DrawString(gameFont, "// TODO", playerPosition, Color.Green);
+
+                spriteBatch.DrawString(gameFont, "Insert Gameplay Here",
+                                       enemyPosition, Color.DarkRed);
+            }
+            
 
             spriteBatch.End();
 

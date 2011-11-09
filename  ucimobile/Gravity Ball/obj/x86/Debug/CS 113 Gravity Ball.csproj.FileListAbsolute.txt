@@ -30,3 +30,20 @@ C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\obj\x86\De
 C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\obj\x86\Debug\CS 113 Gravity Ball.exe
 C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\obj\x86\Debug\CS 113 Gravity Ball.pdb
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\background.xnb
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\blank.xnb
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\gradient.xnb
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\menufont.xnb
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\gamefont.xnb
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\CS 113 Gravity Ball.exe
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\CS 113 Gravity Ball.pdb
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\GameStateManagement.dll
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\GameStateManagement.pdb
+C:\SVN\Gravity Ball\Gravity Ball\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\SVN\Gravity Ball\Gravity Ball\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\SVN\Gravity Ball\Gravity Ball\obj\x86\Debug\CS 113 Gravity Ball.exe
+C:\SVN\Gravity Ball\Gravity Ball\obj\x86\Debug\CS 113 Gravity Ball.pdb
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\video.xnb
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\video.wmv
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\Intro.xnb
+C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\Intro.wmv

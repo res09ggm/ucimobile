@@ -3,3 +3,7 @@ Content\blank.xnb
 Content\gradient.xnb
 Content\menufont.xnb
 Content\gamefont.xnb
+Content\video.xnb
+Content\video.wmv
+Content\Intro.xnb
+Content\Intro.wmv
