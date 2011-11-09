@@ -7,8 +7,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2011-11-03T20:11:33.6310307-07:00</Time>
+      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\background.xnb</Output>
+      <Time>2011-11-05T15:13:11.8316996-07:00</Time>
     </Item>
     <Item>
       <Source>blank.png</Source>
@@ -16,8 +16,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\bin\x86\Debug\Content\blank.xnb</Output>
-      <Time>2010-09-15T13:43:52-07:00</Time>
+      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\blank.xnb</Output>
+      <Time>2011-11-05T15:13:11.8947032-07:00</Time>
     </Item>
     <Item>
       <Source>gradient.png</Source>
@@ -25,8 +25,8 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\bin\x86\Debug\Content\gradient.xnb</Output>
-      <Time>2010-09-15T13:43:52-07:00</Time>
+      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\gradient.xnb</Output>
+      <Time>2011-11-05T15:13:11.8266993-07:00</Time>
     </Item>
     <Item>
       <Source>menufont.spritefont</Source>
@@ -34,8 +34,8 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\bin\x86\Debug\Content\menufont.xnb</Output>
-      <Time>2010-09-15T13:43:52-07:00</Time>
+      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\menufont.xnb</Output>
+      <Time>2011-11-05T15:13:11.8326996-07:00</Time>
     </Item>
     <Item>
       <Source>gamefont.spritefont</Source>
@@ -43,8 +43,28 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\bin\x86\Debug\Content\gamefont.xnb</Output>
-      <Time>2010-09-15T13:43:52-07:00</Time>
+      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\gamefont.xnb</Output>
+      <Time>2011-11-05T15:13:11.8967033-07:00</Time>
+    </Item>
+    <Item>
+      <Source>video.wmv</Source>
+      <Name>video</Name>
+      <Importer>WmvImporter</Importer>
+      <Processor>VideoProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\video.xnb</Output>
+      <Extra>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\video.wmv</Extra>
+      <Time>2011-11-05T22:23:35.0116871-07:00</Time>
+    </Item>
+    <Item>
+      <Source>Intro.wmv</Source>
+      <Name>Intro</Name>
+      <Importer>WmvImporter</Importer>
+      <Processor>VideoProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\Intro.xnb</Output>
+      <Extra>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\Intro.wmv</Extra>
+      <Time>2011-11-06T15:42:50.9955563-08:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -52,10 +72,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Content\</RootDirectory>
-      <LoggerRootDirectory>C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\SVN\Gravity Ball\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\SVN\Gravity Ball\Gravity Ball\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\SVN\Gravity Ball\Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -83,12 +103,12 @@
         <Value>2010-08-23T12:41:18-07:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Gravity Ball\bin\x86\Debug\GameStateManagement.dll</Key>
-        <Value>2011-11-04T04:11:03.4835491-07:00</Value>
+        <Key>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\GameStateManagement.dll</Key>
+        <Value>2011-11-06T15:42:57.6496077-08:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2011-09-23T09:26:08.7022542-07:00</Value>
+        <Value>2011-09-08T23:02:46.4478314-07:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
