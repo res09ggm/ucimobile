@@ -20,6 +20,11 @@ using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
 
 using GameStateManagement;
+using FarseerPhysics;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.SamplesFramework;
+using GLEED2D;
+using GravityBall;
 #endregion
 
 namespace GameState
@@ -46,7 +51,13 @@ namespace GameState
 
         InputAction pauseAction;
 
+        Camera2D _camera;
         Video video;
+        World _world;
+        Level _level;
+        Player _hero;
+
+
         VideoPlayer player;
         Texture2D videoTexture;
 
@@ -67,6 +78,8 @@ namespace GameState
                 new Buttons[] { Buttons.Start, Buttons.Back },
                 new Keys[] { Keys.Escape },
                 true);
+
+            
         }
 
 
@@ -83,10 +96,21 @@ namespace GameState
                 gameFont = content.Load<SpriteFont>("gamefont");
                 video = content.Load<Video>("intro");
                 player = new VideoPlayer();
+
                 // A real game would probably have more content than this sample, so
                 // it would take longer to load. We simulate that by delaying for a
                 // while, giving you a chance to admire the beautiful loading screen.
-                Thread.Sleep(1000);
+                //Thread.Sleep(1000);
+
+                //TODO: draw level
+                //get GraphicsDevice from ScreenManager;
+                _camera = new Camera2D(base.ScreenManager.GraphicsDevice);
+                _world = new World(new Vector2(0f, 10f));
+                _level = Level.FromFile("E:\\ICS\\CS113\\ucimobile\\Gravity Ball\\Level\\lvl1.xml", content);
+                _level.camera = _camera;
+                _level.physicsEngine = _world;
+                _hero = new Player("AARON");
+
 
                 // once the load has finished, we use ResetElapsedTime to tell the game's
                 // timing mechanism that we have just finished a very long frame, and that
@@ -172,10 +196,16 @@ namespace GameState
                         200);
 
                     enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.05f);
-
+                */
                     // TODO: this game isn't very fun! You could probably improve
                     // it by inserting something more interesting in this space :-)
                 }
+
+                
+                
+
+
+
 
             }
             
@@ -219,16 +249,26 @@ namespace GameState
                 Vector2 movement = Vector2.Zero;
 
                 if (keyboardState.IsKeyDown(Keys.Left))
+                {
                     movement.X--;
-
+                    _hero.moveLeft();
+                }
                 if (keyboardState.IsKeyDown(Keys.Right))
+                {
                     movement.X++;
+                    _hero.moveRight();
+                }
 
                 if (keyboardState.IsKeyDown(Keys.Up))
                     movement.Y--;
 
                 if (keyboardState.IsKeyDown(Keys.Down))
                     movement.Y++;
+
+                if (keyboardState.IsKeyDown(Keys.Space))
+                {
+                    _hero.jump();
+                }
 
                 Vector2 thumbstick = gamePadState.ThumbSticks.Left;
 
@@ -264,13 +304,15 @@ namespace GameState
                 videoTexture = player.GetTexture();
             // Our player and enemy are both actually just text strings.
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
-
+            
+            //draw Player first
             Rectangle screen = new Rectangle(ScreenManager.GraphicsDevice.Viewport.X,
                 ScreenManager.GraphicsDevice.Viewport.Y,
                 ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Height);
 
             spriteBatch.Begin();
+            //spriteBatch.Begin(null, null, null, null, null, null, this.transform);
 
             if(player.State == MediaState.Stopped)
                 videoTexture = null;
@@ -289,6 +331,11 @@ namespace GameState
             
 
             spriteBatch.End();
+
+            //draw rest of layers in level
+            _level.draw(spriteBatch);
+
+            //spriteBatch.End();
 
             // If the game is transitioning on or off, fade it out to black.
             if (TransitionPosition > 0 || pauseAlpha > 0)
