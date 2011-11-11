@@ -23,7 +23,6 @@ using GameStateManagement;
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.SamplesFramework;
-using GLEED2D;
 using GravityBall;
 #endregion
 
@@ -51,11 +50,11 @@ namespace GameState
 
         InputAction pauseAction;
 
-        Camera2D _camera;
+        public static Camera2D _camera;
         Video video;
-        World _world;
-        Level _level;
-        Player _hero;
+        public static World _world;
+        public static Level _level;
+        public static Player _hero;
 
 
         VideoPlayer player;
@@ -107,8 +106,8 @@ namespace GameState
                 _camera = new Camera2D(base.ScreenManager.GraphicsDevice);
                 _world = new World(new Vector2(0f, 10f));
                 _level = Level.FromFile("E:\\ICS\\CS113\\ucimobile\\Gravity Ball\\Level\\lvl1.xml", content);
-                _level.camera = _camera;
-                _level.physicsEngine = _world;
+                
+                
                 _hero = new Player("AARON");
 
 
@@ -196,7 +195,7 @@ namespace GameState
                         200);
 
                     enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.05f);
-                */
+                
                     // TODO: this game isn't very fun! You could probably improve
                     // it by inserting something more interesting in this space :-)
                 }
