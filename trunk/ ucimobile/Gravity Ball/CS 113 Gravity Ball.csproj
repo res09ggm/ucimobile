@@ -65,7 +65,12 @@
     <XnaCompressContent>true</XnaCompressContent>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Ability.cs" />
+    <Compile Include="Camera2D.cs" />
+    <Compile Include="ConvertUnits.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="Level.cs" />
+    <Compile Include="Player.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScreenFactory.cs" />
