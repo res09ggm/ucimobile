@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace GravityBall
+namespace GameState
 {
     interface Ability
     {

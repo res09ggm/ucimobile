@@ -7,7 +7,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
 using FarseerPhysics.SamplesFramework;
+using FarseerPhysics.Factories;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Common;
+using FarseerPhysics.Collision;
+using FarseerPhysics.Controllers;
 using FarseerPhysics;
 using GameStateManagement;
 
@@ -34,7 +38,6 @@ namespace GameState
         /// </summary>
         public SerializableDictionary CustomProperties;
 
-
         public Level()
         {
             Visible = true;
@@ -53,7 +56,30 @@ namespace GameState
             {
                 foreach (Item item in layer.Items)
                 {
+                    
                     item.CustomProperties.RestoreItemAssociations(level);
+                    if (item.Name == "Hero")
+                    {
+                        Console.WriteLine("Creating Hero Body");
+                        GameplayScreen._hero.setTexture(cm.Load<Texture2D>("stick"));
+                        float rad = GameplayScreen._hero.getTexture().Width/2;
+                        Vector2 worldpos = new Vector2(ConvertUnits.ToSimUnits(item.Position.X), ConvertUnits.ToSimUnits(item.Position.Y));
+                        Console.WriteLine("Hero worldPos scaled: " + worldpos.X + ", " + worldpos.Y);
+                        Console.WriteLine("radius: " + rad + "sim: " + ConvertUnits.ToSimUnits(rad));
+                        Body b = BodyFactory.CreateCircle(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(rad), 1f, worldpos, GameplayScreen._hero);
+                        b.BodyType = BodyType.Dynamic;
+                        b.Friction = 10f;
+                        b.Mass = 50f;
+                        b.Inertia = 25f;
+                        b.Restitution = .01f;
+                        
+                        Vector2 location = item.Position;
+                        Fixture f = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(rad), 1f, b);
+                        //b.CreateFixture(f.Shape);
+                        
+                        GameplayScreen._hero._body = b;
+                        
+                    }
                     item.load(cm);
                 }
             }
@@ -240,6 +266,7 @@ namespace GameState
         /// Loading is done in the Item's load() method.
         /// </summary>
         Texture2D texture;
+        Body body;
 
         /// <summary>
         /// The item's origin relative to the upper left corner of the texture. Usually the middle of the texture.
@@ -261,26 +288,85 @@ namespace GameState
         public override void load(ContentManager cm)
         {
             //throw new NotImplementedException();
-
+            
             //TODO: provide your own implementation of how a TextureItem loads its assets
             //for example:
             //this.texture = Texture2D.FromFile(<GraphicsDevice>, texture_filename);
             //or by using the Content Pipeline:
             //this.texture = cm.Load<Texture2D>(asset_name);
             this.texture = cm.Load<Texture2D>(asset_name);
-
-            // Check for GLEED2D key/value pairs and insert physics
-            if (this.CustomProperties.ContainsKey("Type"))
-            {
-                if ((string)this.CustomProperties["Type"].value == "wall")
-                {
-                    Body b = new Body(GameplayScreen._world);
-                    
-                }
-                    
-            }
-
             Origin = new Vector2(texture.Width / 2, texture.Height / 2);
+            return;
+            // Check for GLEED2D key/value pairs and insert physics
+            /*Body itemBody = BodyFactory.CreateBody(GameplayScreen._world);
+            Fixture itemFixture;
+            Vector2 itemPos = ConvertUnits.ToDisplayUnits(this.Position);
+
+            if (this.GetType() == typeof(RectangleItem))
+            {
+                itemFixture = FixtureFactory.AttachRectangle(this.texture.Width, this.texture.Height, 1f, new Vector2(0,0), itemBody);
+            }
+            else if (this.GetType()*/
+            Fixture itemFixture;
+            Vector2 worldpos = new Vector2(this.Position.X + Origin.X, this.Position.Y + Origin.Y);
+            body = BodyFactory.CreateBody(GameplayScreen.getWorld(), worldpos, this);
+            itemFixture = FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(this.texture.Width), ConvertUnits.ToSimUnits(this.texture.Height), 1f, new Vector2(0, 0), body);
+            //body.CreateFixture(itemFixture.Shape);
+
+            /*if (this.CustomProperties.ContainsKey("RectangleItem"))
+            {
+                Console.WriteLine("creating rectitem fixture");
+                itemFixture = FixtureFactory.AttachRectangle(this.texture.Width, this.texture.Height, 1f, new Vector2(0, 0), body);
+                body.CreateFixture(itemFixture.Shape);
+            }
+            else if (this.CustomProperties.ContainsKey("CircleItem"))
+            {
+                Console.WriteLine("creating circitem fixture");
+                itemFixture = FixtureFactory.AttachCircle(this.texture.Width / 2, 1f, body);
+                body.CreateFixture(itemFixture.Shape);
+            }
+            else
+            {
+                Console.WriteLine("creating polygon fixture");
+                //Create an array to hold the data from the texture
+                uint[] data = new uint[this.texture.Width * this.texture.Height];
+   
+                //Transfer the texture data to the array
+                this.texture.GetData(data);
+    
+                //Find the vertices that makes up the outline of the shape in the texture
+                Vertices verts = PolygonTools.CreatePolygon(data, this.texture.Width, false);
+                
+    
+                //For now we need to scale the vertices (result is in pixels, we use meters)
+                Vector2 scale = new Vector2(0.07f, 0.07f);
+                verts.Scale(ref scale);
+     
+                //Since it is a concave polygon, we need to partition it into several smaller convex polygons
+                List<Vertices> _list = FarseerPhysics.Common.Decomposition.BayazitDecomposer.ConvexPartition(verts);
+   
+                //Create a single body with multiple fixtures
+                List<Fixture> compound = FixtureFactory.AttachCompoundPolygon(_list, 1, this.body);
+                //compund[0].Body.BodyType = BodyType.Dynamic;
+            
+            }*/
+
+            
+
+            //body = BodyFactory.CreateBody(GameplayScreen._world, this.Position, this);
+            if (this.CustomProperties.ContainsKey("dynamic"))
+            {
+                if ((string)this.CustomProperties["dynamic"].value == "true")
+                {
+                    body.BodyType = BodyType.Dynamic;
+                }
+                else
+                    body.BodyType = BodyType.Static;
+            }
+            body.BodyType = BodyType.Dynamic;
+
+
+            
 
         }
 
@@ -300,9 +386,48 @@ namespace GameState
         public float Width;
         public float Height;
         public Color FillColor;
+        Body body;
+        Fixture fixture;
 
         public RectangleItem()
         {
+        }
+
+        public override void load(ContentManager cm)
+        {
+            base.load(cm);
+            Console.WriteLine("Creating Rectangle Item");
+
+            Vector2 wspace = new Vector2(this.Position.X + (this.Width/2), this.Position.Y + (this.Height/2));
+
+            Console.WriteLine("Body worldspace pos= " + wspace.X + "," + wspace.Y);
+
+            body = BodyFactory.CreateBody(GameplayScreen._world, ConvertUnits.ToSimUnits(wspace), this);
+            body.IgnoreCCD = true;
+
+            float width1 = ConvertUnits.ToSimUnits(this.Width);
+            float height1 = ConvertUnits.ToSimUnits(this.Width);
+            float width2 = ConvertUnits.ToDisplayUnits(this.Width);
+            float height2 = ConvertUnits.ToDisplayUnits(this.Height);
+
+            fixture = FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(this.Width), ConvertUnits.ToSimUnits(this.Height), 1f, new Vector2(0, 0), body);
+            //body.CreateFixture(fixture.Shape);
+            body.IsStatic = true;
+            body.BodyType = BodyType.Static;
+            body.Friction = 1f;
+            Console.WriteLine("created body: " + body.ToString());
+
+
+
+            Console.WriteLine(CustomProperties.ToString());
+            if (CustomProperties.ContainsKey("breakable"))
+            {
+                if (CustomProperties["breakable"].description == "true")
+                {
+                    body.BodyType = BodyType.Dynamic;
+                }
+            }
+
         }
     }
 
