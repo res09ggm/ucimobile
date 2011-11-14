@@ -18,12 +18,15 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
+using System.Collections;
 
 using GameStateManagement;
 using FarseerPhysics;
 using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
 using FarseerPhysics.SamplesFramework;
-using GravityBall;
+using FarseerPhysics.DebugViews;
+
 #endregion
 
 namespace GameState
@@ -37,7 +40,7 @@ namespace GameState
     {
         #region Fields
 
-        ContentManager content;
+        public static ContentManager content;
         SpriteFont gameFont;
 
         bool IsIntro = true;
@@ -50,15 +53,19 @@ namespace GameState
 
         InputAction pauseAction;
 
-        public static Camera2D _camera;
         Video video;
-        public static World _world;
-        public static Level _level;
         public static Player _hero;
+        public static Level _level;
+        public static World _world;
 
+        private Matrix _view;
+        private Vector2 _cameraPosition;
+        private Vector2 _screenCenter;
 
         VideoPlayer player;
         Texture2D videoTexture;
+
+        DebugViewXNA _debugView;
 
         #endregion
 
@@ -103,12 +110,38 @@ namespace GameState
 
                 //TODO: draw level
                 //get GraphicsDevice from ScreenManager;
-                _camera = new Camera2D(base.ScreenManager.GraphicsDevice);
+                _level = new Level();
                 _world = new World(new Vector2(0f, 10f));
-                _level = Level.FromFile("E:\\ICS\\CS113\\ucimobile\\Gravity Ball\\Level\\lvl1.xml", content);
+                
+                _hero = new Player(ref _world, "AARON");
+                //_level.camera = new Camera2D(base.ScreenManager.GraphicsDevice);
+                //_level.world = new World(new Vector2(0f, 10f));
+                ConvertUnits.SetDisplayUnitToSimUnitRatio(64);
+                _level = Level.FromFile("E:\\ICS\\CS113\\ucimobile\\Gravity Ball\\Level\\test.xml", content);
                 
                 
-                _hero = new Player("AARON");
+                //ArrayList bodies = _world.BodyList;
+                System.Collections.Generic.List<Body> blist = _world.BodyList;
+
+                foreach ( Body b in blist)
+                {
+                    Console.WriteLine(b.Position.ToString());
+                }
+
+                //_world.AddController(new FarseerPhysics.Controllers.GravityController(10f, 300f, 0f));
+                _world.Enabled = true;
+
+                _view = Matrix.Identity;
+                _cameraPosition = Vector2.Zero;
+                _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
+                                                ScreenManager.GraphicsDevice.Viewport.Height / 2f);
+                
+                _debugView = new DebugViewXNA(_world);
+                _debugView.AppendFlags(DebugViewFlags.DebugPanel);
+                _debugView.DefaultShapeColor = Color.White;
+                _debugView.SleepingShapeColor = Color.LightGray;
+                _debugView.LoadContent(ScreenManager.GraphicsDevice, content);
+                
 
 
                 // once the load has finished, we use ResetElapsedTime to tell the game's
@@ -135,6 +168,11 @@ namespace GameState
 #endif
 
             base.Deactivate();
+        }
+
+        public static World getWorld()
+        {
+            return _world;
         }
 
 
@@ -166,6 +204,7 @@ namespace GameState
                                                        bool coveredByOtherScreen)
         {
             base.Update(gameTime, otherScreenHasFocus, false);
+            _world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
 
             // Gradually fade in or out depending on whether we are covered by the pause screen.
             if (coveredByOtherScreen)
@@ -175,7 +214,7 @@ namespace GameState
             if(IsIntro)
             {
                 player.IsLooped = false;
-                player.Play(video);
+                //player.Play(video);
                 IsIntro = false;
             }
 
@@ -198,14 +237,8 @@ namespace GameState
                 
                     // TODO: this game isn't very fun! You could probably improve
                     // it by inserting something more interesting in this space :-)
+                    _hero.update();
                 }
-
-                
-                
-
-
-
-
             }
             
         }
@@ -250,12 +283,14 @@ namespace GameState
                 if (keyboardState.IsKeyDown(Keys.Left))
                 {
                     movement.X--;
+                    Console.WriteLine("Tring to move left");
                     _hero.moveLeft();
                 }
                 if (keyboardState.IsKeyDown(Keys.Right))
                 {
                     movement.X++;
                     _hero.moveRight();
+                    Console.WriteLine("trying to move right");
                 }
 
                 if (keyboardState.IsKeyDown(Keys.Up))
@@ -267,6 +302,24 @@ namespace GameState
                 if (keyboardState.IsKeyDown(Keys.Space))
                 {
                     _hero.jump();
+                }
+
+                if (keyboardState.IsKeyDown(Keys.LeftShift) || keyboardState.IsKeyDown(Keys.RightShift))
+                {
+                    if (keyboardState.IsKeyDown(Keys.A))
+                        _cameraPosition.X += 50f;
+
+                    if (keyboardState.IsKeyDown(Keys.D))
+                        _cameraPosition.X -= 50f;
+
+                    if (keyboardState.IsKeyDown(Keys.W))
+                        _cameraPosition.Y += 50f;
+
+                    if (keyboardState.IsKeyDown(Keys.S))
+                        _cameraPosition.Y -= 50f;
+
+                    _view = Matrix.CreateTranslation(new Vector3(_cameraPosition - _screenCenter, 0f)) *
+                        Matrix.CreateTranslation(new Vector3(_screenCenter, 0f));
                 }
 
                 Vector2 thumbstick = gamePadState.ThumbSticks.Left;
@@ -310,8 +363,8 @@ namespace GameState
                 ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Height);
 
-            spriteBatch.Begin();
-            //spriteBatch.Begin(null, null, null, null, null, null, this.transform);
+            //spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
 
             if(player.State == MediaState.Stopped)
                 videoTexture = null;
@@ -322,7 +375,9 @@ namespace GameState
             }
             else
             {
-                spriteBatch.DrawString(gameFont, "// TODO", playerPosition, Color.Green);
+                _level.draw(spriteBatch);
+                _hero.draw(spriteBatch);
+                spriteBatch.DrawString(gameFont, "// TODO", playerPosition, Color.Firebrick);
 
                 spriteBatch.DrawString(gameFont, "Insert Gameplay Here",
                                        enemyPosition, Color.DarkRed);
@@ -330,9 +385,19 @@ namespace GameState
             
 
             spriteBatch.End();
+            float MeterInPixels = 64f;
+            
+            // calculate the projection and view adjustments for the debug view
+            Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ScreenManager.GraphicsDevice.Viewport.Width / MeterInPixels,
+                                                             ScreenManager.GraphicsDevice.Viewport.Height / MeterInPixels, 0f, 0f,
+                                                             1f);
+            Matrix view = Matrix.CreateTranslation(new Vector3((_cameraPosition / MeterInPixels) - (_screenCenter / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((_screenCenter / MeterInPixels), 0f));
+            // draw the debug view
+            _debugView.RenderDebugData(ref projection, ref view);
+
 
             //draw rest of layers in level
-            _level.draw(spriteBatch);
+            //_level.draw(spriteBatch);
 
             //spriteBatch.End();
 
