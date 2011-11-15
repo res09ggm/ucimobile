@@ -40,32 +40,33 @@ namespace GameState
     {
         #region Fields
 
+        //XNA Variables
         public static ContentManager content;
         SpriteFont gameFont;
-
-        bool IsIntro = true;
-        Vector2 playerPosition = new Vector2(100, 100);
-        Vector2 enemyPosition = new Vector2(100, 100);
-
-        Random random = new Random();
-
         float pauseAlpha;
-
         InputAction pauseAction;
 
-        Video video;
+        //Level Variables
         public static Player _hero;
-        public static Level _level;
+        public static Level _currentLevel;
         public static World _world;
+        String[] _levels = { "test.xml", "lvl1.xml", "sandbox.xml" };
+        int currentLevel = 0;
 
-        private Matrix _view;
-        private Vector2 _cameraPosition;
+        //Camera Controls
         private Vector2 _screenCenter;
+        public static Camera2D _camera;
 
+        //Debug Controls
+        private bool _debugMode = false;
+        private bool _showDebugView = false;
+        DebugViewXNA _debugView;
+
+        //Video
+        Video video;
+        bool IsIntro = true;
         VideoPlayer player;
         Texture2D videoTexture;
-
-        DebugViewXNA _debugView;
 
         #endregion
 
@@ -85,6 +86,46 @@ namespace GameState
                 new Keys[] { Keys.Escape },
                 true);
 
+
+
+            
+        }
+
+        public void loadLevel(int levelNumber)
+        {
+            if (levelNumber >= 0 && levelNumber < _levels.Length)
+            {
+                String contentdir = content.RootDirectory;
+                contentdir += "/Levels/" + _levels[levelNumber];
+                initializeLevel();
+                _currentLevel = Level.FromFile(contentdir, content);
+            }
+        }
+
+        public void loadNextLevel()
+        {
+            _world.Clear();
+            loadLevel((currentLevel++) % _levels.Length);
+
+        }
+
+        public void initializeLevel()
+        {
+            ConvertUnits.SetDisplayUnitToSimUnitRatio(64);
+            if (_currentLevel == null)
+                _currentLevel = new Level();
+            if (_world == null)
+                _world = new World(new Vector2(0f, 20f));
+            if (_hero == null)
+                _hero = new Player(ref _world);
+            
+
+            if (_camera == null)
+            {
+                _camera = new Camera2D(ScreenManager.GraphicsDevice);
+                _camera.EnablePositionTracking = true;
+                _camera.TrackingBody = _hero._body;
+            }
             
         }
 
@@ -97,7 +138,9 @@ namespace GameState
             if (!instancePreserved)
             {
                 if (content == null)
+                {
                     content = new ContentManager(ScreenManager.Game.Services, "Content");
+                }
 
                 gameFont = content.Load<SpriteFont>("gamefont");
                 video = content.Load<Video>("intro");
@@ -107,40 +150,28 @@ namespace GameState
                 // it would take longer to load. We simulate that by delaying for a
                 // while, giving you a chance to admire the beautiful loading screen.
                 //Thread.Sleep(1000);
+                
+                loadLevel(0);
 
-                //TODO: draw level
-                //get GraphicsDevice from ScreenManager;
-                _level = new Level();
-                _world = new World(new Vector2(0f, 10f));
-                
-                _hero = new Player(ref _world, "AARON");
-                //_level.camera = new Camera2D(base.ScreenManager.GraphicsDevice);
-                //_level.world = new World(new Vector2(0f, 10f));
-                ConvertUnits.SetDisplayUnitToSimUnitRatio(64);
-                _level = Level.FromFile("E:\\ICS\\CS113\\ucimobile\\Gravity Ball\\Level\\test.xml", content);
-                
-                
-                //ArrayList bodies = _world.BodyList;
-                System.Collections.Generic.List<Body> blist = _world.BodyList;
-
-                foreach ( Body b in blist)
+                if (_debugMode)
                 {
-                    Console.WriteLine(b.Position.ToString());
+                    System.Collections.Generic.List<Body> blist = _world.BodyList;
+
+                    foreach (Body b in blist)
+                    {
+                        Console.WriteLine(b.Position.ToString());
+                    }
                 }
 
                 //_world.AddController(new FarseerPhysics.Controllers.GravityController(10f, 300f, 0f));
-                _world.Enabled = true;
+                //_world.Enabled = true;
 
-                _view = Matrix.Identity;
-                _cameraPosition = Vector2.Zero;
+                //_view = Matrix.Identity;
+                //_cameraPosition = Vector2.Zero;
                 _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
                                                 ScreenManager.GraphicsDevice.Viewport.Height / 2f);
                 
-                _debugView = new DebugViewXNA(_world);
-                _debugView.AppendFlags(DebugViewFlags.DebugPanel);
-                _debugView.DefaultShapeColor = Color.White;
-                _debugView.SleepingShapeColor = Color.LightGray;
-                _debugView.LoadContent(ScreenManager.GraphicsDevice, content);
+                
                 
 
 
@@ -221,23 +252,11 @@ namespace GameState
             if(player.State == MediaState.Stopped)
             {
                 if(IsActive)
-                {
-                    // Apply some random jitter to make the enemy move around.
-                    const float randomization = 10;
-
-                    enemyPosition.X += (float) (random.NextDouble() - 0.5) * randomization;
-                    enemyPosition.Y += (float) (random.NextDouble() - 0.5) * randomization;
-
-                    // Apply a stabilizing force to stop the enemy moving off the screen.
-                    Vector2 targetPosition = new Vector2(
-                        ScreenManager.GraphicsDevice.Viewport.Width / 2 - gameFont.MeasureString("Insert Gameplay Here").X / 2,
-                        200);
-
-                    enemyPosition = Vector2.Lerp(enemyPosition, targetPosition, 0.05f);
-                
+                {                                   
                     // TODO: this game isn't very fun! You could probably improve
                     // it by inserting something more interesting in this space :-)
                     _hero.update();
+                    _camera.Update(gameTime);
                 }
             }
             
@@ -282,63 +301,82 @@ namespace GameState
 
                 if (keyboardState.IsKeyDown(Keys.Left))
                 {
-                    movement.X--;
-                    Console.WriteLine("Tring to move left");
                     _hero.moveLeft();
+                    _camera.EnablePositionTracking = true;
+                    if (_debugMode)
+                        Console.WriteLine("Hero moving left.");
                 }
                 if (keyboardState.IsKeyDown(Keys.Right))
                 {
-                    movement.X++;
                     _hero.moveRight();
-                    Console.WriteLine("trying to move right");
+                    _camera.EnablePositionTracking = true;
+                    if (_debugMode)
+                        Console.WriteLine("Hero moving right.");
                 }
 
                 if (keyboardState.IsKeyDown(Keys.Up))
-                    movement.Y--;
+                {
+                    //Not yet implemented.
+                }
 
                 if (keyboardState.IsKeyDown(Keys.Down))
-                    movement.Y++;
+                {
+                    //Not yet implemented.
+                }
 
                 if (keyboardState.IsKeyDown(Keys.Space))
                 {
                     _hero.jump();
+                    _camera.EnablePositionTracking = true;
+                    if (_debugMode)
+                        Console.WriteLine("Hero jumping.");
                 }
 
                 if (keyboardState.IsKeyDown(Keys.LeftShift) || keyboardState.IsKeyDown(Keys.RightShift))
                 {
                     if (keyboardState.IsKeyDown(Keys.A))
-                        _cameraPosition.X += 50f;
-
+                    {
+                        _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(-50f, 0f)));
+                    }
                     if (keyboardState.IsKeyDown(Keys.D))
-                        _cameraPosition.X -= 50f;
-
+                    {
+                        _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(50f, 0f)));
+                    }
                     if (keyboardState.IsKeyDown(Keys.W))
-                        _cameraPosition.Y += 50f;
-
+                    {
+                        _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(0f, -50f)));
+                    }
                     if (keyboardState.IsKeyDown(Keys.S))
-                        _cameraPosition.Y -= 50f;
-
-                    _view = Matrix.CreateTranslation(new Vector3(_cameraPosition - _screenCenter, 0f)) *
-                        Matrix.CreateTranslation(new Vector3(_screenCenter, 0f));
+                    {
+                        _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(0f, 50f)));
+                    }
                 }
 
-                Vector2 thumbstick = gamePadState.ThumbSticks.Left;
-
-                movement.X += thumbstick.X;
-                movement.Y -= thumbstick.Y;
-
-                if (input.TouchState.Count > 0)
+                if (keyboardState.IsKeyDown(Keys.LeftControl) || keyboardState.IsKeyDown(Keys.RightControl))
                 {
-                    Vector2 touchPosition = input.TouchState[0].Position;
-                    Vector2 direction = touchPosition - playerPosition;
-                    direction.Normalize();
-                    movement += direction;
+                    if (keyboardState.IsKeyDown(Keys.PageUp))
+                    {
+                        _camera.Zoom += .05f;
+                    }
+
+                    if (keyboardState.IsKeyDown(Keys.PageDown))
+                    {
+                        _camera.Zoom -= .05f;
+                    }
+
+                    if (keyboardState.IsKeyDown(Keys.D0) || keyboardState.IsKeyDown(Keys.NumPad0))
+                    {
+                        _camera.Zoom = 1f;
+                        _camera.Position = _hero.getSimPosition();
+                    }
+
+                    if (keyboardState.IsKeyDown(Keys.OemTilde))
+                    {
+                        toggleDebugViewXNA();
+                        _debugMode = !_debugMode;
+                    }
+
                 }
-
-                if (movement.Length() > 1)
-                    movement.Normalize();
-
-                playerPosition += movement * 8f;
             }
         }
 
@@ -354,18 +392,15 @@ namespace GameState
 
             if(player.State != MediaState.Stopped)
                 videoTexture = player.GetTexture();
-            // Our player and enemy are both actually just text strings.
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             
-            //draw Player first
             Rectangle screen = new Rectangle(ScreenManager.GraphicsDevice.Viewport.X,
                 ScreenManager.GraphicsDevice.Viewport.Y,
                 ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Height);
 
-            //spriteBatch.Begin();
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _view);
-
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _camera.View);
+            
             if(player.State == MediaState.Stopped)
                 videoTexture = null;
             if(videoTexture != null)
@@ -375,39 +410,44 @@ namespace GameState
             }
             else
             {
-                _level.draw(spriteBatch);
+                //Have each object in the Map draw itself.
+                _currentLevel.draw(spriteBatch);
                 _hero.draw(spriteBatch);
-                spriteBatch.DrawString(gameFont, "// TODO", playerPosition, Color.Firebrick);
-
-                spriteBatch.DrawString(gameFont, "Insert Gameplay Here",
-                                       enemyPosition, Color.DarkRed);
             }
-            
 
             spriteBatch.End();
-            float MeterInPixels = 64f;
-            
-            // calculate the projection and view adjustments for the debug view
-            Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ScreenManager.GraphicsDevice.Viewport.Width / MeterInPixels,
-                                                             ScreenManager.GraphicsDevice.Viewport.Height / MeterInPixels, 0f, 0f,
-                                                             1f);
-            Matrix view = Matrix.CreateTranslation(new Vector3((_cameraPosition / MeterInPixels) - (_screenCenter / MeterInPixels), 0f)) * Matrix.CreateTranslation(new Vector3((_screenCenter / MeterInPixels), 0f));
-            // draw the debug view
-            _debugView.RenderDebugData(ref projection, ref view);
 
+            if (_showDebugView)
+            {
+                // calculate the projection and view adjustments for the debug view
+                Matrix projection = Matrix.CreateOrthographicOffCenter(0f, ConvertUnits.ToSimUnits(ScreenManager.GraphicsDevice.Viewport.Width),
+                                                                 ConvertUnits.ToSimUnits(ScreenManager.GraphicsDevice.Viewport.Height), 0f, 0f, 1f);
+                Matrix simProjection = _camera.SimProjection;
+                Matrix simView = _camera.SimView;
+                // draw the debug view
+                _debugView.RenderDebugData(ref simProjection, ref simView);
+            }
 
-            //draw rest of layers in level
-            //_level.draw(spriteBatch);
-
-            //spriteBatch.End();
-
+           
             // If the game is transitioning on or off, fade it out to black.
             if (TransitionPosition > 0 || pauseAlpha > 0)
             {
                 float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);
-
                 ScreenManager.FadeBackBufferToBlack(alpha);
             }
+        }
+
+        public void toggleDebugViewXNA()
+        {
+            if (_debugView == null)
+            {
+                _debugView = new DebugViewXNA(_world);
+                _debugView.AppendFlags(DebugViewFlags.DebugPanel);
+                _debugView.DefaultShapeColor = Color.White;
+                _debugView.SleepingShapeColor = Color.LightGray;
+                _debugView.LoadContent(ScreenManager.GraphicsDevice, content);
+            }
+            _showDebugView = !_showDebugView;
         }
 
 

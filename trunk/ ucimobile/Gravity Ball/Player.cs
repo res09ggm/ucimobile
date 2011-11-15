@@ -22,11 +22,11 @@ namespace GameState
         private Double health;
         private Double energy;
         private ArrayList skills;
-        public Vector2 position; //should change to private or protected?
+        private Vector2 position; //should change to private or protected?
         public Body _body;
         private Boolean isJumping = false;
-
-        private Texture2D myTexture;
+        private Texture2D _myTexture;
+        private Vector2 simPosition;
         
         public Player(ref World gameWorld)
         {
@@ -48,20 +48,19 @@ namespace GameState
             energy = 100;
             skills = new ArrayList();
 
-            //Console.WriteLine("Creating Hero Body");
+            Console.WriteLine("Creating Hero Body");
 
-           /* this.setTexture(GameplayScreen.content.Load<Texture2D>("stick"));
-            float rad = this.getTexture().Width / 2;
-            //Body b = BodyFactory.CreateCircle(GameplayScreen._world, ConvertUnits.ToSimUnits(rad), 1f, ConvertUnits.ToSimUnits(item.Position), this);
-            _body = BodyFactory.CreateCircle(GameplayScreen._world, rad, 10f, new Vector2(500, 500));
-
+            _myTexture = GameplayScreen.content.Load<Texture2D>("stick");
+            float radius = _myTexture.Width / 2;
+            _body = BodyFactory.CreateCircle(gameWorld, ConvertUnits.ToSimUnits(radius), 1f, ConvertUnits.ToSimUnits(new Vector2(30f,30f)), this);
             _body.BodyType = BodyType.Dynamic;
-            
-            Vector2 location = new Vector2(275,275);
-            Fixture f = FixtureFactory.AttachCircle(rad, 1f, _body);
-            _body.CreateFixture(f.Shape);
-            position = new Vector2(500,500);
-            */
+            _body.Friction = 10f;
+            _body.Mass = 50f;
+            _body.Inertia = 25f;
+            _body.Restitution = .01f;
+
+            Fixture f = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(radius), 1f, _body);
+            //GameplayScreen._camera.TrackingBody = _body;
             return true;
         }
 
@@ -72,12 +71,12 @@ namespace GameState
 
         public Texture2D getTexture()
         {
-            return myTexture;
+            return _myTexture;
         }
 
         public void setTexture(Texture2D aTexture)
         {
-            myTexture = aTexture;
+            _myTexture = aTexture;
         }
 
         public String getName()
@@ -152,23 +151,38 @@ namespace GameState
         
         public void update()
         {
-            
-
-            /*position = ConvertUnits.ToDisplayUnits(_body.Position);
-            Console.WriteLine("Player:: _body.position=" + _body.Position.X + "," + _body.Position.Y);
-            Console.WriteLine("Player:: position=" + position.X + "," + position.Y);
-            */
         }
-        
-
         
         public void draw(SpriteBatch sb)
         {
-            position = _body.Position;
-            Vector2 wpos = ConvertUnits.ToDisplayUnits(_body.Position);
-            wpos.X = wpos.X - (myTexture.Width / 2);
-            wpos.Y = wpos.Y - (myTexture.Height / 2);
-            sb.Draw(myTexture, wpos, Color.Wheat);
+            Vector2 wpos = getWorldPosition();
+            wpos.X = wpos.X - (_myTexture.Width / 2);
+            wpos.Y = wpos.Y - (_myTexture.Height / 2);
+            sb.Draw(_myTexture, wpos, Color.Wheat);
+        }
+
+        public void setWorldPosition(Vector2 worldPos)
+        {
+            position = worldPos;
+            //make sure texture and body/fixture are aligned
+            _body.Position = ConvertUnits.ToSimUnits(worldPos);
+
+        }
+
+        public Vector2 getWorldPosition()
+        {
+            return ConvertUnits.ToDisplayUnits(_body.Position);
+        }
+
+        public void setSimPosition(Vector2 simPos)
+        {
+            position = ConvertUnits.ToDisplayUnits(simPos);
+            _body.Position = simPos;
+        }
+
+        public Vector2 getSimPosition()
+        {
+            return _body.Position;
         }
     }
 }
