@@ -1,0 +1,586 @@
+<?xml version="1.0"?>
+<Level xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Name="Level_01" Visible="true">
+    <Layers>
+        <Layer Name="Main" Visible="true">
+            <Items>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0001" Visible="true">
+                    <Position>
+                        <X>28</X>
+                        <Y>123</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>176</Width>
+                    <Height>231</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0002" Visible="true">
+                    <Position>
+                        <X>158</X>
+                        <Y>333</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>236</Width>
+                    <Height>21</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0003" Visible="true">
+                    <Position>
+                        <X>524</X>
+                        <Y>333</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>190</Width>
+                    <Height>21</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0007" Visible="true">
+                    <Position>
+                        <X>267</X>
+                        <Y>19</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>319</Width>
+                    <Height>233</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0008" Visible="true">
+                    <Position>
+                        <X>684</X>
+                        <Y>60</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>24</Width>
+                    <Height>282</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0009" Visible="true">
+                    <Position>
+                        <X>613</X>
+                        <Y>231</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>76</Width>
+                    <Height>4</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0010" Visible="true">
+                    <Position>
+                        <X>582</X>
+                        <Y>206</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>85</Width>
+                    <Height>7</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0011" Visible="true">
+                    <Position>
+                        <X>576</X>
+                        <Y>171</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>44</Width>
+                    <Height>7</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0012" Visible="true">
+                    <Position>
+                        <X>637</X>
+                        <Y>171</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>52</Width>
+                    <Height>7</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0013" Visible="true">
+                    <Position>
+                        <X>570</X>
+                        <Y>140</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>95</Width>
+                    <Height>5</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0014" Visible="true">
+                    <Position>
+                        <X>621</X>
+                        <Y>84</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>67</Width>
+                    <Height>39</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0015" Visible="true">
+                    <Position>
+                        <X>581</X>
+                        <Y>104</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>25</Width>
+                    <Height>6</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0016" Visible="true">
+                    <Position>
+                        <X>708</X>
+                        <Y>334</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>48</Width>
+                    <Height>17</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="CircleItem" Name="Hero" Visible="true">
+                    <Position>
+                        <X>72</X>
+                        <Y>98</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Radius>25.2982216</Radius>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+            </Items>
+            <ScrollSpeed>
+                <X>1</X>
+                <Y>1</Y>
+            </ScrollSpeed>
+        </Layer>
+        <Layer Name="Background" Visible="true">
+            <Items>
+                <Item xsi:type="TextureItem" Name="Texture_0017" Visible="true">
+                    <Position>
+                        <X>101</X>
+                        <Y>159</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>0.2</X>
+                        <Y>0.2</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>valveadj9.jpg</texture_filename>
+                    <asset_name>valveadj9</asset_name>
+                    <Origin>
+                        <X>300</X>
+                        <Y>225</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0021" Visible="true">
+                    <Position>
+                        <X>124</X>
+                        <Y>331</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>tiles.png</texture_filename>
+                    <asset_name>tiles</asset_name>
+                    <Origin>
+                        <X>64</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0022" Visible="true">
+                    <Position>
+                        <X>203</X>
+                        <Y>388</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>tiles.png</texture_filename>
+                    <asset_name>tiles</asset_name>
+                    <Origin>
+                        <X>64</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0023" Visible="true">
+                    <Position>
+                        <X>300</X>
+                        <Y>394</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>tiles.png</texture_filename>
+                    <asset_name>tiles</asset_name>
+                    <Origin>
+                        <X>64</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0024" Visible="true">
+                    <Position>
+                        <X>465</X>
+                        <Y>492</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>tiles.png</texture_filename>
+                    <asset_name>tiles</asset_name>
+                    <Origin>
+                        <X>64</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0025" Visible="true">
+                    <Position>
+                        <X>590</X>
+                        <Y>400</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>tiles.png</texture_filename>
+                    <asset_name>tiles</asset_name>
+                    <Origin>
+                        <X>64</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0026" Visible="true">
+                    <Position>
+                        <X>680</X>
+                        <Y>405</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>tiles.png</texture_filename>
+                    <asset_name>tiles</asset_name>
+                    <Origin>
+                        <X>64</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0027" Visible="true">
+                    <Position>
+                        <X>758</X>
+                        <Y>299</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>tiles.png</texture_filename>
+                    <asset_name>tiles</asset_name>
+                    <Origin>
+                        <X>64</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0028" Visible="true">
+                    <Position>
+                        <X>760</X>
+                        <Y>182</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>tiles.png</texture_filename>
+                    <asset_name>tiles</asset_name>
+                    <Origin>
+                        <X>64</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+            </Items>
+            <ScrollSpeed>
+                <X>0.5</X>
+                <Y>1</Y>
+            </ScrollSpeed>
+        </Layer>
+        <Layer Name="Background2" Visible="true">
+            <Items>
+                <Item xsi:type="TextureItem" Name="Texture_0018" Visible="true">
+                    <Position>
+                        <X>328</X>
+                        <Y>200</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>0.2</X>
+                        <Y>0.2</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>valveadj9.jpg</texture_filename>
+                    <asset_name>valveadj9</asset_name>
+                    <Origin>
+                        <X>300</X>
+                        <Y>225</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0019" Visible="true">
+                    <Position>
+                        <X>365</X>
+                        <Y>129</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>0.305913717</X>
+                        <Y>0.305913717</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>rptroute.png</texture_filename>
+                    <asset_name>rptroute</asset_name>
+                    <Origin>
+                        <X>311</X>
+                        <Y>196</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0020" Visible="true">
+                    <Position>
+                        <X>461</X>
+                        <Y>116</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>0.3688069</X>
+                        <Y>0.3688069</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>rptroute.png</texture_filename>
+                    <asset_name>rptroute</asset_name>
+                    <Origin>
+                        <X>311</X>
+                        <Y>196</Y>
+                    </Origin>
+                </Item>
+            </Items>
+            <ScrollSpeed>
+                <X>0.25</X>
+                <Y>1</Y>
+            </ScrollSpeed>
+        </Layer>
+    </Layers>
+    <CustomProperties />
+    <EditorRelated>
+        <NextItemNumber>30</NextItemNumber>
+        <ContentRootFolder>E:\ICS\CS113\ucimobile\Content</ContentRootFolder>
+        <CameraPosition>
+            <X>0</X>
+            <Y>0</Y>
+        </CameraPosition>
+        <Version>1.3.0.0</Version>
+    </EditorRelated>
+</Level>
