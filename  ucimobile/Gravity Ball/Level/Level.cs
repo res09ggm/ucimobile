@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Xml;
@@ -6,9 +6,16 @@ using System.Xml.Serialization;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using FarseerPhysics.SamplesFramework;
+using FarseerPhysics.Factories;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.Common;
+using FarseerPhysics.Collision;
+using FarseerPhysics.Controllers;
+using FarseerPhysics;
+using GameStateManagement;
 
-
-namespace GLEED2D
+namespace GameState
 {
     public partial class Level
     {
@@ -31,7 +38,6 @@ namespace GLEED2D
         /// </summary>
         public SerializableDictionary CustomProperties;
 
-
         public Level()
         {
             Visible = true;
@@ -50,7 +56,40 @@ namespace GLEED2D
             {
                 foreach (Item item in layer.Items)
                 {
+                    
                     item.CustomProperties.RestoreItemAssociations(level);
+                    if (item.Name == "Hero")
+                    {
+                        //Convert item position relative to texture center;
+                        Vector2 offset = new Vector2(GameplayScreen._hero.getTexture().Width / 2,
+                                                        GameplayScreen._hero.getTexture().Height / 2);
+                        Vector2 origin = item.Position + offset;
+                        GameplayScreen._hero.setWorldPosition(origin);
+
+                        /*
+                        //Vector2 worldpos = new Vector2(ConvertUnits.ToSimUnits(item.Position.X), ConvertUnits.ToSimUnits(item.Position.Y));
+                        Console.WriteLine("Creating Hero Body");
+                        GameplayScreen._hero.setTexture(cm.Load<Texture2D>("stick"));
+                        float rad = GameplayScreen._hero.getTexture().Width/2;
+                        
+                        Console.WriteLine("Hero worldPos scaled: " + worldpos.X + ", " + worldpos.Y);
+                        Console.WriteLine("radius: " + rad + "sim: " + ConvertUnits.ToSimUnits(rad));
+                        Body b = BodyFactory.CreateCircle(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(rad), 1f, worldpos, GameplayScreen._hero);
+                        GameplayScreen._camera.TrackingBody = b;
+                        b.BodyType = BodyType.Dynamic;
+                        b.Friction = 10f;
+                        b.Mass = 50f;
+                        b.Inertia = 25f;
+                        b.Restitution = .01f;
+                        
+                        Vector2 location = item.Position;
+                        Fixture f = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(rad), 1f, b);
+                        //b.CreateFixture(f.Shape);
+                        
+                        GameplayScreen._hero._body = b;
+                        */
+
+                    }
                     item.load(cm);
                 }
             }
@@ -114,6 +153,8 @@ namespace GLEED2D
         /// </summary>
         public Vector2 ScrollSpeed;
 
+        public Matrix transform;
+
 
         public Layer()
         {
@@ -124,7 +165,20 @@ namespace GLEED2D
         public void draw(SpriteBatch sb)
         {
             if (!Visible) return;
+            // enable parallax if layer scrollspeed is different than Vector2.One
+            if (!this.ScrollSpeed.Equals(Vector2.One))
+                this.updateTransform();
             foreach (Item item in Items) item.draw(sb);
+        }
+
+        public void updateTransform()
+        {
+            /*transform = Matrix.Identity *
+                    Matrix.CreateTranslation(-(.currentCamera.Position.X * ScrollSpeed.X, -(parent as Scene).currentCamera.Position.Y * ScrollSpeed.Y, 0) *
+                    Matrix.CreateRotationZ((parent as Scene).currentCamera.Rotation) *
+                    Matrix.CreateScale((parent as Scene).currentCamera.Scale) *
+                    Matrix.CreateTranslation((parent as Scene).currentCamera.Origin.X, (parent as Scene).currentCamera.Origin.Y, 0);
+             */
         }
 
     }
@@ -222,6 +276,7 @@ namespace GLEED2D
         /// Loading is done in the Item's load() method.
         /// </summary>
         Texture2D texture;
+        Body body;
 
         /// <summary>
         /// The item's origin relative to the upper left corner of the texture. Usually the middle of the texture.
@@ -243,18 +298,95 @@ namespace GLEED2D
         public override void load(ContentManager cm)
         {
             //throw new NotImplementedException();
-
+            
             //TODO: provide your own implementation of how a TextureItem loads its assets
             //for example:
             //this.texture = Texture2D.FromFile(<GraphicsDevice>, texture_filename);
             //or by using the Content Pipeline:
             //this.texture = cm.Load<Texture2D>(asset_name);
             this.texture = cm.Load<Texture2D>(asset_name);
-
-
-
             Origin = new Vector2(texture.Width / 2, texture.Height / 2);
+            
+            // Check for GLEED2D key/value pairs and insert physics
+            /*Body itemBody = BodyFactory.CreateBody(GameplayScreen._world);
+            Fixture itemFixture;
+            Vector2 itemPos = ConvertUnits.ToDisplayUnits(this.Position);
 
+            if (this.GetType() == typeof(RectangleItem))
+            {
+                itemFixture = FixtureFactory.AttachRectangle(this.texture.Width, this.texture.Height, 1f, new Vector2(0,0), itemBody);
+            }
+            else if (this.GetType()*/
+            //Fixture itemFixture;
+            //Vector2 worldpos = new Vector2(this.Position.X + Origin.X, this.Position.Y + Origin.Y);
+            //body = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldpos), this);
+            //itemFixture = FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(this.texture.Width), ConvertUnits.ToSimUnits(this.texture.Height), 1f, new Vector2(0, 0), body);
+            //itemFixture.CollisionGroup = 1;
+            //body.CreateFixture(itemFixture.Shape);
+
+            if (this.CustomProperties.ContainsKey("dynamic") && (bool)this.CustomProperties["dynamic"].value == true)
+            {
+                if (this.CustomProperties.ContainsKey("RectangleItem"))
+                {
+                    
+                        Fixture itemFixture;
+                        Vector2 worldpos = new Vector2(this.Position.X + Origin.X, this.Position.Y + Origin.Y);
+                        body = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldpos), this);
+
+                        Vector2 size = new Vector2(ConvertUnits.ToSimUnits(this.texture.Width), ConvertUnits.ToSimUnits(this.texture.Height));
+                        itemFixture = FixtureFactory.AttachRectangle(size.X, size.Y, 1f, new Vector2(0, 0), body);
+
+                    
+                    Console.WriteLine("creating rectitem fixture");
+
+                }
+                else if (this.CustomProperties.ContainsKey("CircleItem"))
+                {
+                    Console.WriteLine("creating circitem fixture");
+                    Fixture itemFixture;
+                    Vector2 worldpos = new Vector2(this.Position.X + Origin.X, this.Position.Y + Origin.Y);
+                    body = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldpos), this);
+
+                    itemFixture = FixtureFactory.AttachCircle(this.texture.Width / 2, 1f, body);
+                    body.CreateFixture(itemFixture.Shape);
+                }
+                else
+                {
+                    Fixture itemFixture;
+                    Vector2 worldpos = new Vector2(this.Position.X + Origin.X, this.Position.Y + Origin.Y);
+                    body = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldpos), this);
+                    Console.WriteLine("creating polygon fixture");
+                    //Create an array to hold the data from the texture
+                    uint[] data = new uint[this.texture.Width * this.texture.Height];
+
+                    //Transfer the texture data to the array
+                    this.texture.GetData(data);
+
+                    //Find the vertices that makes up the outline of the shape in the texture
+                    Vertices verts = PolygonTools.CreatePolygon(data, this.texture.Width, false);
+
+                    //For now we need to scale the vertices (result is in pixels, we use meters)
+                    Vector2 scale = new Vector2((1f/64f), (1f/64f));
+                    verts.Scale(ref scale);
+
+                    //Since it is a concave polygon, we need to partition it into several smaller convex polygons
+                    List<Vertices> _list = FarseerPhysics.Common.Decomposition.BayazitDecomposer.ConvexPartition(verts);
+
+                    //Create a single body with multiple fixtures
+                    List<Fixture> compound = FixtureFactory.AttachCompoundPolygon(_list, 1, this.body);
+
+                }
+                if (this.CustomProperties.ContainsKey("dynamic"))
+                {
+                    if ((bool)this.CustomProperties["dynamic"].value == true)
+                    {
+                        body.BodyType = BodyType.Dynamic;
+                    }
+                    else
+                        body.BodyType = BodyType.Static;
+                }
+                
+            }
         }
 
         public override void draw(SpriteBatch sb)
@@ -273,9 +405,35 @@ namespace GLEED2D
         public float Width;
         public float Height;
         public Color FillColor;
+        Body body;
+        Fixture fixture;
 
         public RectangleItem()
         {
+        }
+
+        public override void load(ContentManager cm)
+        {
+            base.load(cm);
+            Console.WriteLine("Creating Rectangle Item");
+            Vector2 wspace = new Vector2(this.Position.X + (this.Width/2), this.Position.Y + (this.Height/2));
+            Console.WriteLine("Body worldspace pos= " + wspace.X + "," + wspace.Y);
+            body = BodyFactory.CreateBody(GameplayScreen._world, ConvertUnits.ToSimUnits(wspace), this);
+            fixture = FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(this.Width), ConvertUnits.ToSimUnits(this.Height), 1f, new Vector2(0, 0), body);
+            fixture.CollisionGroup = 1;
+            body.IsStatic = true;
+            body.BodyType = BodyType.Static;
+            body.Friction = 1f;
+            Console.WriteLine("created body: " + body.ToString());
+
+            Console.WriteLine(CustomProperties.ToString());
+            if (CustomProperties.ContainsKey("breakable"))
+            {
+                if (CustomProperties["breakable"].description == "true")
+                {
+                    body.BodyType = BodyType.Dynamic;
+                }
+            }
         }
     }
 
@@ -449,10 +607,4 @@ namespace GLEED2D
 
 
     }
-
-
-
-
-
-
 }
