@@ -14,6 +14,15 @@ using Microsoft.Xna.Framework.Input.Touch;
 
 namespace GameStateManagement
 {
+
+    public enum MouseButtons
+    {
+        LeftButton,
+        MiddleButton,
+        RightButton,
+        ExtraButton1,
+        ExtraButton2
+    }
     /// <summary>
     /// Helper for reading input from keyboard, gamepad, and touch input. This class 
     /// tracks both the current and previous state of the input devices, and implements 
@@ -26,16 +35,23 @@ namespace GameStateManagement
 
         public readonly KeyboardState[] CurrentKeyboardStates;
         public readonly GamePadState[] CurrentGamePadStates;
+        public MouseState CurrentMouseState;
 
         public readonly KeyboardState[] LastKeyboardStates;
         public readonly GamePadState[] LastGamePadStates;
+        public MouseState LastMouseState;
 
         public readonly bool[] GamePadWasConnected;
 
         public TouchCollection TouchState;
 
         public readonly List<GestureSample> Gestures = new List<GestureSample>();
-        
+
+        private Vector2 _cursor;
+        private bool _cursorIsValid;
+        private bool _cursorIsVisible;
+        private bool _cursorMoved;
+        private Sprite _cursorSprite;
 
         /// <summary>
         /// Constructs a new input state.
@@ -44,18 +60,28 @@ namespace GameStateManagement
         {
             CurrentKeyboardStates = new KeyboardState[MaxInputs];
             CurrentGamePadStates = new GamePadState[MaxInputs];
+            CurrentMouseState = new MouseState();
 
             LastKeyboardStates = new KeyboardState[MaxInputs];
             LastGamePadStates = new GamePadState[MaxInputs];
+            LastMouseState = new MouseState();
 
             GamePadWasConnected = new bool[MaxInputs];
+            _cursorIsVisible = false;
+            _cursorMoved = false;
+            _cursor = Vector2.Zero;
         }
-
+        public Vector2 Cursor
+        {
+            get{ return _cursor;}
+        }
         /// <summary>
         /// Reads the latest state user input.
         /// </summary>
         public void Update()
         {
+
+            LastMouseState = CurrentMouseState;
             for (int i = 0; i < MaxInputs; i++)
             {
                 LastKeyboardStates[i] = CurrentKeyboardStates[i];
@@ -71,6 +97,7 @@ namespace GameStateManagement
                     GamePadWasConnected[i] = true;
                 }
             }
+            CurrentMouseState = Mouse.GetState();
 
             // Get the raw touch state from the TouchPanel
             TouchState = TouchPanel.GetState();
@@ -80,6 +107,20 @@ namespace GameStateManagement
             while (TouchPanel.IsGestureAvailable)
             {
                 Gestures.Add(TouchPanel.ReadGesture());
+            }
+
+            //Update Cursor
+            Vector2 oldCursor = _cursor;
+            _cursor.X = CurrentMouseState.X;
+            _cursor.Y = CurrentMouseState.Y;
+
+            if(oldCursor != _cursor)
+            {
+                _cursorMoved = true;
+            }
+            else
+            {
+                _cursorMoved = false;
             }
         }
 
@@ -194,6 +235,57 @@ namespace GameStateManagement
                         IsNewButtonPress(button, PlayerIndex.Two, out playerIndex) ||
                         IsNewButtonPress(button, PlayerIndex.Three, out playerIndex) ||
                         IsNewButtonPress(button, PlayerIndex.Four, out playerIndex));
+            }
+        }
+
+        /// <summary>
+        ///   Helper for checking if a mouse button was newly pressed during this update.
+        /// </summary>
+        public bool IsNewMouseButtonPress(MouseButtons button)
+        {
+            switch(button)
+            {
+                case MouseButtons.LeftButton:
+                    return (CurrentMouseState.LeftButton == ButtonState.Pressed &&
+                            LastMouseState.LeftButton == ButtonState.Released);
+                case MouseButtons.RightButton:
+                    return (CurrentMouseState.RightButton == ButtonState.Pressed &&
+                            LastMouseState.RightButton == ButtonState.Released);
+                case MouseButtons.MiddleButton:
+                    return (CurrentMouseState.MiddleButton == ButtonState.Pressed &&
+                            LastMouseState.MiddleButton == ButtonState.Released);
+                case MouseButtons.ExtraButton1:
+                    return (CurrentMouseState.XButton1 == ButtonState.Pressed &&
+                            LastMouseState.XButton1 == ButtonState.Released);
+                case MouseButtons.ExtraButton2:
+                    return (CurrentMouseState.XButton2 == ButtonState.Pressed &&
+                            LastMouseState.XButton2 == ButtonState.Released);
+                default:
+                    return false;
+            }
+        }
+
+        public bool IsNewMouseButtonRelease(MouseButtons button)
+        {
+            switch(button)
+            {
+                case MouseButtons.LeftButton:
+                    return (LastMouseState.LeftButton == ButtonState.Pressed &&
+                            CurrentMouseState.LeftButton == ButtonState.Released);
+                case MouseButtons.RightButton:
+                    return (LastMouseState.RightButton == ButtonState.Pressed &&
+                            CurrentMouseState.RightButton == ButtonState.Released);
+                case MouseButtons.MiddleButton:
+                    return (LastMouseState.MiddleButton == ButtonState.Pressed &&
+                            CurrentMouseState.MiddleButton == ButtonState.Released);
+                case MouseButtons.ExtraButton1:
+                    return (LastMouseState.XButton1 == ButtonState.Pressed &&
+                            CurrentMouseState.XButton1 == ButtonState.Released);
+                case MouseButtons.ExtraButton2:
+                    return (LastMouseState.XButton2 == ButtonState.Pressed &&
+                            CurrentMouseState.XButton2 == ButtonState.Released);
+                default:
+                    return false;
             }
         }
     }

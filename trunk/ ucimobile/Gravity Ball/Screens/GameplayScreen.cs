@@ -180,23 +180,11 @@ namespace GameState
                 // it should not try to catch up.
                 ScreenManager.Game.ResetElapsedTime();
             }
-
-#if WINDOWS_PHONE
-            if (Microsoft.Phone.Shell.PhoneApplicationService.Current.State.ContainsKey("PlayerPosition"))
-            {
-                playerPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"];
-                enemyPosition = (Vector2)Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"];
-            }
-#endif
         }
 
 
         public override void Deactivate()
         {
-#if WINDOWS_PHONE
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["PlayerPosition"] = playerPosition;
-            Microsoft.Phone.Shell.PhoneApplicationService.Current.State["EnemyPosition"] = enemyPosition;
-#endif
 
             base.Deactivate();
         }
@@ -277,7 +265,7 @@ namespace GameState
 
             KeyboardState keyboardState = input.CurrentKeyboardStates[playerIndex];
             GamePadState gamePadState = input.CurrentGamePadStates[playerIndex];
-
+            MouseState mouseState = input.CurrentMouseState;
             // The game pauses either if the user presses the pause button, or if
             // they unplug the active gamepad. This requires us to keep track of
             // whether a gamepad was ever plugged in, because we don't want to pause
@@ -296,6 +284,10 @@ namespace GameState
             }
             else
             {
+                //Handle Cursor
+
+                //
+
                 // Otherwise move the player position.
                 Vector2 movement = Vector2.Zero;
 
@@ -375,6 +367,14 @@ namespace GameState
                         toggleDebugViewXNA();
                         _debugMode = !_debugMode;
                     }
+                }
+
+                if(input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                {
+                    Vector2 position = _camera.ConvertScreenToWorld(input.Cursor);
+                    //Console.WriteLine("World Position: " +position);
+                    //Console.WriteLine("Cursor Pos: "+input.Cursor);
+                    _hero.setSimPosition(position);
 
                 }
             }
