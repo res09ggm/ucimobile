@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Microsoft.Xna.Framework;
 namespace GameState
 {
     interface Ability
@@ -68,5 +68,29 @@ namespace GameState
         {
             throw new NotImplementedException();
         }
+    }
+
+    public class GravityHole : Ability
+    {
+        public int energyRequired
+        {
+            get
+            {
+                return energyRequired;
+            }
+            set
+            {
+                energyRequired = value;
+            }
+        }
+
+        public void teleport(Player player, Vector2 pos)
+        {
+            player.setSimPosition(pos);
+        }
+
+
+
+
     }
 }
