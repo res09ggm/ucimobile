@@ -84,9 +84,19 @@ namespace GameState
             }
         }
 
-        public void teleport(Player player, Vector2 pos)
+        //public void teleport(Player player, Vector2 pos)
+        //{
+          //  player.setSimPosition(pos);
+        //}
+
+        public void shoot()
         {
-            player.setSimPosition(pos);
+            throw new NotImplementedException();
+        }
+
+        public void upgrade()
+        {
+            throw new NotImplementedException();
         }
 
 
