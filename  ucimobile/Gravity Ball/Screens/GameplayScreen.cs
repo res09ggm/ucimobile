@@ -50,7 +50,7 @@ namespace GameState
         public static Player _hero;
         public static Level _currentLevel;
         public static World _world;
-        String[] _levels = { "test.xml", "lvl1.xml", "sandbox.xml" };
+        String[] _levels = { "lvl1.xml", "sandbox.xml", "test.xml" };
         int currentLevel = 0;
 
         //Camera Controls
@@ -105,7 +105,8 @@ namespace GameState
         public void loadNextLevel()
         {
             _world.Clear();
-            loadLevel((currentLevel++) % _levels.Length);
+            _world = null;
+            loadLevel((++currentLevel) % _levels.Length);
 
         }
 
@@ -115,7 +116,7 @@ namespace GameState
             if (_currentLevel == null)
                 _currentLevel = new Level();
             if (_world == null)
-                _world = new World(new Vector2(0f, 20f));
+                _world = new World(new Vector2(0f, 10f));
             if (_hero == null)
                 _hero = new Player(ref _world);
             
@@ -291,14 +292,24 @@ namespace GameState
                 // Otherwise move the player position.
                 Vector2 movement = Vector2.Zero;
 
-                if (keyboardState.IsKeyDown(Keys.Left))
+                if (keyboardState.IsKeyDown(Keys.W))
+                {
+                    
+                }
+                if (keyboardState.IsKeyDown(Keys.A))
                 {
                     _hero.moveLeft();
                     _camera.EnablePositionTracking = true;
                     if (_debugMode)
                         Console.WriteLine("Hero moving left.");
                 }
-                if (keyboardState.IsKeyDown(Keys.Right))
+
+                if (keyboardState.IsKeyDown(Keys.S))
+                {
+                    //Not yet implemented.
+                }
+
+                if (keyboardState.IsKeyDown(Keys.D))
                 {
                     _hero.moveRight();
                     _camera.EnablePositionTracking = true;
@@ -306,43 +317,57 @@ namespace GameState
                         Console.WriteLine("Hero moving right.");
                 }
 
-                if (keyboardState.IsKeyDown(Keys.Up))
-                {
-                    //Not yet implemented.
-                }
-
-                if (keyboardState.IsKeyDown(Keys.Down))
-                {
-                    //Not yet implemented.
-                }
-
                 if (keyboardState.IsKeyDown(Keys.Space))
                 {
-                    _hero.jump();
-                    _camera.EnablePositionTracking = true;
                     if (_debugMode)
                         Console.WriteLine("Hero jumping.");
+                    _hero.jump();
+                    _camera.EnablePositionTracking = true;
                 }
 
-                if (keyboardState.IsKeyDown(Keys.LeftShift) || keyboardState.IsKeyDown(Keys.RightShift))
+                if ((keyboardState.IsKeyDown(Keys.LeftShift) || keyboardState.IsKeyDown(Keys.RightShift)) &&
+                        keyboardState.IsKeyDown(Keys.Space))
                 {
-                    if (keyboardState.IsKeyDown(Keys.A))
-                    {
-                        _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(-50f, 0f)));
-                    }
-                    if (keyboardState.IsKeyDown(Keys.D))
-                    {
-                        _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(50f, 0f)));
-                    }
-                    if (keyboardState.IsKeyDown(Keys.W))
-                    {
-                        _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(0f, -50f)));
-                    }
-                    if (keyboardState.IsKeyDown(Keys.S))
-                    {
-                        _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(0f, 50f)));
-                    }
+                    _hero.action();
                 }
+
+                if (keyboardState.IsKeyDown(Keys.NumPad1) || keyboardState.IsKeyDown(Keys.D1))
+                {
+                    _hero.selectAbility((int)AbilityType.GRAVITY_BALL);
+                }
+
+                if (keyboardState.IsKeyDown(Keys.NumPad2) || keyboardState.IsKeyDown(Keys.D2))
+                {
+                    _hero.selectAbility((int)AbilityType.GRAVITY_SPHERE);
+                }
+
+                if (keyboardState.IsKeyDown(Keys.NumPad3) || keyboardState.IsKeyDown(Keys.D3))
+                {
+                    _hero.selectAbility((int)AbilityType.GRAVITY_HOLE);
+                }
+
+                if (keyboardState.IsKeyDown(Keys.NumPad4) || keyboardState.IsKeyDown(Keys.D4))
+                {
+                    _hero.selectAbility((int)AbilityType.GRAVITY_FLIP);
+                }
+
+                if (keyboardState.IsKeyDown(Keys.Left))
+                {
+                    _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(-50f, 0f)));
+                }
+                if (keyboardState.IsKeyDown(Keys.Right))
+                {
+                    _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(50f, 0f)));
+                }
+                if (keyboardState.IsKeyDown(Keys.Up))
+                {
+                    _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(0f, -50f)));
+                }
+                if (keyboardState.IsKeyDown(Keys.Down))
+                {
+                    _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(0f, 50f)));
+                }
+                
 
                 if (keyboardState.IsKeyDown(Keys.LeftControl) || keyboardState.IsKeyDown(Keys.RightControl))
                 {
@@ -376,6 +401,11 @@ namespace GameState
                     //Console.WriteLine("Cursor Pos: "+input.Cursor);
                     _hero.setSimPosition(position);
 
+                    if (keyboardState.IsKeyDown(Keys.OemPlus))
+                    {
+                        loadNextLevel();
+                    }
+
                 }
             }
         }
@@ -388,7 +418,7 @@ namespace GameState
         {
             // This game has a blue background. Why? Because!
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
-                                               Color.CornflowerBlue, 0, 0);
+                                               Color.Black, 0, 0);
 
             if(player.State != MediaState.Stopped)
                 videoTexture = player.GetTexture();
@@ -405,8 +435,9 @@ namespace GameState
                 videoTexture = null;
             if(videoTexture != null)
             {
+                
                 spriteBatch.Draw(videoTexture, screen, Color.White);
-
+                
             }
             else
             {

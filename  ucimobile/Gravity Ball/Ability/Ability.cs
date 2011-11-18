@@ -5,6 +5,8 @@ using System.Text;
 using Microsoft.Xna.Framework;
 namespace GameState
 {
+    enum AbilityType { GRAVITY_BALL, GRAVITY_SPHERE, GRAVITY_HOLE, GRAVITY_FLIP };
+
     interface Ability
     {
         int energyRequired
@@ -19,6 +21,7 @@ namespace GameState
 
     class GravityBallProjectile : Ability 
     {
+
         double damagePerformed = 5.0;
 
         public int energyRequired
@@ -41,6 +44,8 @@ namespace GameState
 
         public void shoot()
         {
+            //logic to shoot gravity ball
+            Player h = GameplayScreen._hero;
 
         }
     }

@@ -21,12 +21,13 @@ namespace GameState
         private int exp;
         private Double health;
         private Double energy;
-        private ArrayList skills;
+        private Ability[] skills;
         private Vector2 position; //should change to private or protected?
         public Body _body;
         private Boolean isJumping = false;
         private Texture2D _myTexture;
         private Vector2 simPosition;
+        private int abilityIndex = 0;
         
         public Player(ref World gameWorld)
         {
@@ -46,27 +47,22 @@ namespace GameState
             exp = 0;
             health = 100;
             energy = 100;
-            skills = new ArrayList();
+            skills = new Ability[4];
 
             Console.WriteLine("Creating Hero Body");
 
-            _myTexture = GameplayScreen.content.Load<Texture2D>("stick");
+            _myTexture = GameplayScreen.content.Load<Texture2D>("gravityball");
             float radius = _myTexture.Width / 2;
             _body = BodyFactory.CreateCircle(gameWorld, ConvertUnits.ToSimUnits(radius), 1f, ConvertUnits.ToSimUnits(new Vector2(30f,30f)), this);
             _body.BodyType = BodyType.Dynamic;
-            _body.Friction = 10f;
-            _body.Mass = 50f;
-            _body.Inertia = 25f;
+            _body.Friction = 5f;
+            _body.Mass = 0f;
+            _body.Inertia = 0f;
             _body.Restitution = .01f;
 
-            Fixture f = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(radius), 1f, _body);
+            Fixture f = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(radius), 0f, _body);
             //GameplayScreen._camera.TrackingBody = _body;
             return true;
-        }
-
-        public void addAbility(Ability aAbility)
-        {
-            skills.Add(aAbility);
         }
 
         public Texture2D getTexture()
@@ -92,19 +88,36 @@ namespace GameState
 
         internal void moveRight()
         {
-            //throw new NotImplementedException();
-            if (!isJumping)
-                this._body.ApplyTorque(20);
-            //this._body.ApplyLinearImpulse(new Vector2(1f, 0f));
-            Console.WriteLine("Player::moveRight()::applyTorque(-10f)");
+            if (_body.LinearVelocity.X <= 10f)
+            {
+                //throw new NotImplementedException();
+                if (!isJumping)
+                {
+                    //this._body.ApplyTorque(20);
+                    this._body.ApplyForce(new Vector2(20f, 0f));
+
+                }
+                else
+                    this._body.ApplyForce(new Vector2(10f, 0f));
+                //this._body.ApplyLinearImpulse(new Vector2(1f, 0f));
+                Console.WriteLine("Player::moveRight()::applyTorque(-10f)");
+            }
             this.position = _body.Position;
         }
 
         internal void moveLeft()
         {
-            if (!isJumping)
-                this._body.ApplyTorque(-20);
-            Console.WriteLine("Player::moveRight()::applyTorque(10f)");
+            if (_body.LinearVelocity.X >= -10f)
+            {
+                if (!isJumping)
+                {
+                    //this._body.ApplyTorque(-20);
+                    this._body.ApplyForce(new Vector2(-20f, 0f));
+                }
+                else
+                    this._body.ApplyForce(new Vector2(-10f, 0f));
+                Console.WriteLine("Player::moveRight()::applyTorque(10f)");
+            }
             this.position = _body.Position;
             
         }
@@ -116,7 +129,7 @@ namespace GameState
              if (!isJumping)
             {
                 this.isJumping = true;
-                this._body.ApplyLinearImpulse(new Vector2(0f, -20f));
+                this._body.ApplyLinearImpulse(new Vector2(0f, -12f));
                 _body.OnCollision += new OnCollisionEventHandler(this.onCollision);
                 //_body.OnCollision += this.OnCollision;
             }    
@@ -133,6 +146,7 @@ namespace GameState
                 if (norm.Y < 0) //&& this._body.LinearVelocity.Y < 0)
                 {
                     isJumping = false;
+                    GameplayScreen._hero._body.AngularVelocity = 0f;
                     return true;
                 }
 
@@ -183,6 +197,17 @@ namespace GameState
         public Vector2 getSimPosition()
         {
             return _body.Position;
+        }
+
+        internal void action()
+        {
+           // if (skills[abilityIndex]
+            //skills[abilityIndex].shoot();
+        }
+
+        internal void selectAbility(int p)
+        {
+            abilityIndex = p;
         }
     }
 }

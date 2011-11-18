@@ -13,6 +13,8 @@ using FarseerPhysics.Common;
 using FarseerPhysics.Collision;
 using FarseerPhysics.Controllers;
 using FarseerPhysics;
+using FarseerPhysics.Common.Decomposition;
+using FarseerPhysics.Common.PolygonManipulation;
 using GameStateManagement;
 
 namespace GameState
@@ -54,47 +56,151 @@ namespace GameState
 
             foreach (Layer layer in level.Layers)
             {
-                foreach (Item item in layer.Items)
+                if (layer.Name == "Main")
                 {
-                    
-                    item.CustomProperties.RestoreItemAssociations(level);
-                    if (item.Name == "Hero")
-                    {
-                        //Convert item position relative to texture center;
-                        Vector2 offset = new Vector2(GameplayScreen._hero.getTexture().Width / 2,
-                                                        GameplayScreen._hero.getTexture().Height / 2);
-                        Vector2 origin = item.Position + offset;
-                        GameplayScreen._hero.setWorldPosition(origin);
+                    processMainLayer(layer.Items, cm);
+                }
 
-                        /*
-                        //Vector2 worldpos = new Vector2(ConvertUnits.ToSimUnits(item.Position.X), ConvertUnits.ToSimUnits(item.Position.Y));
-                        Console.WriteLine("Creating Hero Body");
-                        GameplayScreen._hero.setTexture(cm.Load<Texture2D>("stick"));
-                        float rad = GameplayScreen._hero.getTexture().Width/2;
-                        
-                        Console.WriteLine("Hero worldPos scaled: " + worldpos.X + ", " + worldpos.Y);
-                        Console.WriteLine("radius: " + rad + "sim: " + ConvertUnits.ToSimUnits(rad));
-                        Body b = BodyFactory.CreateCircle(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(rad), 1f, worldpos, GameplayScreen._hero);
-                        GameplayScreen._camera.TrackingBody = b;
-                        b.BodyType = BodyType.Dynamic;
-                        b.Friction = 10f;
-                        b.Mass = 50f;
-                        b.Inertia = 25f;
-                        b.Restitution = .01f;
-                        
-                        Vector2 location = item.Position;
-                        Fixture f = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(rad), 1f, b);
-                        //b.CreateFixture(f.Shape);
-                        
-                        GameplayScreen._hero._body = b;
-                        */
+                if (layer.Name == "Objects")
+                {
+                    processObjectsLayer(layer.Items, cm);
+                }
 
-                    }
-                    item.load(cm);
+                if (layer.Name == "Waypoints")
+                {
+                    processWaypoints(layer.Items, cm);
                 }
             }
 
             return level;
+        }
+
+        private static void processWaypoints(List<Item> list, ContentManager content)
+        {
+            foreach (Item it in list)
+            {
+                if (it.Name == "Hero")
+                {
+                    CircleItem cItem = (CircleItem)it;
+
+                    Vector2 startPosition;
+                    startPosition.X = cItem.Position.X + (cItem.Radius / 2);
+                    startPosition.Y = cItem.Position.Y + (cItem.Radius / 2);
+                    GameplayScreen._hero.setWorldPosition(startPosition);
+                }
+            }
+        }
+
+        // Interactive TextureItems are passed in the Objects layer
+        private static void processObjectsLayer(List<Item> list, ContentManager content)
+        {
+            foreach (Item it in list)
+            {
+                if (it.GetType() == typeof(TextureItem))
+                {
+                    TextureItem tItem = (TextureItem)it;
+                    String textureName = tItem.asset_name;
+                    //tItem.
+                    Vector2 worldPosition = tItem.Position + tItem.Origin;
+                    float textureScale;
+                    Vector2 textureOrigin;
+
+                    //load texture that will represent the physics body
+
+                    Texture2D polygonTexture = content.Load<Texture2D>(textureName);
+   
+                    //Create an array to hold the data from the texture
+                    uint[] data = new uint[polygonTexture.Width * polygonTexture.Height];
+   
+                    //Transfer the texture data to the array
+                    polygonTexture.GetData(data);
+  
+                    //Find the vertices that makes up the outline of the shape in the texture
+                    Vertices textureVertices = PolygonTools.CreatePolygon(data, polygonTexture.Width, false);
+
+                    //The tool return vertices as they were found in the texture.
+                    //We need to find the real center (centroid) of the vertices for 2 reasons:
+
+                    //1. To translate the vertices so the polygon is centered around the centroid.
+                    Vector2 centroid = -textureVertices.GetCentroid();
+                    textureVertices.Translate(ref centroid);
+
+                    //2. To draw the texture the correct place.
+                    textureOrigin = -centroid;
+
+                    //We simplify the vertices found in the texture.
+                    textureVertices = SimplifyTools.ReduceByDistance(textureVertices, 4f);
+
+                    //Since it is a concave polygon, we need to partition it into several smaller convex polygons
+                    List<Vertices> listOfVertices = BayazitDecomposer.ConvexPartition(textureVertices);
+
+                    //Adjust the scale of the object for WP7's lower resolution
+#if WINDOWS_PHONE
+            _scale = 0.6f;
+#else
+                    textureScale = 1f;
+#endif
+
+                    //scale the vertices from graphics space to sim space
+                    Vector2 vertScale = new Vector2(ConvertUnits.ToSimUnits(1)) * textureScale;
+                    foreach (Vertices vertices in listOfVertices)
+                    {
+                        vertices.Scale(ref vertScale);
+                    }
+
+                    //Create a single body with multiple fixtures
+                    Body _compound = BodyFactory.CreateCompoundPolygon(GameplayScreen.getWorld(), listOfVertices, 1f, ConvertUnits.ToSimUnits(worldPosition));
+                    _compound.BodyType = BodyType.Dynamic;
+                    tItem.addBody(_compound);
+
+                    //FixtureFactory.AttachCompoundPolygon(listOfVertices, 1f, _compound);
+
+                    tItem.load(content);
+                }
+
+            }
+        }
+
+        // Collision items are passed in the Objects Layer
+        private static void processMainLayer(List<Item> list, ContentManager content)
+        {
+            foreach (Item it in list)
+            {
+                if (it.GetType() == typeof(RectangleItem))
+                {
+                    RectangleItem rItem = (RectangleItem)it;
+                    float width = rItem.Width;
+                    float height = rItem.Height;
+                    Vector2 position;
+                    position.X = rItem.Position.X + (width / 2);
+                    position.Y = rItem.Position.Y + (height / 2);
+
+                    Body collisionBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(position), rItem);
+                    collisionBody.BodyType = BodyType.Static;
+                    collisionBody.CollidesWith = Category.All;
+
+                    Fixture rectangleFixture = FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(width), ConvertUnits.ToSimUnits(height), 1f, new Vector2(0f, 0f), collisionBody);
+                }
+                else if (it.GetType() == typeof(CircleItem))
+                {
+                    CircleItem cItem = (CircleItem)it;
+                    float radius = cItem.Radius;
+                    Vector2 position;
+                    position.X = cItem.Position.X + (radius / 2);
+                    position.Y = cItem.Position.Y + (radius / 2);
+
+                    Body collisionBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(position), cItem);
+                    collisionBody.BodyType = BodyType.Static;
+                    collisionBody.CollidesWith = Category.All;
+
+                    Fixture circleFixture = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(radius), 1f, collisionBody);
+                }
+                else if (it.GetType() == typeof(PathItem))
+                {
+                    //Implement PathItem
+                }
+                it.load(content);
+            }
         }
 
         public Item getItemByName(string name)
@@ -275,7 +381,8 @@ namespace GameState
         /// exists as an asset in your project.
         /// Loading is done in the Item's load() method.
         /// </summary>
-        Texture2D texture;
+        public Texture2D texture;
+
         Body body;
 
         /// <summary>
@@ -284,9 +391,19 @@ namespace GameState
         /// </summary>
         public Vector2 Origin;
 
+        /// <summary>
+        /// The RectangleItem the texture should draw itself on.  This creates a tiling effect.
+        /// </summary>
+        public Rectangle[] destRectangles;
+
 
         public TextureItem()
         {
+        }
+
+        public void addBody(Body b)
+        {
+            this.body = b;
         }
 
         /// <summary>
@@ -308,6 +425,10 @@ namespace GameState
             Origin = new Vector2(texture.Width / 2, texture.Height / 2);
             
             // Check for GLEED2D key/value pairs and insert physics
+            return;
+
+
+
             /*Body itemBody = BodyFactory.CreateBody(GameplayScreen._world);
             Fixture itemFixture;
             Vector2 itemPos = ConvertUnits.ToDisplayUnits(this.Position);
@@ -395,6 +516,11 @@ namespace GameState
             SpriteEffects effects = SpriteEffects.None;
             if (FlipHorizontally) effects |= SpriteEffects.FlipHorizontally;
             if (FlipVertically) effects |= SpriteEffects.FlipVertically;
+
+            if (body != null)
+            {
+                this.Position = ConvertUnits.ToDisplayUnits(body.Position);
+            }
             sb.Draw(texture, Position, null, TintColor, Rotation, Origin, Scale, effects, 0);
         }
     }
