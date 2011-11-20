@@ -29,19 +29,19 @@ namespace GameState
         private Vector2 simPosition;
         private int abilityIndex = 0;
         
-        public Player(ref World gameWorld)
+        public Player(World gameWorld)
         {
             name = "Player 1";
-            initializePlayer(ref gameWorld);
+            initializePlayer(gameWorld);
         }
 
-        public Player(ref World gameWorld, String aName)
+        public Player(World gameWorld, String aName)
         {
             name = aName;
-            initializePlayer(ref gameWorld);
+            initializePlayer(gameWorld);
         }
 
-        private Boolean initializePlayer(ref World gameWorld)
+        private Boolean initializePlayer(World gameWorld)
         {
             level = 0;
             exp = 0;
@@ -51,7 +51,7 @@ namespace GameState
 
             Console.WriteLine("Creating Hero Body");
 
-            _myTexture = GameplayScreen.content.Load<Texture2D>("gravityball");
+            _myTexture = GameplayScreen.content.Load<Texture2D>("textures/gravityball");
             float radius = _myTexture.Width / 2;
             _body = BodyFactory.CreateCircle(gameWorld, ConvertUnits.ToSimUnits(radius), 1f, ConvertUnits.ToSimUnits(new Vector2(30f,30f)), this);
             _body.BodyType = BodyType.Dynamic;
@@ -88,7 +88,7 @@ namespace GameState
 
         internal void moveRight()
         {
-            if (_body.LinearVelocity.X <= 10f)
+            if (_body.LinearVelocity.X <= 10f) // change to 7f for normal gameplay
             {
                 //throw new NotImplementedException();
                 if (!isJumping)
@@ -107,7 +107,7 @@ namespace GameState
 
         internal void moveLeft()
         {
-            if (_body.LinearVelocity.X >= -10f)
+            if (_body.LinearVelocity.X >= -10f) // Change to -7f for normal gameplay
             {
                 if (!isJumping)
                 {
@@ -129,7 +129,7 @@ namespace GameState
              if (!isJumping)
             {
                 this.isJumping = true;
-                this._body.ApplyLinearImpulse(new Vector2(0f, -12f));
+                this._body.ApplyLinearImpulse(new Vector2(0f, -15f)); //change to 10f for normal gameplay
                 _body.OnCollision += new OnCollisionEventHandler(this.onCollision);
                 //_body.OnCollision += this.OnCollision;
             }    
@@ -146,7 +146,7 @@ namespace GameState
                 if (norm.Y < 0) //&& this._body.LinearVelocity.Y < 0)
                 {
                     isJumping = false;
-                    GameplayScreen._hero._body.AngularVelocity = 0f;
+                    this._body.AngularVelocity = 0f;
                     return true;
                 }
 
@@ -208,6 +208,13 @@ namespace GameState
         internal void selectAbility(int p)
         {
             abilityIndex = p;
+        }
+
+        internal bool die(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        {
+            this.health = 0;
+            GameplayScreen.retry();
+            return true;
         }
     }
 }

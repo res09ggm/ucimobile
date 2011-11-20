@@ -232,7 +232,7 @@
                 <Y>1</Y>
             </ScrollSpeed>
         </Layer>
-        <Layer Name="Background" Visible="true">
+        <Layer Name="Main" Visible="true">
             <Items>
                 <Item xsi:type="TextureItem" Name="Texture_0017" Visible="true">
                     <Position>
@@ -254,8 +254,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>valveadj9.jpg</texture_filename>
-                    <asset_name>valveadj9</asset_name>
+                    <texture_filename>Textures\valveadj9.jpg</texture_filename>
+                    <asset_name>Textures\valveadj9</asset_name>
                     <Origin>
                         <X>300</X>
                         <Y>225</Y>
@@ -281,8 +281,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>tiles.png</texture_filename>
-                    <asset_name>tiles</asset_name>
+                    <texture_filename>Textures\tiles.png</texture_filename>
+                    <asset_name>Textures\tiles</asset_name>
                     <Origin>
                         <X>64</X>
                         <Y>128</Y>
@@ -308,8 +308,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>tiles.png</texture_filename>
-                    <asset_name>tiles</asset_name>
+                    <texture_filename>Textures\tiles.png</texture_filename>
+                    <asset_name>Textures\tiles</asset_name>
                     <Origin>
                         <X>64</X>
                         <Y>128</Y>
@@ -335,8 +335,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>tiles.png</texture_filename>
-                    <asset_name>tiles</asset_name>
+                    <texture_filename>Textures\tiles.png</texture_filename>
+                    <asset_name>Textures\tiles</asset_name>
                     <Origin>
                         <X>64</X>
                         <Y>128</Y>
@@ -362,8 +362,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>tiles.png</texture_filename>
-                    <asset_name>tiles</asset_name>
+                    <texture_filename>Textures\tiles.png</texture_filename>
+                    <asset_name>Textures\tiles</asset_name>
                     <Origin>
                         <X>64</X>
                         <Y>128</Y>
@@ -389,8 +389,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>tiles.png</texture_filename>
-                    <asset_name>tiles</asset_name>
+                    <texture_filename>Textures\tiles.png</texture_filename>
+                    <asset_name>Textures\tiles</asset_name>
                     <Origin>
                         <X>64</X>
                         <Y>128</Y>
@@ -416,8 +416,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>tiles.png</texture_filename>
-                    <asset_name>tiles</asset_name>
+                    <texture_filename>Textures\tiles.png</texture_filename>
+                    <asset_name>Textures\tiles</asset_name>
                     <Origin>
                         <X>64</X>
                         <Y>128</Y>
@@ -443,8 +443,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>tiles.png</texture_filename>
-                    <asset_name>tiles</asset_name>
+                    <texture_filename>Textures\tiles.png</texture_filename>
+                    <asset_name>Textures\tiles</asset_name>
                     <Origin>
                         <X>64</X>
                         <Y>128</Y>
@@ -470,8 +470,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>tiles.png</texture_filename>
-                    <asset_name>tiles</asset_name>
+                    <texture_filename>Textures\tiles.png</texture_filename>
+                    <asset_name>Textures\tiles</asset_name>
                     <Origin>
                         <X>64</X>
                         <Y>128</Y>
@@ -505,8 +505,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>valveadj9.jpg</texture_filename>
-                    <asset_name>valveadj9</asset_name>
+                    <texture_filename>Textures\valveadj9.jpg</texture_filename>
+                    <asset_name>Textures\valveadj9</asset_name>
                     <Origin>
                         <X>300</X>
                         <Y>225</Y>
@@ -532,8 +532,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>rptroute.png</texture_filename>
-                    <asset_name>rptroute</asset_name>
+                    <texture_filename>Textures\rptroute.png</texture_filename>
+                    <asset_name>Textures\rptroute</asset_name>
                     <Origin>
                         <X>311</X>
                         <Y>196</Y>
@@ -559,8 +559,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>rptroute.png</texture_filename>
-                    <asset_name>rptroute</asset_name>
+                    <texture_filename>Textures\rptroute.png</texture_filename>
+                    <asset_name>Textures\rptroute</asset_name>
                     <Origin>
                         <X>311</X>
                         <Y>196</Y>

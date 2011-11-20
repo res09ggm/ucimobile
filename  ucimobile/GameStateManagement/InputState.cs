@@ -51,7 +51,7 @@ namespace GameStateManagement
         private bool _cursorIsValid;
         private bool _cursorIsVisible;
         private bool _cursorMoved;
-        private Sprite _cursorSprite;
+        //private Sprite _cursorSprite;
 
         /// <summary>
         /// Constructs a new input state.

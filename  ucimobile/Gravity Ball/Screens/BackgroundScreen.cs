@@ -58,7 +58,7 @@ namespace GameState
                 if (content == null)
                     content = new ContentManager(ScreenManager.Game.Services, "Content");
 
-                backgroundTexture = content.Load<Texture2D>("background");
+                backgroundTexture = content.Load<Texture2D>("textures/background");
                 
             }
         }
