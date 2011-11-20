@@ -9,23 +9,16 @@
 
 #region Using Statements
 using System;
-using System.Threading;
+using FarseerPhysics;
+using FarseerPhysics.DebugViews;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.SamplesFramework;
+using GameStateManagement;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
-using System.Collections;
-
-using GameStateManagement;
-using FarseerPhysics;
-using FarseerPhysics.Dynamics;
-using FarseerPhysics.Factories;
-using FarseerPhysics.SamplesFramework;
-using FarseerPhysics.DebugViews;
 
 #endregion
 
@@ -45,13 +38,15 @@ namespace GameState
         SpriteFont gameFont;
         float pauseAlpha;
         InputAction pauseAction;
+        static GameplayScreen currentGame;
+        KeyboardState lastKeyboardState;
 
         //Level Variables
         public static Player _hero;
         public static Level _currentLevel;
         public static World _world;
-        String[] _levels = { "lvl1.xml", "sandbox.xml", "test.xml" };
-        int currentLevel = 0;
+        String[] _levels = { "lvl1.xml", "test.xml" };
+        int currentLevelNum = 0;
 
         //Camera Controls
         private Vector2 _screenCenter;
@@ -86,9 +81,7 @@ namespace GameState
                 new Keys[] { Keys.Escape },
                 true);
 
-
-
-            
+            currentGame = this;
         }
 
         public void loadLevel(int levelNumber)
@@ -104,9 +97,14 @@ namespace GameState
 
         public void loadNextLevel()
         {
-            _world.Clear();
+            GameplayScreen g = GameplayScreen.getInstance();
+            _hero = null;
             _world = null;
-            loadLevel((++currentLevel) % _levels.Length);
+            _camera = null;
+            _currentLevel = null;
+            g._debugView = null;
+
+            loadLevel((++currentLevelNum) % _levels.Length);
 
         }
 
@@ -116,16 +114,27 @@ namespace GameState
             if (_currentLevel == null)
                 _currentLevel = new Level();
             if (_world == null)
+            {
                 _world = new World(new Vector2(0f, 10f));
+                _world.Clear();
+            }
             if (_hero == null)
-                _hero = new Player(ref _world);
-            
+                _hero = new Player(_world);
 
             if (_camera == null)
             {
                 _camera = new Camera2D(ScreenManager.GraphicsDevice);
                 _camera.EnablePositionTracking = true;
                 _camera.TrackingBody = _hero._body;
+            }
+
+            if (_debugView == null)
+            {
+                _debugView = new DebugViewXNA(_world);
+                _debugView.AppendFlags(DebugViewFlags.DebugPanel);
+                _debugView.DefaultShapeColor = Color.White;
+                _debugView.SleepingShapeColor = Color.LightGray;
+                _debugView.LoadContent(ScreenManager.GraphicsDevice, content);
             }
             
         }
@@ -389,8 +398,18 @@ namespace GameState
 
                     if (keyboardState.IsKeyDown(Keys.OemTilde))
                     {
-                        toggleDebugViewXNA();
-                        _debugMode = !_debugMode;
+                        if (!lastKeyboardState.IsKeyDown(Keys.OemTilde))
+                        {
+                            toggleDebugViewXNA();
+                            _debugMode = !_debugMode;
+                        }
+                        lastKeyboardState = keyboardState;
+                    }
+                    if (keyboardState.IsKeyDown(Keys.OemPlus))
+                    {
+                        if (!lastKeyboardState.IsKeyDown(Keys.OemPlus))
+                            loadNextLevel();
+                        lastKeyboardState = keyboardState;
                     }
                 }
 
@@ -400,11 +419,6 @@ namespace GameState
                     //Console.WriteLine("World Position: " +position);
                     //Console.WriteLine("Cursor Pos: "+input.Cursor);
                     _hero.setSimPosition(position);
-
-                    if (keyboardState.IsKeyDown(Keys.OemPlus))
-                    {
-                        loadNextLevel();
-                    }
 
                 }
             }
@@ -470,18 +484,29 @@ namespace GameState
 
         public void toggleDebugViewXNA()
         {
-            if (_debugView == null)
-            {
-                _debugView = new DebugViewXNA(_world);
-                _debugView.AppendFlags(DebugViewFlags.DebugPanel);
-                _debugView.DefaultShapeColor = Color.White;
-                _debugView.SleepingShapeColor = Color.LightGray;
-                _debugView.LoadContent(ScreenManager.GraphicsDevice, content);
-            }
             _showDebugView = !_showDebugView;
         }
 
 
         #endregion
+
+        internal static void retry()
+        {
+            GameplayScreen g = GameplayScreen.getInstance();
+            _hero = null;
+            _world = null;
+            _camera = null;
+            _currentLevel = null;
+            g._debugView = null;
+
+            g.loadLevel(g.currentLevelNum);
+            
+            //throw new NotImplementedException();
+        }
+
+        public static GameplayScreen getInstance()
+        {
+            return currentGame;
+        }
     }
 }

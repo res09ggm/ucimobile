@@ -9,14 +9,9 @@
                         <Y>512</Y>
                     </Position>
                     <CustomProperties>
-                        <Property Name="wall" Type="bool" Description="true">
-                            <boolean>false</boolean>
-                        </Property>
-                        <Property Name="breakable" Type="bool" Description="false">
-                            <boolean>false</boolean>
-                        </Property>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
                     </CustomProperties>
-                    <Width>416</Width>
+                    <Width>384</Width>
                     <Height>64</Height>
                     <FillColor>
                         <R>192</R>
@@ -32,15 +27,10 @@
                         <Y>512</Y>
                     </Position>
                     <CustomProperties>
-                        <Property Name="wall" Type="bool" Description="true">
-                            <boolean>false</boolean>
-                        </Property>
-                        <Property Name="breakable" Type="bool" Description="false">
-                            <boolean>false</boolean>
-                        </Property>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
                     </CustomProperties>
                     <Width>64</Width>
-                    <Height>1536</Height>
+                    <Height>2912</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -54,9 +44,11 @@
                         <X>0</X>
                         <Y>0</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>64</Width>
-                    <Height>544</Height>
+                    <Height>512</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -67,11 +59,13 @@
                 </Item>
                 <Item xsi:type="RectangleItem" Name="Rectangle_0026" Visible="true">
                     <Position>
-                        <X>0</X>
+                        <X>64</X>
                         <Y>0</Y>
                     </Position>
-                    <CustomProperties />
-                    <Width>736</Width>
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
+                    <Width>640</Width>
                     <Height>64</Height>
                     <FillColor>
                         <R>192</R>
@@ -86,7 +80,9 @@
                         <X>704</X>
                         <Y>0</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>64</Width>
                     <Height>1568</Height>
                     <FillColor>
@@ -99,12 +95,14 @@
                 </Item>
                 <Item xsi:type="RectangleItem" Name="Rectangle_0033" Visible="true">
                     <Position>
-                        <X>384</X>
+                        <X>448</X>
                         <Y>1984</Y>
                     </Position>
-                    <CustomProperties />
-                    <Width>1152</Width>
-                    <Height>64</Height>
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
+                    <Width>1088</Width>
+                    <Height>224</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -116,11 +114,13 @@
                 <Item xsi:type="RectangleItem" Name="Rectangle_0034" Visible="true">
                     <Position>
                         <X>1472</X>
-                        <Y>1984</Y>
+                        <Y>2208</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>64</Width>
-                    <Height>1088</Height>
+                    <Height>800</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -134,8 +134,10 @@
                         <X>1472</X>
                         <Y>3008</Y>
                     </Position>
-                    <CustomProperties />
-                    <Width>1408</Width>
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
+                    <Width>1792</Width>
                     <Height>64</Height>
                     <FillColor>
                         <R>192</R>
@@ -148,9 +150,11 @@
                 <Item xsi:type="RectangleItem" Name="Rectangle_0037" Visible="true">
                     <Position>
                         <X>704</X>
-                        <Y>1536</Y>
+                        <Y>1568</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>640</Width>
                     <Height>64</Height>
                     <FillColor>
@@ -164,11 +168,13 @@
                 <Item xsi:type="RectangleItem" Name="Rectangle_0038" Visible="true">
                     <Position>
                         <X>1280</X>
-                        <Y>1152</Y>
+                        <Y>1216</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>64</Width>
-                    <Height>416</Height>
+                    <Height>352</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -179,11 +185,13 @@
                 </Item>
                 <Item xsi:type="RectangleItem" Name="Rectangle_0039" Visible="true">
                     <Position>
-                        <X>1344</X>
+                        <X>1280</X>
                         <Y>1152</Y>
                     </Position>
-                    <CustomProperties />
-                    <Width>1792</Width>
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
+                    <Width>2368</Width>
                     <Height>64</Height>
                     <FillColor>
                         <R>192</R>
@@ -198,7 +206,9 @@
                         <X>2816</X>
                         <Y>1984</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>1664</Width>
                     <Height>64</Height>
                     <FillColor>
@@ -212,11 +222,13 @@
                 <Item xsi:type="RectangleItem" Name="Rectangle_0041" Visible="true">
                     <Position>
                         <X>2816</X>
-                        <Y>1984</Y>
+                        <Y>2048</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>64</Width>
-                    <Height>1088</Height>
+                    <Height>960</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -228,11 +240,13 @@
                 <Item xsi:type="RectangleItem" Name="Rectangle_0042" Visible="true">
                     <Position>
                         <X>3072</X>
-                        <Y>0</Y>
+                        <Y>384</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>64</Width>
-                    <Height>1216</Height>
+                    <Height>512</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -244,11 +258,13 @@
                 <Item xsi:type="RectangleItem" Name="Rectangle_0043" Visible="true">
                     <Position>
                         <X>4416</X>
-                        <Y>256</Y>
+                        <Y>352</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>64</Width>
-                    <Height>1728</Height>
+                    <Height>1632</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -259,11 +275,13 @@
                 </Item>
                 <Item xsi:type="RectangleItem" Name="Rectangle_0044" Visible="true">
                     <Position>
-                        <X>3072</X>
+                        <X>768</X>
                         <Y>0</Y>
                     </Position>
-                    <CustomProperties />
-                    <Width>2560</Width>
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
+                    <Width>4864</Width>
                     <Height>64</Height>
                     <FillColor>
                         <R>192</R>
@@ -278,7 +296,9 @@
                         <X>3968</X>
                         <Y>1408</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>448</Width>
                     <Height>64</Height>
                     <FillColor>
@@ -291,10 +311,12 @@
                 </Item>
                 <Item xsi:type="RectangleItem" Name="Rectangle_0046" Visible="true">
                     <Position>
-                        <X>3136</X>
-                        <Y>1152</Y>
+                        <X>2496</X>
+                        <Y>832</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>576</Width>
                     <Height>64</Height>
                     <FillColor>
@@ -310,7 +332,9 @@
                         <X>3520</X>
                         <Y>832</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>640</Width>
                     <Height>64</Height>
                     <FillColor>
@@ -326,7 +350,9 @@
                         <X>3136</X>
                         <Y>576</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>320</Width>
                     <Height>64</Height>
                     <FillColor>
@@ -339,27 +365,13 @@
                 </Item>
                 <Item xsi:type="RectangleItem" Name="Rectangle_0049" Visible="true">
                     <Position>
-                        <X>3328</X>
+                        <X>1344</X>
                         <Y>320</Y>
                     </Position>
-                    <CustomProperties />
-                    <Width>832</Width>
-                    <Height>64</Height>
-                    <FillColor>
-                        <R>192</R>
-                        <G>0</G>
-                        <B>192</B>
-                        <A>145</A>
-                        <PackedValue>2445279424</PackedValue>
-                    </FillColor>
-                </Item>
-                <Item xsi:type="RectangleItem" Name="Rectangle_0050" Visible="true">
-                    <Position>
-                        <X>4160</X>
-                        <Y>640</Y>
-                    </Position>
-                    <CustomProperties />
-                    <Width>256</Width>
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
+                    <Width>2816</Width>
                     <Height>64</Height>
                     <FillColor>
                         <R>192</R>
@@ -372,9 +384,11 @@
                 <Item xsi:type="RectangleItem" Name="Rectangle_0051" Visible="true">
                     <Position>
                         <X>4416</X>
-                        <Y>256</Y>
+                        <Y>288</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>832</Width>
                     <Height>64</Height>
                     <FillColor>
@@ -388,11 +402,13 @@
                 <Item xsi:type="RectangleItem" Name="Rectangle_0052" Visible="true">
                     <Position>
                         <X>5184</X>
-                        <Y>256</Y>
+                        <Y>352</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>64</Width>
-                    <Height>2880</Height>
+                    <Height>1312</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -404,11 +420,13 @@
                 <Item xsi:type="RectangleItem" Name="Rectangle_0053" Visible="true">
                     <Position>
                         <X>5568</X>
-                        <Y>0</Y>
+                        <Y>64</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>64</Width>
-                    <Height>2752</Height>
+                    <Height>2624</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -419,11 +437,13 @@
                 </Item>
                 <Item xsi:type="RectangleItem" Name="Rectangle_0054" Visible="true">
                     <Position>
-                        <X>5184</X>
+                        <X>3584</X>
                         <Y>3072</Y>
                     </Position>
-                    <CustomProperties />
-                    <Width>1280</Width>
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
+                    <Width>2816</Width>
                     <Height>64</Height>
                     <FillColor>
                         <R>192</R>
@@ -438,8 +458,10 @@
                         <X>5568</X>
                         <Y>2688</Y>
                     </Position>
-                    <CustomProperties />
-                    <Width>896</Width>
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
+                    <Width>832</Width>
                     <Height>64</Height>
                     <FillColor>
                         <R>192</R>
@@ -454,7 +476,9 @@
                         <X>6400</X>
                         <Y>2688</Y>
                     </Position>
-                    <CustomProperties />
+                    <CustomProperties>
+                        <Property Name="textureItem" Type="Item" Description="">metal_rusty2_64</Property>
+                    </CustomProperties>
                     <Width>64</Width>
                     <Height>448</Height>
                     <FillColor>
@@ -464,6 +488,334 @@
                         <A>145</A>
                         <PackedValue>2445279424</PackedValue>
                     </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0078" Visible="true">
+                    <Position>
+                        <X>4992</X>
+                        <Y>1984</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>576</Width>
+                    <Height>64</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0079" Visible="true">
+                    <Position>
+                        <X>4992</X>
+                        <Y>2048</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>64</Width>
+                    <Height>384</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0080" Visible="true">
+                    <Position>
+                        <X>3328</X>
+                        <Y>2432</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>1728</Width>
+                    <Height>64</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0096" Visible="true">
+                    <Position>
+                        <X>3584</X>
+                        <Y>3136</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>64</Width>
+                    <Height>288</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0097" Visible="true">
+                    <Position>
+                        <X>384</X>
+                        <Y>3424</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>3264</Width>
+                    <Height>64</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0111" Visible="true">
+                    <Position>
+                        <X>2240</X>
+                        <Y>608</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>64</Width>
+                    <Height>544</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="RectangleItem" Name="Rectangle_0132" Visible="true">
+                    <Position>
+                        <X>768</X>
+                        <Y>800</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Width>288</Width>
+                    <Height>64</Height>
+                    <FillColor>
+                        <R>192</R>
+                        <G>0</G>
+                        <B>192</B>
+                        <A>145</A>
+                        <PackedValue>2445279424</PackedValue>
+                    </FillColor>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0133" Visible="true">
+                    <Position>
+                        <X>5152</X>
+                        <Y>1632</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_pipe_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_pipe_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0134" Visible="true">
+                    <Position>
+                        <X>5088</X>
+                        <Y>1632</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_pipe_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_pipe_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0135" Visible="true">
+                    <Position>
+                        <X>5024</X>
+                        <Y>1632</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_pipe_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_pipe_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0136" Visible="true">
+                    <Position>
+                        <X>4960</X>
+                        <Y>1632</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_pipe_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_pipe_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0137" Visible="true">
+                    <Position>
+                        <X>4895.53857</X>
+                        <Y>1631.37292</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_pipe_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_pipe_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0138" Visible="true">
+                    <Position>
+                        <X>4831.53857</X>
+                        <Y>1631.37292</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_pipe_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_pipe_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0139" Visible="true">
+                    <Position>
+                        <X>4767.53857</X>
+                        <Y>1631.37292</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_pipe_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_pipe_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0140" Visible="true">
+                    <Position>
+                        <X>4703.53857</X>
+                        <Y>1631.37292</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_pipe_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_pipe_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
                 </Item>
             </Items>
             <ScrollSpeed>
@@ -490,12 +842,12 @@
                 </Item>
                 <Item xsi:type="RectangleItem" Name="Death" Visible="true">
                     <Position>
-                        <X>1472</X>
-                        <Y>2560</Y>
+                        <X>1536</X>
+                        <Y>2816</Y>
                     </Position>
                     <CustomProperties />
-                    <Width>1408</Width>
-                    <Height>448</Height>
+                    <Width>1280</Width>
+                    <Height>192</Height>
                     <FillColor>
                         <R>192</R>
                         <G>0</G>
@@ -526,12 +878,12 @@
                 <Y>1</Y>
             </ScrollSpeed>
         </Layer>
-        <Layer Name="Objects" Visible="true">
+        <Layer Name="DynamicObjects" Visible="true">
             <Items>
-                <Item xsi:type="TextureItem" Name="Texture_0059" Visible="true">
+                <Item xsi:type="TextureItem" Name="Texture_0131" Visible="true">
                     <Position>
-                        <X>4286</X>
-                        <Y>1846</Y>
+                        <X>2976</X>
+                        <Y>736</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -548,11 +900,200 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate_danger_256.jpg</texture_filename>
-                    <asset_name>wood_crate_danger_256</asset_name>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0116" Visible="true">
+                    <Position>
+                        <X>1919.53833</X>
+                        <Y>927.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0117" Visible="true">
+                    <Position>
+                        <X>2175.53833</X>
+                        <Y>831.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0118" Visible="true">
+                    <Position>
+                        <X>2143.53833</X>
+                        <Y>831.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0059" Visible="true">
+                    <Position>
+                        <X>4287</X>
+                        <Y>1855</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_danger_256.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_danger_256</asset_name>
                     <Origin>
                         <X>128</X>
                         <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0122" Visible="true">
+                    <Position>
+                        <X>2207.53833</X>
+                        <Y>767.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0114" Visible="true">
+                    <Position>
+                        <X>1919.53833</X>
+                        <Y>991.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0126" Visible="true">
+                    <Position>
+                        <X>2976</X>
+                        <Y>800</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
                     </Origin>
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0060" Visible="true">
@@ -575,11 +1116,38 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate2_64.jpg</texture_filename>
-                    <asset_name>wood_crate2_64</asset_name>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0120" Visible="true">
+                    <Position>
+                        <X>2015.53833</X>
+                        <Y>831.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
                     </Origin>
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0061" Visible="true">
@@ -602,11 +1170,146 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate2_64.jpg</texture_filename>
-                    <asset_name>wood_crate2_64</asset_name>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0119" Visible="true">
+                    <Position>
+                        <X>2079.53833</X>
+                        <Y>831.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0125" Visible="true">
+                    <Position>
+                        <X>3039.53833</X>
+                        <Y>799.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0113" Visible="true">
+                    <Position>
+                        <X>1919.53833</X>
+                        <Y>1055.37292</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0128" Visible="true">
+                    <Position>
+                        <X>2847.53833</X>
+                        <Y>799.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0121" Visible="true">
+                    <Position>
+                        <X>1951.53833</X>
+                        <Y>831.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
                     </Origin>
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0062" Visible="true">
@@ -629,11 +1332,92 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate2_64.jpg</texture_filename>
-                    <asset_name>wood_crate2_64</asset_name>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0124" Visible="true">
+                    <Position>
+                        <X>2079.53833</X>
+                        <Y>767.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0130" Visible="true">
+                    <Position>
+                        <X>3039.53833</X>
+                        <Y>671.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0129" Visible="true">
+                    <Position>
+                        <X>3039.53833</X>
+                        <Y>735.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
                     </Origin>
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0063" Visible="true">
@@ -656,8 +1440,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate_fragile_64.jpg</texture_filename>
-                    <asset_name>wood_crate_fragile_64</asset_name>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
@@ -683,11 +1467,65 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate_fragile_64.jpg</texture_filename>
-                    <asset_name>wood_crate_fragile_64</asset_name>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0127" Visible="true">
+                    <Position>
+                        <X>2911.53833</X>
+                        <Y>799.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0123" Visible="true">
+                    <Position>
+                        <X>2143.53833</X>
+                        <Y>767.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
                     </Origin>
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0065" Visible="true">
@@ -710,8 +1548,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate_fragile_64.jpg</texture_filename>
-                    <asset_name>wood_crate_fragile_64</asset_name>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
@@ -737,8 +1575,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate3_64.jpg</texture_filename>
-                    <asset_name>wood_crate3_64</asset_name>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
@@ -764,8 +1602,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate3_64.jpg</texture_filename>
-                    <asset_name>wood_crate3_64</asset_name>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
@@ -791,8 +1629,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate3_64.jpg</texture_filename>
-                    <asset_name>wood_crate3_64</asset_name>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
@@ -818,8 +1656,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate3_64.jpg</texture_filename>
-                    <asset_name>wood_crate3_64</asset_name>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
@@ -845,8 +1683,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate3_64.jpg</texture_filename>
-                    <asset_name>wood_crate3_64</asset_name>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
@@ -872,8 +1710,8 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate3_64.jpg</texture_filename>
-                    <asset_name>wood_crate3_64</asset_name>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
@@ -899,11 +1737,848 @@
                     </TintColor>
                     <FlipHorizontally>false</FlipHorizontally>
                     <FlipVertically>false</FlipVertically>
-                    <texture_filename>wood_crate3_64.jpg</texture_filename>
-                    <asset_name>wood_crate3_64</asset_name>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
                     <Origin>
                         <X>32</X>
                         <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="metal_rusty2_64" Visible="true">
+                    <Position>
+                        <X>-512</X>
+                        <Y>32</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_rusty2_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_rusty2_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="metal_rusty_64" Visible="true">
+                    <Position>
+                        <X>-512.4617</X>
+                        <Y>95.37298</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_rusty_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_rusty_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="metal_pipe_64" Visible="true">
+                    <Position>
+                        <X>-512.4617</X>
+                        <Y>159.372986</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\metal_pipe_64.jpg</texture_filename>
+                    <asset_name>Textures\metal_pipe_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="corrugated_metal_64" Visible="true">
+                    <Position>
+                        <X>-512.4617</X>
+                        <Y>223.372986</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\corrugated_metal_64.jpg</texture_filename>
+                    <asset_name>Textures\corrugated_metal_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0081" Visible="true">
+                    <Position>
+                        <X>3424</X>
+                        <Y>3264</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_danger_256.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_danger_256</asset_name>
+                    <Origin>
+                        <X>128</X>
+                        <Y>128</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0082" Visible="true">
+                    <Position>
+                        <X>1184</X>
+                        <Y>1216</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0083" Visible="true">
+                    <Position>
+                        <X>1120</X>
+                        <Y>1216</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0084" Visible="true">
+                    <Position>
+                        <X>1056</X>
+                        <Y>1216</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0085" Visible="true">
+                    <Position>
+                        <X>1152</X>
+                        <Y>992</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0086" Visible="true">
+                    <Position>
+                        <X>1152</X>
+                        <Y>1056</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0087" Visible="true">
+                    <Position>
+                        <X>1056</X>
+                        <Y>1056</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0088" Visible="true">
+                    <Position>
+                        <X>992</X>
+                        <Y>1216</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0089" Visible="true">
+                    <Position>
+                        <X>864</X>
+                        <Y>1216</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0090" Visible="true">
+                    <Position>
+                        <X>928</X>
+                        <Y>1216</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0091" Visible="true">
+                    <Position>
+                        <X>1120</X>
+                        <Y>1152</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0092" Visible="true">
+                    <Position>
+                        <X>1056</X>
+                        <Y>1152</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0093" Visible="true">
+                    <Position>
+                        <X>992</X>
+                        <Y>1152</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0094" Visible="true">
+                    <Position>
+                        <X>928</X>
+                        <Y>1152</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate3_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate3_64</asset_name>
+                    <Origin>
+                        <X>32</X>
+                        <Y>32</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0099" Visible="true">
+                    <Position>
+                        <X>2976</X>
+                        <Y>2912</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>0.5</X>
+                        <Y>0.5</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_256.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_256</asset_name>
+                    <Origin>
+                        <X>127.500008</X>
+                        <Y>127.500008</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0100" Visible="true">
+                    <Position>
+                        <X>3104</X>
+                        <Y>2912</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>0.5</X>
+                        <Y>0.5</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate2_256.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate2_256</asset_name>
+                    <Origin>
+                        <X>127.500008</X>
+                        <Y>127.500008</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0101" Visible="true">
+                    <Position>
+                        <X>3519.53833</X>
+                        <Y>3103.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0102" Visible="true">
+                    <Position>
+                        <X>3455.53833</X>
+                        <Y>3103.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0103" Visible="true">
+                    <Position>
+                        <X>3391.53833</X>
+                        <Y>3103.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0104" Visible="true">
+                    <Position>
+                        <X>3231.53833</X>
+                        <Y>3359.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0105" Visible="true">
+                    <Position>
+                        <X>3167.53833</X>
+                        <Y>3359.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0106" Visible="true">
+                    <Position>
+                        <X>3231.53833</X>
+                        <Y>3263.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0107" Visible="true">
+                    <Position>
+                        <X>3167.53833</X>
+                        <Y>3295.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0108" Visible="true">
+                    <Position>
+                        <X>3103.53833</X>
+                        <Y>3295.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0109" Visible="true">
+                    <Position>
+                        <X>3071.53833</X>
+                        <Y>3359.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0110" Visible="true">
+                    <Position>
+                        <X>3039.53833</X>
+                        <Y>3295.373</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wood_crate_fragile_64.jpg</texture_filename>
+                    <asset_name>Textures\wood_crate_fragile_64</asset_name>
+                    <Origin>
+                        <X>31.5383434</X>
+                        <Y>31.3729782</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0144" Visible="true">
+                    <Position>
+                        <X>2079.5</X>
+                        <Y>991.5</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>1</X>
+                        <Y>1</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\wooden_crate_256.jpg</texture_filename>
+                    <asset_name>Textures\wooden_crate_256</asset_name>
+                    <Origin>
+                        <X>127.500008</X>
+                        <Y>127.500008</Y>
                     </Origin>
                 </Item>
             </Items>
@@ -915,11 +2590,11 @@
     </Layers>
     <CustomProperties />
     <EditorRelated>
-        <NextItemNumber>73</NextItemNumber>
+        <NextItemNumber>144</NextItemNumber>
         <ContentRootFolder>E:\ICS\CS113\ucimobile\Content</ContentRootFolder>
         <CameraPosition>
-            <X>3984</X>
-            <Y>1811</Y>
+            <X>2143.53833</X>
+            <Y>831.373</Y>
         </CameraPosition>
         <Version>1.3.0.0</Version>
     </EditorRelated>

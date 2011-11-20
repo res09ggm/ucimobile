@@ -61,7 +61,7 @@ namespace GameState
                     processMainLayer(layer.Items, cm);
                 }
 
-                if (layer.Name == "Objects")
+                if (layer.Name == "DynamicObjects")
                 {
                     processObjectsLayer(layer.Items, cm);
                 }
@@ -70,9 +70,28 @@ namespace GameState
                 {
                     processWaypoints(layer.Items, cm);
                 }
+
+                if (layer.Name == "Background")
+                {
+                    processBackgroundLayer(layer.Items, cm);
+                }
             }
 
             return level;
+        }
+
+        private static void processBackgroundLayer(List<Item> list, ContentManager cm)
+        {
+            foreach (Item it in list)
+            {
+                if (it.GetType() == typeof(TextureItem))
+                {
+                    TextureItem tItem = (TextureItem)it;
+
+                    tItem.load(cm);
+                }
+
+            }
         }
 
         private static void processWaypoints(List<Item> list, ContentManager content)
@@ -87,6 +106,22 @@ namespace GameState
                     startPosition.X = cItem.Position.X + (cItem.Radius / 2);
                     startPosition.Y = cItem.Position.Y + (cItem.Radius / 2);
                     GameplayScreen._hero.setWorldPosition(startPosition);
+                }
+
+                else if (it.Name == "Death")
+                {
+                    RectangleItem rItem = (RectangleItem)it;
+
+                    Vector2 worldPosition;
+                    worldPosition.X = rItem.Position.X + (rItem.Width / 2);
+                    worldPosition.Y = rItem.Position.Y + (rItem.Height / 2);
+
+                    Body deathBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldPosition));
+                    FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(rItem.Width), ConvertUnits.ToSimUnits(rItem.Height), 1f, new Vector2(0f), deathBody);
+
+                    deathBody.OnCollision += new OnCollisionEventHandler(GameplayScreen._hero.die);
+                    //deathBody.OnCollision += new OnCollisionEventHandler(this.onCollision);
+
                 }
             }
         }
@@ -142,7 +177,7 @@ namespace GameState
 #endif
 
                     //scale the vertices from graphics space to sim space
-                    Vector2 vertScale = new Vector2(ConvertUnits.ToSimUnits(1)) * textureScale;
+                    Vector2 vertScale = new Vector2(ConvertUnits.ToSimUnits(1)) * tItem.Scale;
                     foreach (Vertices vertices in listOfVertices)
                     {
                         vertices.Scale(ref vertScale);
@@ -151,6 +186,7 @@ namespace GameState
                     //Create a single body with multiple fixtures
                     Body _compound = BodyFactory.CreateCompoundPolygon(GameplayScreen.getWorld(), listOfVertices, 1f, ConvertUnits.ToSimUnits(worldPosition));
                     _compound.BodyType = BodyType.Dynamic;
+                    _compound.IgnoreCCD = true;
                     tItem.addBody(_compound);
 
                     //FixtureFactory.AttachCompoundPolygon(listOfVertices, 1f, _compound);
@@ -178,8 +214,20 @@ namespace GameState
                     Body collisionBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(position), rItem);
                     collisionBody.BodyType = BodyType.Static;
                     collisionBody.CollidesWith = Category.All;
+                    collisionBody.IgnoreCCD = true;
 
                     Fixture rectangleFixture = FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(width), ConvertUnits.ToSimUnits(height), 1f, new Vector2(0f, 0f), collisionBody);
+
+                    //Find textureItem to draw into this RectangleItem
+                    if (rItem.CustomProperties.ContainsKey("textureItem"))
+                    {
+                        if (rItem.CustomProperties["textureItem"].description != null)
+                        {
+                            String textureName = rItem.CustomProperties["textureItem"].description;
+                            //Item t = Level.getItemByName(textureName);
+                            
+                        }
+                    }
                 }
                 else if (it.GetType() == typeof(CircleItem))
                 {
@@ -192,12 +240,75 @@ namespace GameState
                     Body collisionBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(position), cItem);
                     collisionBody.BodyType = BodyType.Static;
                     collisionBody.CollidesWith = Category.All;
+                    collisionBody.IgnoreCCD = true;
 
                     Fixture circleFixture = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(radius), 1f, collisionBody);
                 }
                 else if (it.GetType() == typeof(PathItem))
                 {
                     //Implement PathItem
+                }
+                else if (it.GetType() == typeof(TextureItem))
+                {
+                    TextureItem tItem = (TextureItem)it;
+                    String textureName = tItem.asset_name;
+                    Vector2 worldPosition = tItem.Position;
+                    float textureScale;
+                    Vector2 textureOrigin;
+
+                    //load texture that will represent the physics body
+
+                    Texture2D polygonTexture = content.Load<Texture2D>(textureName);
+
+                    //Create an array to hold the data from the texture
+                    uint[] data = new uint[polygonTexture.Width * polygonTexture.Height];
+
+                    //Transfer the texture data to the array
+                    polygonTexture.GetData(data);
+
+                    //Find the vertices that makes up the outline of the shape in the texture
+                    Vertices textureVertices = PolygonTools.CreatePolygon(data, polygonTexture.Width, false);
+
+                    //The tool return vertices as they were found in the texture.
+                    //We need to find the real center (centroid) of the vertices for 2 reasons:
+
+                    //1. To translate the vertices so the polygon is centered around the centroid.
+                    Vector2 centroid = -textureVertices.GetCentroid();
+                    textureVertices.Translate(ref centroid);
+
+                    //2. To draw the texture the correct place.
+                    textureOrigin = -centroid;
+
+                    //We simplify the vertices found in the texture.
+                    textureVertices = SimplifyTools.ReduceByDistance(textureVertices, 4f);
+
+                    //Since it is a concave polygon, we need to partition it into several smaller convex polygons
+                    List<Vertices> listOfVertices = BayazitDecomposer.ConvexPartition(textureVertices);
+
+                    //Adjust the scale of the object for WP7's lower resolution
+#if WINDOWS_PHONE
+            _scale = 0.6f;
+#else
+                    textureScale = 1f;
+#endif
+
+                    //scale the vertices from graphics space to sim space
+                    Vector2 vertScale = new Vector2(ConvertUnits.ToSimUnits(1)) * tItem.Scale;
+                    foreach (Vertices vertices in listOfVertices)
+                    {
+                        vertices.Scale(ref vertScale);
+                    }
+
+                    //Create a single body with multiple fixtures
+                    Body _compound = BodyFactory.CreateCompoundPolygon(GameplayScreen.getWorld(), listOfVertices, 1f, ConvertUnits.ToSimUnits(worldPosition));
+                    _compound.BodyType = BodyType.Static;
+                    _compound.Mass = 100f;
+                    _compound.IgnoreCCD = true;
+                    tItem.addBody(_compound);
+
+                    //FixtureFactory.AttachCompoundPolygon(listOfVertices, 1f, _compound);
+
+                    //tItem.load(content);
                 }
                 it.load(content);
             }
@@ -487,7 +598,7 @@ namespace GameState
                     Vertices verts = PolygonTools.CreatePolygon(data, this.texture.Width, false);
 
                     //For now we need to scale the vertices (result is in pixels, we use meters)
-                    Vector2 scale = new Vector2((1f/64f), (1f/64f));
+                    Vector2 scale = new Vector2((this.Scale.X/64f), (this.Scale.Y/64f));
                     verts.Scale(ref scale);
 
                     //Since it is a concave polygon, we need to partition it into several smaller convex polygons
@@ -520,6 +631,7 @@ namespace GameState
             if (body != null)
             {
                 this.Position = ConvertUnits.ToDisplayUnits(body.Position);
+                this.Rotation = body.Rotation;
             }
             sb.Draw(texture, Position, null, TintColor, Rotation, Origin, Scale, effects, 0);
         }
