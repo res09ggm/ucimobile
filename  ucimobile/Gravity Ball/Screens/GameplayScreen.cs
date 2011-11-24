@@ -47,6 +47,11 @@ namespace GameState
         public static World _world;
         String[] _levels = { "lvl1.xml", "test.xml" };
         int currentLevelNum = 0;
+        DateTime timer;
+        public TimerManager gameTimers;
+        private GameTime privateGameTime;
+
+        public bool completedLevel { get; set; }
 
         //Camera Controls
         private Vector2 _screenCenter;
@@ -115,8 +120,8 @@ namespace GameState
                 _currentLevel = new Level();
             if (_world == null)
             {
-                _world = new World(new Vector2(0f, 10f));
-                _world.Clear();
+                _world = new World(new Vector2(0f, 12f));
+                //_world.Clear();
             }
             if (_hero == null)
                 _hero = new Player(_world);
@@ -127,6 +132,10 @@ namespace GameState
                 _camera.EnablePositionTracking = true;
                 _camera.TrackingBody = _hero._body;
             }
+            if (gameTimers == null)
+            {
+                gameTimers = new TimerManager(ref _world);
+            }
 
             if (_debugView == null)
             {
@@ -136,6 +145,7 @@ namespace GameState
                 _debugView.SleepingShapeColor = Color.LightGray;
                 _debugView.LoadContent(ScreenManager.GraphicsDevice, content);
             }
+            completedLevel = false;
             
         }
 
@@ -232,6 +242,13 @@ namespace GameState
         public override void Update(GameTime gameTime, bool otherScreenHasFocus,
                                                        bool coveredByOtherScreen)
         {
+            // hack so we can access the gameTime from outside of update() method.
+            // the passed in gameTime is generated every so often, so we must
+            // check if our reference to gameTime is the same as the one passed in
+            // Perhaps consider using System.DateTime but that creates overhead for
+            // locale conversion and checking.
+            if (this.privateGameTime == null || !this.privateGameTime.Equals(gameTime))
+                this.privateGameTime = gameTime;
             base.Update(gameTime, otherScreenHasFocus, false);
             _world.Step((float)gameTime.ElapsedGameTime.TotalMilliseconds * 0.001f);
 
@@ -253,7 +270,8 @@ namespace GameState
                 {                                   
                     // TODO: this game isn't very fun! You could probably improve
                     // it by inserting something more interesting in this space :-)
-                    _hero.update();
+                    gameTimers.update(gameTime);
+                    _hero.update(gameTime);
                     _camera.Update(gameTime);
                 }
             }
@@ -398,7 +416,7 @@ namespace GameState
 
                     if (keyboardState.IsKeyDown(Keys.OemTilde))
                     {
-                        if (!lastKeyboardState.IsKeyDown(Keys.OemTilde))
+                        //if (!lastKeyboardState.IsKeyDown(Keys.OemTilde))
                         {
                             toggleDebugViewXNA();
                             _debugMode = !_debugMode;
@@ -490,7 +508,12 @@ namespace GameState
 
         #endregion
 
-        internal static void retry()
+        public void showRetryScreen()
+        {
+            ScreenManager.AddScreen(new RetryScreen(), ControllingPlayer);
+        }
+            
+        public void reload()
         {
             GameplayScreen g = GameplayScreen.getInstance();
             _hero = null;
@@ -498,15 +521,42 @@ namespace GameState
             _camera = null;
             _currentLevel = null;
             g._debugView = null;
+            completedLevel = false;
 
             g.loadLevel(g.currentLevelNum);
-            
-            //throw new NotImplementedException();
         }
 
         public static GameplayScreen getInstance()
         {
             return currentGame;
         }
+
+        public bool loadNextLevelHandler(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        {
+            if (timer == System.DateTime.MinValue)
+            {
+                completedLevel = true;
+                timer = System.DateTime.Now;
+                timer = timer.AddSeconds(1.5);
+                return false;
+            }
+            else if (System.DateTime.Now >= timer)
+            {
+                //TODO create congratulations screen
+                // GameplayScreen.getInstance().showNewLevelScreen();
+                completedLevel = false;
+                timer = DateTime.MinValue;
+                loadNextLevel();
+
+                return true;
+            }
+            else return true;
+        }
+
+        /*public GameTime getGameTime()
+        {
+            return this.privateGameTime;
+        }*/
+
     }
 }

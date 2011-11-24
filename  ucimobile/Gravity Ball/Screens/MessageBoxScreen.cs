@@ -87,7 +87,7 @@ namespace GameState
             if (!instancePreserved)
             {
                 ContentManager content = ScreenManager.Game.Content;
-                gradientTexture = content.Load<Texture2D>("gradient");
+                gradientTexture = content.Load<Texture2D>("Textures/gradient");
             }
         }
 

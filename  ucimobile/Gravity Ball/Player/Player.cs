@@ -5,6 +5,7 @@ using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
+using GameStateManagement;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Collision;
 using FarseerPhysics.Common;
@@ -16,9 +17,12 @@ namespace GameState
 {
     class Player
     {
+        private double MAX_HEALTH;
+        private double MAX_ENERGY;
         private String name;
         private int level;
         private int exp;
+        private double elapsedTime = 0f;
         private Double health;
         private Double energy;
         private Ability[] skills;
@@ -43,15 +47,15 @@ namespace GameState
 
         private Boolean initializePlayer(World gameWorld)
         {
+            MAX_ENERGY = 100;
+            MAX_HEALTH = 100;
             level = 0;
             exp = 0;
-            health = 100;
-            energy = 100;
+            health = MAX_HEALTH;
+            energy = MAX_ENERGY;
             skills = new Ability[4];
 
-            Console.WriteLine("Creating Hero Body");
-
-            _myTexture = GameplayScreen.content.Load<Texture2D>("textures/gravityball");
+            _myTexture = GameplayScreen.content.Load<Texture2D>("textures/gravityball_128");
             float radius = _myTexture.Width / 2;
             _body = BodyFactory.CreateCircle(gameWorld, ConvertUnits.ToSimUnits(radius), 1f, ConvertUnits.ToSimUnits(new Vector2(30f,30f)), this);
             _body.BodyType = BodyType.Dynamic;
@@ -61,7 +65,6 @@ namespace GameState
             _body.Restitution = .01f;
 
             Fixture f = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(radius), 0f, _body);
-            //GameplayScreen._camera.TrackingBody = _body;
             return true;
         }
 
@@ -90,17 +93,12 @@ namespace GameState
         {
             if (_body.LinearVelocity.X <= 10f) // change to 7f for normal gameplay
             {
-                //throw new NotImplementedException();
                 if (!isJumping)
                 {
-                    //this._body.ApplyTorque(20);
                     this._body.ApplyForce(new Vector2(20f, 0f));
-
                 }
                 else
                     this._body.ApplyForce(new Vector2(10f, 0f));
-                //this._body.ApplyLinearImpulse(new Vector2(1f, 0f));
-                Console.WriteLine("Player::moveRight()::applyTorque(-10f)");
             }
             this.position = _body.Position;
         }
@@ -111,12 +109,10 @@ namespace GameState
             {
                 if (!isJumping)
                 {
-                    //this._body.ApplyTorque(-20);
                     this._body.ApplyForce(new Vector2(-20f, 0f));
                 }
                 else
                     this._body.ApplyForce(new Vector2(-10f, 0f));
-                Console.WriteLine("Player::moveRight()::applyTorque(10f)");
             }
             this.position = _body.Position;
             
@@ -124,30 +120,31 @@ namespace GameState
 
         internal void jump()
         {
-            //throw new NotImplementedException();
-            
              if (!isJumping)
             {
                 this.isJumping = true;
                 this._body.ApplyLinearImpulse(new Vector2(0f, -15f)); //change to 10f for normal gameplay
                 _body.OnCollision += new OnCollisionEventHandler(this.onCollision);
-                //_body.OnCollision += this.OnCollision;
             }    
         }
 
         bool onCollision(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
         {
-            
+            // since this event handler is called everytime player collides with object,
+            // we check if it's a wall or dynamic object (Category 2).  Category 1 are waypoints
+            // so we want it to return false and allow it into the region.
+            if (fixtureA.CollisionCategories == Category.Cat2 
+                || fixtureB.CollisionCategories == Category.Cat2)
+            {
                 Vector2 norm;
                 FixedArray2<Vector2> pts;
                 contact.GetWorldManifold(out norm, out pts);
 
                 // if normal is facing up and vertical velocity is downward we can jump
-                if (norm.Y < 0) //&& this._body.LinearVelocity.Y < 0)
+                if (norm.Y < 0) // && this._body.LinearVelocity.Y > 0)
                 {
                     isJumping = false;
                     this._body.AngularVelocity = 0f;
-                    return true;
                 }
 
                 // determine a wall collision to drop horizontal velocity 
@@ -157,14 +154,32 @@ namespace GameState
 
                 // allow jumping through a platform from the bottom
 
-
                 return true;
-
+            }
+            else return false;
         }
 
         
-        public void update()
+        public void update(GameTime gameTime)
         {
+            double milliseconds = gameTime.ElapsedGameTime.TotalMilliseconds;
+            if (health < 0)
+                showReplayScreen();
+            
+            elapsedTime += milliseconds;
+            if (elapsedTime > 1000)
+            {
+                elapsedTime -= 1000;
+                if (energy < MAX_ENERGY)
+                    energy += 1;
+                if (health < MAX_HEALTH)
+                    health += 5;
+            }
+        }
+
+        private void showReplayScreen()
+        {
+            GameplayScreen.getInstance().showRetryScreen();
         }
         
         public void draw(SpriteBatch sb)
@@ -172,7 +187,7 @@ namespace GameState
             Vector2 wpos = getWorldPosition();
             wpos.X = wpos.X - (_myTexture.Width / 2);
             wpos.Y = wpos.Y - (_myTexture.Height / 2);
-            sb.Draw(_myTexture, wpos, Color.Wheat);
+            sb.Draw(_myTexture, wpos, Color.WhiteSmoke);
         }
 
         public void setWorldPosition(Vector2 worldPos)
@@ -210,11 +225,21 @@ namespace GameState
             abilityIndex = p;
         }
 
-        internal bool die(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        public bool die(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
         {
-            this.health = 0;
-            GameplayScreen.retry();
-            return true;
+            if (contact.IsTouching() && this.health > 0)
+            {
+                float x = _body.LinearVelocity.X;
+                float y = _body.LinearVelocity.Y * 1.7f;
+                _body.Inertia = 0f;
+                _body.AngularVelocity = 0f;
+                _body.ApplyLinearImpulse(new Vector2(-x, -y));
+                _body.CollisionCategories = Category.None;
+                this.health = 0;
+                GameplayScreen.getInstance().showRetryScreen();
+                return false;
+            }
+            else return false;
         }
     }
 }
