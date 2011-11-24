@@ -10,3 +10,9 @@ C:\SVN\Gravity Ball\GameStateManagement\obj\x86\Debug\ResolveAssemblyReference.c
 C:\SVN\Gravity Ball\GameStateManagement\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
 C:\SVN\Gravity Ball\GameStateManagement\obj\x86\Debug\GameStateManagement.dll
 C:\SVN\Gravity Ball\GameStateManagement\obj\x86\Debug\GameStateManagement.pdb
+C:\Users\Alex\Desktop\SVNWorkspace\GameStateManagement\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\SVNWorkspace\GameStateManagement\obj\x86\Debug\Microsoft.Xna.Framework.RuntimeProfile.txt
+C:\Users\Alex\Desktop\SVNWorkspace\GameStateManagement\obj\x86\Debug\GameStateManagement.dll
+C:\Users\Alex\Desktop\SVNWorkspace\GameStateManagement\obj\x86\Debug\GameStateManagement.pdb
+C:\Users\Alex\Desktop\SVNWorkspace\GameStateManagement\bin\x86\Debug\GameStateManagement.dll
+C:\Users\Alex\Desktop\SVNWorkspace\GameStateManagement\bin\x86\Debug\GameStateManagement.pdb

@@ -1,2 +1,3 @@
 C:\Users\JAVI\Documents\CS 113\GameStateManagementSample\Content\obj\x86\Debug\ResolveAssemblyReference.cache
 C:\SVN\Gravity Ball\Content\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Alex\Desktop\SVNWorkspace\Content\obj\x86\Debug\ResolveAssemblyReference.cache

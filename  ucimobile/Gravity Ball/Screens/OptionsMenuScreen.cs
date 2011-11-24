@@ -48,27 +48,31 @@ namespace GameState
             : base("Options")
         {
             // Create our menu entries.
-            ungulateMenuEntry = new MenuEntry(string.Empty);
-            languageMenuEntry = new MenuEntry(string.Empty);
-            frobnicateMenuEntry = new MenuEntry(string.Empty);
-            elfMenuEntry = new MenuEntry(string.Empty);
+            //ungulateMenuEntry = new MenuEntry(string.Empty);
+            //languageMenuEntry = new MenuEntry(string.Empty);
+            //frobnicateMenuEntry = new MenuEntry(string.Empty);
+            //elfMenuEntry = new MenuEntry(string.Empty);
 
             SetMenuEntryText();
 
             MenuEntry back = new MenuEntry("Back");
 
             // Hook up menu event handlers.
+            /*
             ungulateMenuEntry.Selected += UngulateMenuEntrySelected;
             languageMenuEntry.Selected += LanguageMenuEntrySelected;
             frobnicateMenuEntry.Selected += FrobnicateMenuEntrySelected;
             elfMenuEntry.Selected += ElfMenuEntrySelected;
+            */
             back.Selected += OnCancel;
             
             // Add entries to the menu.
+            /*
             MenuEntries.Add(ungulateMenuEntry);
             MenuEntries.Add(languageMenuEntry);
             MenuEntries.Add(frobnicateMenuEntry);
             MenuEntries.Add(elfMenuEntry);
+            */
             MenuEntries.Add(back);
         }
 
@@ -78,10 +82,12 @@ namespace GameState
         /// </summary>
         void SetMenuEntryText()
         {
+            /*
             ungulateMenuEntry.Text = "Preferred ungulate: " + currentUngulate;
             languageMenuEntry.Text = "Language: " + languages[currentLanguage];
             frobnicateMenuEntry.Text = "Frobnicate: " + (frobnicate ? "on" : "off");
             elfMenuEntry.Text = "elf: " + elf;
+             */
         }
 
 

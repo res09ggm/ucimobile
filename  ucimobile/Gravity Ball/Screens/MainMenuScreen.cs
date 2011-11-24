@@ -25,7 +25,7 @@ namespace GameState
         /// Constructor fills in the menu contents.
         /// </summary>
         public MainMenuScreen()
-            : base("Gravity Ball")
+            : base("") //used to be "Gravity Ball"
         {
             // Create our menu entries.
             MenuEntry playGameMenuEntry = new MenuEntry("Play Game");
@@ -41,6 +41,10 @@ namespace GameState
             MenuEntries.Add(playGameMenuEntry);
             MenuEntries.Add(optionsMenuEntry);
             MenuEntries.Add(exitMenuEntry);
+            
+            // Testing Move each item
+            
+            
         }
 
 
@@ -73,7 +77,7 @@ namespace GameState
         /// </summary>
         protected override void OnCancel(PlayerIndex playerIndex)
         {
-            const string message = "Are you sure you want to exit this sample?";
+            const string message = "Are you sure you want quit?";
 
             MessageBoxScreen confirmExitMessageBox = new MessageBoxScreen(message);
 

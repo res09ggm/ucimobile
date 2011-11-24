@@ -2,40 +2,13 @@
 <XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
   <Asset Type="Pipeline:BuildItemCollection">
     <Item>
-      <Source>background.png</Source>
-      <Name>background</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\background.xnb</Output>
-      <Time>2011-11-05T15:13:11.8316996-07:00</Time>
-    </Item>
-    <Item>
-      <Source>blank.png</Source>
-      <Name>blank</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\blank.xnb</Output>
-      <Time>2011-11-05T15:13:11.8947032-07:00</Time>
-    </Item>
-    <Item>
-      <Source>gradient.png</Source>
-      <Name>gradient</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <Options>None</Options>
-      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\gradient.xnb</Output>
-      <Time>2011-11-05T15:13:11.8266993-07:00</Time>
-    </Item>
-    <Item>
       <Source>menufont.spritefont</Source>
       <Name>menufont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\menufont.xnb</Output>
-      <Time>2011-11-05T15:13:11.8326996-07:00</Time>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\menufont.xnb</Output>
+      <Time>2011-11-23T15:43:13.9097-08:00</Time>
     </Item>
     <Item>
       <Source>gamefont.spritefont</Source>
@@ -43,8 +16,17 @@
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\gamefont.xnb</Output>
-      <Time>2011-11-05T15:13:11.8967033-07:00</Time>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\gamefont.xnb</Output>
+      <Time>2011-11-23T14:27:22.8001-08:00</Time>
+    </Item>
+    <Item>
+      <Source>font.spritefont</Source>
+      <Name>font</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\font.xnb</Output>
+      <Time>2011-11-23T15:44:06.7111-08:00</Time>
     </Item>
     <Item>
       <Source>video.wmv</Source>
@@ -52,9 +34,9 @@
       <Importer>WmvImporter</Importer>
       <Processor>VideoProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\video.xnb</Output>
-      <Extra>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\video.wmv</Extra>
-      <Time>2011-11-05T22:23:35.0116871-07:00</Time>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\video.xnb</Output>
+      <Extra>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\video.wmv</Extra>
+      <Time>2011-11-23T14:27:49.3423-08:00</Time>
     </Item>
     <Item>
       <Source>Intro.wmv</Source>
@@ -62,9 +44,432 @@
       <Importer>WmvImporter</Importer>
       <Processor>VideoProcessor</Processor>
       <Options>None</Options>
-      <Output>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\Intro.xnb</Output>
-      <Extra>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\Intro.wmv</Extra>
-      <Time>2011-11-06T15:42:50.9955563-08:00</Time>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Intro.xnb</Output>
+      <Extra>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Intro.wmv</Extra>
+      <Time>2011-11-23T14:27:43.6305-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\pavement.png</Source>
+      <Name>Textures\pavement</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\pavement.xnb</Output>
+      <Time>2011-11-23T14:27:30.6067-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\scratched_metal.jpg</Source>
+      <Name>Textures\scratched_metal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\scratched_metal.xnb</Output>
+      <Time>2011-11-23T14:27:30.5755-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\stick.png</Source>
+      <Name>Textures\stick</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\stick.xnb</Output>
+      <Time>2011-11-23T14:27:30.5339-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\metal_pipe.jpg</Source>
+      <Name>Textures\metal_pipe</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\metal_pipe.xnb</Output>
+      <Time>2011-11-23T14:27:30.4549-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\metal_pipe_256.jpg</Source>
+      <Name>Textures\metal_pipe_256</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\metal_pipe_256.xnb</Output>
+      <Time>2011-11-23T14:27:30.3569-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\metal_pipe_64.jpg</Source>
+      <Name>Textures\metal_pipe_64</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\metal_pipe_64.xnb</Output>
+      <Time>2011-11-23T14:27:30.6695-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\metal_rusty.jpg</Source>
+      <Name>Textures\metal_rusty</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\metal_rusty.xnb</Output>
+      <Time>2011-11-23T14:27:30.2689-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\metal_rusty2.jpg</Source>
+      <Name>Textures\metal_rusty2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\metal_rusty2.xnb</Output>
+      <Time>2011-11-23T14:27:30.7325-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\metal_rusty2_64.jpg</Source>
+      <Name>Textures\metal_rusty2_64</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\metal_rusty2_64.xnb</Output>
+      <Time>2011-11-23T14:27:30.0749-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\metal_rusty_256.jpg</Source>
+      <Name>Textures\metal_rusty_256</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\metal_rusty_256.xnb</Output>
+      <Time>2011-11-23T14:27:30.0939-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\metal_rusty_64.jpg</Source>
+      <Name>Textures\metal_rusty_64</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\metal_rusty_64.xnb</Output>
+      <Time>2011-11-23T14:27:29.9189-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wooden_crate.jpg</Source>
+      <Name>Textures\wooden_crate</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wooden_crate.xnb</Output>
+      <Time>2011-11-23T14:27:30.3199-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wooden_crate_256.jpg</Source>
+      <Name>Textures\wooden_crate_256</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wooden_crate_256.xnb</Output>
+      <Time>2011-11-23T14:27:30.1199-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wooden_crate_64.jpg</Source>
+      <Name>Textures\wooden_crate_64</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wooden_crate_64.xnb</Output>
+      <Time>2011-11-23T14:27:30.5519-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate2.jpg</Source>
+      <Name>Textures\wood_crate2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate2.xnb</Output>
+      <Time>2011-11-23T14:27:29.8019-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate2_256.jpg</Source>
+      <Name>Textures\wood_crate2_256</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate2_256.xnb</Output>
+      <Time>2011-11-23T14:27:29.7429-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate2_64.jpg</Source>
+      <Name>Textures\wood_crate2_64</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate2_64.xnb</Output>
+      <Time>2011-11-23T14:27:30.5149-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate3.jpg</Source>
+      <Name>Textures\wood_crate3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate3.xnb</Output>
+      <Time>2011-11-23T14:27:29.8229-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate3_256.jpg</Source>
+      <Name>Textures\wood_crate3_256</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate3_256.xnb</Output>
+      <Time>2011-11-23T14:27:29.7629-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate3_64.jpg</Source>
+      <Name>Textures\wood_crate3_64</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate3_64.xnb</Output>
+      <Time>2011-11-23T14:27:29.9379-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate_danger.jpg</Source>
+      <Name>Textures\wood_crate_danger</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate_danger.xnb</Output>
+      <Time>2011-11-23T14:27:29.7819-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate_danger_256.jpg</Source>
+      <Name>Textures\wood_crate_danger_256</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate_danger_256.xnb</Output>
+      <Time>2011-11-23T14:27:29.6839-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate_danger_64.jpg</Source>
+      <Name>Textures\wood_crate_danger_64</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate_danger_64.xnb</Output>
+      <Time>2011-11-23T14:27:30.4319-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate_fragile.jpg</Source>
+      <Name>Textures\wood_crate_fragile</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate_fragile.xnb</Output>
+      <Time>2011-11-23T14:27:30.4759-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate_fragile_256.jpg</Source>
+      <Name>Textures\wood_crate_fragile_256</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate_fragile_256.xnb</Output>
+      <Time>2011-11-23T14:27:30.3389-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\wood_crate_fragile_64.jpg</Source>
+      <Name>Textures\wood_crate_fragile_64</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\wood_crate_fragile_64.xnb</Output>
+      <Time>2011-11-23T14:27:30.7105-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\background.png</Source>
+      <Name>Textures\background</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\background.xnb</Output>
+      <Time>2011-11-23T13:49:43.347-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\corrugated_metal_64.jpg</Source>
+      <Name>Textures\corrugated_metal_64</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\corrugated_metal_64.xnb</Output>
+      <Time>2011-11-23T14:27:30.7515-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\blank.png</Source>
+      <Name>Textures\blank</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\blank.xnb</Output>
+      <Time>2011-11-23T14:27:30.7695-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\corrugated_metal.jpg</Source>
+      <Name>Textures\corrugated_metal</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\corrugated_metal.xnb</Output>
+      <Time>2011-11-23T14:27:30.4959-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\corrugated_metal_256.jpg</Source>
+      <Name>Textures\corrugated_metal_256</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\corrugated_metal_256.xnb</Output>
+      <Time>2011-11-23T14:27:30.3769-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\gradient.png</Source>
+      <Name>Textures\gradient</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\gradient.xnb</Output>
+      <Time>2011-11-23T14:27:30.0339-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\gravityball.png</Source>
+      <Name>Textures\gravityball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\gravityball.xnb</Output>
+      <Time>2011-11-23T14:27:29.9569-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\gravityball_128.png</Source>
+      <Name>Textures\gravityball_128</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\gravityball_128.xnb</Output>
+      <Time>2011-11-23T14:27:30.3959-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ball.png</Source>
+      <Name>Textures\ball</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\ball.xnb</Output>
+      <Time>2011-11-23T17:37:45.8123-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Ceiling.png</Source>
+      <Name>Textures\Ceiling</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\Ceiling.xnb</Output>
+      <Time>2011-11-23T17:37:45.9373-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ExampleFloor.png</Source>
+      <Name>Textures\ExampleFloor</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\ExampleFloor.xnb</Output>
+      <Time>2011-11-23T14:27:30.0149-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Floor1.png</Source>
+      <Name>Textures\Floor1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\Floor1.xnb</Output>
+      <Time>2011-11-23T17:37:45.8333-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Floor2.png</Source>
+      <Name>Textures\Floor2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\Floor2.xnb</Output>
+      <Time>2011-11-23T17:37:45.8543-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Floor3.png</Source>
+      <Name>Textures\Floor3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\Floor3.xnb</Output>
+      <Time>2011-11-23T17:37:45.8943-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\level.png</Source>
+      <Name>Textures\level</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\level.xnb</Output>
+      <Time>2011-11-23T14:27:29.8619-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\Wall.png</Source>
+      <Name>Textures\Wall</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\Wall.xnb</Output>
+      <Time>2011-11-23T17:37:45.7903-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\blockade.png</Source>
+      <Name>Textures\blockade</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\blockade.xnb</Output>
+      <Time>2011-11-23T17:37:45.8743-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\crate.png</Source>
+      <Name>Textures\crate</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\crate.xnb</Output>
+      <Time>2011-11-23T14:27:29.7029-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\electricfield.png</Source>
+      <Name>Textures\electricfield</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\electricfield.xnb</Output>
+      <Time>2011-11-23T14:27:30.0549-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\ironCrate.png</Source>
+      <Name>Textures\ironCrate</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\ironCrate.xnb</Output>
+      <Time>2011-11-23T14:27:29.9759-08:00</Time>
+    </Item>
+    <Item>
+      <Source>Textures\laser.png</Source>
+      <Name>Textures\laser</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\Textures\laser.xnb</Output>
+      <Time>2011-11-23T14:27:29.8419-08:00</Time>
     </Item>
     <BuildSuccessful>true</BuildSuccessful>
     <Settings>
@@ -72,10 +477,10 @@
       <TargetProfile>Reach</TargetProfile>
       <BuildConfiguration>Debug</BuildConfiguration>
       <CompressContent>false</CompressContent>
-      <RootDirectory>C:\SVN\Gravity Ball\Content\</RootDirectory>
-      <LoggerRootDirectory>C:\SVN\Gravity Ball\Gravity Ball\</LoggerRootDirectory>
-      <IntermediateDirectory>C:\SVN\Gravity Ball\Content\obj\x86\Debug\</IntermediateDirectory>
-      <OutputDirectory>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\Content\</OutputDirectory>
+      <RootDirectory>C:\Users\Alex\Desktop\SVNWorkspace\Content\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Alex\Desktop\SVNWorkspace\Content\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Alex\Desktop\SVNWorkspace\Gravity Ball\bin\x86\Debug\Content\</OutputDirectory>
     </Settings>
     <Assemblies>
       <Assembly>
@@ -103,12 +508,12 @@
         <Value>2010-08-23T12:41:18-07:00</Value>
       </Assembly>
       <Assembly>
-        <Key>C:\SVN\Gravity Ball\Gravity Ball\bin\x86\Debug\GameStateManagement.dll</Key>
-        <Value>2011-11-06T15:42:57.6496077-08:00</Value>
+        <Key>C:\Users\Alex\Desktop\SVNWorkspace\GameStateManagement\bin\x86\Debug\GameStateManagement.dll</Key>
+        <Value>2011-11-23T17:38:14.1727-08:00</Value>
       </Assembly>
       <Assembly>
         <Key>C:\Windows\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
-        <Value>2011-09-08T23:02:46.4478314-07:00</Value>
+        <Value>2011-10-29T15:50:02.2998-07:00</Value>
       </Assembly>
     </Assemblies>
   </Asset>
