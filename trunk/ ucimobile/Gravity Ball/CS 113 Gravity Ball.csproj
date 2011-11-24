@@ -66,6 +66,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Ability\Ability.cs" />
+    <Compile Include="Ability\TimerManager.cs" />
     <Compile Include="Camera\Camera2D.cs" />
     <Compile Include="Camera\ConvertUnits.cs" />
     <Compile Include="Level\Level.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Screens\OptionsMenuScreen.cs" />
     <Compile Include="Screens\PauseMenuScreen.cs" />
     <Compile Include="Screens\PlayerIndexEventArgs.cs" />
+    <Compile Include="Screens\RetryScreen.cs" />
     <Compile Include="Sprite.cs" />
   </ItemGroup>
   <ItemGroup>

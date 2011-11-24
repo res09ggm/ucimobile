@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework;
+using FarseerPhysics.Dynamics;
 namespace GameState
 {
     enum AbilityType { GRAVITY_BALL, GRAVITY_SPHERE, GRAVITY_HOLE, GRAVITY_FLIP };
@@ -17,6 +18,8 @@ namespace GameState
 
         void upgrade();
         void shoot();
+        List<Body> getBodies();
+        void undo();
     }
 
     class GravityBallProjectile : Ability 
@@ -48,6 +51,16 @@ namespace GameState
             Player h = GameplayScreen._hero;
 
         }
+
+        public List<Body> getBodies()
+        {
+            return null;
+        }
+
+        public void undo()
+        {
+            return;
+        }
     }
 
     public class GravitySphere : Ability
@@ -72,6 +85,17 @@ namespace GameState
         public void shoot()
         {
             throw new NotImplementedException();
+        }
+
+        public List<Body> getBodies()
+        {
+            //TODO: IMPLEMENT
+            return null;
+        }
+
+        public void undo()
+        {
+            return;
         }
     }
 
@@ -104,8 +128,14 @@ namespace GameState
             throw new NotImplementedException();
         }
 
+        public List<Body> getBodies()
+        {
+            return null;
+        }
 
-
-
+        public void undo()
+        {
+            return;
+        }
     }
 }

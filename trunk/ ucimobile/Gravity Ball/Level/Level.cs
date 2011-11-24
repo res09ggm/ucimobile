@@ -56,21 +56,25 @@ namespace GameState
 
             foreach (Layer layer in level.Layers)
             {
+                //CollisionCategory 2
                 if (layer.Name == "Main")
                 {
                     processMainLayer(layer.Items, cm);
                 }
 
+                //CollisionCategory 2
                 if (layer.Name == "DynamicObjects")
                 {
                     processObjectsLayer(layer.Items, cm);
                 }
 
+                //CollisionCategory 1
                 if (layer.Name == "Waypoints")
                 {
                     processWaypoints(layer.Items, cm);
                 }
 
+                //CollisionCategory None
                 if (layer.Name == "Background")
                 {
                     processBackgroundLayer(layer.Items, cm);
@@ -118,10 +122,26 @@ namespace GameState
 
                     Body deathBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldPosition));
                     FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(rItem.Width), ConvertUnits.ToSimUnits(rItem.Height), 1f, new Vector2(0f), deathBody);
-
+                    deathBody.IgnoreCCD = true;
+                    deathBody.CollisionCategories = Category.Cat1;
                     deathBody.OnCollision += new OnCollisionEventHandler(GameplayScreen._hero.die);
-                    //deathBody.OnCollision += new OnCollisionEventHandler(this.onCollision);
+                }
 
+                else if (it.Name == "Exit")
+                {
+                    RectangleItem rItem = (RectangleItem)it;
+
+                    Vector2 worldPosition;
+                    worldPosition.X = rItem.Position.X + (rItem.Width / 2);
+                    worldPosition.Y = rItem.Position.Y + (rItem.Height / 2);
+
+                    Body exitBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldPosition));
+                    exitBody.IgnoreCCD = true;
+                    exitBody.CollisionCategories = Category.Cat1;
+                    exitBody.IsSensor = true;
+                    FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(rItem.Width), ConvertUnits.ToSimUnits(rItem.Height), 1f, new Vector2(0f), exitBody);
+
+                    exitBody.OnCollision += new OnCollisionEventHandler(GameplayScreen.getInstance().loadNextLevelHandler);
                 }
             }
         }
@@ -137,7 +157,6 @@ namespace GameState
                     String textureName = tItem.asset_name;
                     //tItem.
                     Vector2 worldPosition = tItem.Position + tItem.Origin;
-                    float textureScale;
                     Vector2 textureOrigin;
 
                     //load texture that will represent the physics body
@@ -172,8 +191,6 @@ namespace GameState
                     //Adjust the scale of the object for WP7's lower resolution
 #if WINDOWS_PHONE
             _scale = 0.6f;
-#else
-                    textureScale = 1f;
 #endif
 
                     //scale the vertices from graphics space to sim space
@@ -184,13 +201,13 @@ namespace GameState
                     }
 
                     //Create a single body with multiple fixtures
+                    //BreakableBody _compoundbb = BodyFactory.CreateBreakableBody(GameplayScreen.getWorld(), textureVertices, 1f, ConvertUnits.ToSimUnits(worldPosition));
                     Body _compound = BodyFactory.CreateCompoundPolygon(GameplayScreen.getWorld(), listOfVertices, 1f, ConvertUnits.ToSimUnits(worldPosition));
                     _compound.BodyType = BodyType.Dynamic;
                     _compound.IgnoreCCD = true;
+                    _compound.CollisionCategories = Category.Cat2;
+                    
                     tItem.addBody(_compound);
-
-                    //FixtureFactory.AttachCompoundPolygon(listOfVertices, 1f, _compound);
-
                     tItem.load(content);
                 }
 
@@ -213,10 +230,11 @@ namespace GameState
 
                     Body collisionBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(position), rItem);
                     collisionBody.BodyType = BodyType.Static;
-                    collisionBody.CollidesWith = Category.All;
                     collisionBody.IgnoreCCD = true;
 
+
                     Fixture rectangleFixture = FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(width), ConvertUnits.ToSimUnits(height), 1f, new Vector2(0f, 0f), collisionBody);
+                    rectangleFixture.CollisionCategories = Category.Cat2;
 
                     //Find textureItem to draw into this RectangleItem
                     if (rItem.CustomProperties.ContainsKey("textureItem"))
@@ -239,10 +257,10 @@ namespace GameState
 
                     Body collisionBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(position), cItem);
                     collisionBody.BodyType = BodyType.Static;
-                    collisionBody.CollidesWith = Category.All;
                     collisionBody.IgnoreCCD = true;
 
                     Fixture circleFixture = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(radius), 1f, collisionBody);
+                    circleFixture.CollisionCategories = Category.Cat2;
                 }
                 else if (it.GetType() == typeof(PathItem))
                 {
@@ -253,7 +271,6 @@ namespace GameState
                     TextureItem tItem = (TextureItem)it;
                     String textureName = tItem.asset_name;
                     Vector2 worldPosition = tItem.Position;
-                    float textureScale;
                     Vector2 textureOrigin;
 
                     //load texture that will represent the physics body
@@ -288,8 +305,6 @@ namespace GameState
                     //Adjust the scale of the object for WP7's lower resolution
 #if WINDOWS_PHONE
             _scale = 0.6f;
-#else
-                    textureScale = 1f;
 #endif
 
                     //scale the vertices from graphics space to sim space
@@ -304,11 +319,8 @@ namespace GameState
                     _compound.BodyType = BodyType.Static;
                     _compound.Mass = 100f;
                     _compound.IgnoreCCD = true;
+                    _compound.CollisionCategories = Category.Cat2;
                     tItem.addBody(_compound);
-
-                    //FixtureFactory.AttachCompoundPolygon(listOfVertices, 1f, _compound);
-
-                    //tItem.load(content);
                 }
                 it.load(content);
             }
@@ -339,8 +351,6 @@ namespace GameState
         {
             foreach (Layer layer in Layers) layer.draw(sb);
         }
-
-
     }
 
 
@@ -372,7 +382,6 @@ namespace GameState
 
         public Matrix transform;
 
-
         public Layer()
         {
             Items = new List<Item>();
@@ -390,12 +399,7 @@ namespace GameState
 
         public void updateTransform()
         {
-            /*transform = Matrix.Identity *
-                    Matrix.CreateTranslation(-(.currentCamera.Position.X * ScrollSpeed.X, -(parent as Scene).currentCamera.Position.Y * ScrollSpeed.Y, 0) *
-                    Matrix.CreateRotationZ((parent as Scene).currentCamera.Rotation) *
-                    Matrix.CreateScale((parent as Scene).currentCamera.Scale) *
-                    Matrix.CreateTranslation((parent as Scene).currentCamera.Origin.X, (parent as Scene).currentCamera.Origin.Y, 0);
-             */
+            
         }
 
     }
@@ -534,92 +538,8 @@ namespace GameState
             //this.texture = cm.Load<Texture2D>(asset_name);
             this.texture = cm.Load<Texture2D>(asset_name);
             Origin = new Vector2(texture.Width / 2, texture.Height / 2);
-            
-            // Check for GLEED2D key/value pairs and insert physics
-            return;
-
-
-
-            /*Body itemBody = BodyFactory.CreateBody(GameplayScreen._world);
-            Fixture itemFixture;
-            Vector2 itemPos = ConvertUnits.ToDisplayUnits(this.Position);
-
-            if (this.GetType() == typeof(RectangleItem))
-            {
-                itemFixture = FixtureFactory.AttachRectangle(this.texture.Width, this.texture.Height, 1f, new Vector2(0,0), itemBody);
-            }
-            else if (this.GetType()*/
-            //Fixture itemFixture;
-            //Vector2 worldpos = new Vector2(this.Position.X + Origin.X, this.Position.Y + Origin.Y);
-            //body = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldpos), this);
-            //itemFixture = FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(this.texture.Width), ConvertUnits.ToSimUnits(this.texture.Height), 1f, new Vector2(0, 0), body);
-            //itemFixture.CollisionGroup = 1;
-            //body.CreateFixture(itemFixture.Shape);
-
-            if (this.CustomProperties.ContainsKey("dynamic") && (bool)this.CustomProperties["dynamic"].value == true)
-            {
-                if (this.CustomProperties.ContainsKey("RectangleItem"))
-                {
-                    
-                        Fixture itemFixture;
-                        Vector2 worldpos = new Vector2(this.Position.X + Origin.X, this.Position.Y + Origin.Y);
-                        body = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldpos), this);
-
-                        Vector2 size = new Vector2(ConvertUnits.ToSimUnits(this.texture.Width), ConvertUnits.ToSimUnits(this.texture.Height));
-                        itemFixture = FixtureFactory.AttachRectangle(size.X, size.Y, 1f, new Vector2(0, 0), body);
-
-                    
-                    Console.WriteLine("creating rectitem fixture");
-
-                }
-                else if (this.CustomProperties.ContainsKey("CircleItem"))
-                {
-                    Console.WriteLine("creating circitem fixture");
-                    Fixture itemFixture;
-                    Vector2 worldpos = new Vector2(this.Position.X + Origin.X, this.Position.Y + Origin.Y);
-                    body = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldpos), this);
-
-                    itemFixture = FixtureFactory.AttachCircle(this.texture.Width / 2, 1f, body);
-                    body.CreateFixture(itemFixture.Shape);
-                }
-                else
-                {
-                    Fixture itemFixture;
-                    Vector2 worldpos = new Vector2(this.Position.X + Origin.X, this.Position.Y + Origin.Y);
-                    body = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldpos), this);
-                    Console.WriteLine("creating polygon fixture");
-                    //Create an array to hold the data from the texture
-                    uint[] data = new uint[this.texture.Width * this.texture.Height];
-
-                    //Transfer the texture data to the array
-                    this.texture.GetData(data);
-
-                    //Find the vertices that makes up the outline of the shape in the texture
-                    Vertices verts = PolygonTools.CreatePolygon(data, this.texture.Width, false);
-
-                    //For now we need to scale the vertices (result is in pixels, we use meters)
-                    Vector2 scale = new Vector2((this.Scale.X/64f), (this.Scale.Y/64f));
-                    verts.Scale(ref scale);
-
-                    //Since it is a concave polygon, we need to partition it into several smaller convex polygons
-                    List<Vertices> _list = FarseerPhysics.Common.Decomposition.BayazitDecomposer.ConvexPartition(verts);
-
-                    //Create a single body with multiple fixtures
-                    List<Fixture> compound = FixtureFactory.AttachCompoundPolygon(_list, 1, this.body);
-
-                }
-                if (this.CustomProperties.ContainsKey("dynamic"))
-                {
-                    if ((bool)this.CustomProperties["dynamic"].value == true)
-                    {
-                        body.BodyType = BodyType.Dynamic;
-                    }
-                    else
-                        body.BodyType = BodyType.Static;
-                }
-                
-            }
         }
+
 
         public override void draw(SpriteBatch sb)
         {
@@ -662,6 +582,7 @@ namespace GameState
             body.IsStatic = true;
             body.BodyType = BodyType.Static;
             body.Friction = 1f;
+            body.IgnoreCCD = true;
             Console.WriteLine("created body: " + body.ToString());
 
             Console.WriteLine(CustomProperties.ToString());
