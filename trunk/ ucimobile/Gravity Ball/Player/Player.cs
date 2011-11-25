@@ -145,7 +145,10 @@ namespace GameState
                 {
                     isJumping = false;
                     this._body.AngularVelocity = 0f;
+                    this._body.Rotation = 0f;
+
                 }
+                
 
                 // determine a wall collision to drop horizontal velocity 
                 // if I can't jump and the normal is not the same direction as the
@@ -167,13 +170,13 @@ namespace GameState
                 showReplayScreen();
             
             elapsedTime += milliseconds;
-            if (elapsedTime > 1000)
+            if (elapsedTime > 2000)
             {
-                elapsedTime -= 1000;
+                elapsedTime -= 1500;
                 if (energy < MAX_ENERGY)
-                    energy += 1;
+                    energy += .5;
                 if (health < MAX_HEALTH)
-                    health += 5;
+                    health += 1;
             }
         }
 
@@ -185,9 +188,18 @@ namespace GameState
         public void draw(SpriteBatch sb)
         {
             Vector2 wpos = getWorldPosition();
+            double xpos = getWorldPosition().X;
+            float rotation;
+            if (isJumping)
+                rotation = 0f;
+            else rotation = (float)Math.Sin(_body.Rotation)/3;
             wpos.X = wpos.X - (_myTexture.Width / 2);
             wpos.Y = wpos.Y - (_myTexture.Height / 2);
-            sb.Draw(_myTexture, wpos, Color.WhiteSmoke);
+            
+            Vector2 origin = new Vector2((_myTexture.Width / 2), (_myTexture.Height / 2));
+            Vector2 poss = ConvertUnits.ToDisplayUnits(_body.Position);
+
+            sb.Draw(_myTexture, getWorldPosition(), null, Color.WhiteSmoke, rotation, origin, 1f, SpriteEffects.None, 0);
         }
 
         public void setWorldPosition(Vector2 worldPos)
@@ -227,7 +239,8 @@ namespace GameState
 
         public bool die(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
         {
-            if (contact.IsTouching() && this.health > 0)
+            health -= 10;
+            if (contact.IsTouching() && this.health <= 0)
             {
                 float x = _body.LinearVelocity.X;
                 float y = _body.LinearVelocity.Y * 1.7f;
@@ -240,6 +253,33 @@ namespace GameState
                 return false;
             }
             else return false;
+        }
+
+        public double getHealth()
+        {
+            return health;
+        }
+
+        public double getEnergy()
+        {
+            return energy;
+        }
+
+        public bool take10Damage(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
+        {
+            if (contact.IsTouching() && (fixtureA.Body == _body || fixtureB.Body == _body))
+            {
+                //only take away 10 hitpoints for every 1 second fixtures are touching.
+                health -= 5;
+                _body.Inertia = 0f;
+                _body.Rotation = 0f;
+                _body.AngularVelocity = 0f;
+                _body.LinearVelocity = new Vector2(0f, _body.LinearVelocity.Y);
+                _body.ApplyLinearImpulse(new Vector2(-5f, 0f));
+
+            }
+            // Always touch
+            return true;
         }
     }
 }
