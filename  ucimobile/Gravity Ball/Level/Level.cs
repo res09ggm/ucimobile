@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using System.Text.RegularExpressions;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
@@ -65,7 +66,7 @@ namespace GameState
                 //CollisionCategory 2
                 if (layer.Name == "DynamicObjects")
                 {
-                    processObjectsLayer(layer.Items, cm);
+                    processDynamicObjectsLayer(layer.Items, cm);
                 }
 
                 //CollisionCategory 1
@@ -100,8 +101,12 @@ namespace GameState
 
         private static void processWaypoints(List<Item> list, ContentManager content)
         {
+            //for now use regex matching for death waypoints.  Lets us put in more than 1 death waypoint.
+            Regex deathRegex = new Regex("[Dd]eath+");
+            
             foreach (Item it in list)
             {
+                Match deathMatch = deathRegex.Match(it.Name);
                 if (it.Name == "Hero")
                 {
                     CircleItem cItem = (CircleItem)it;
@@ -112,7 +117,7 @@ namespace GameState
                     GameplayScreen._hero.setWorldPosition(startPosition);
                 }
 
-                else if (it.Name == "Death")
+                else if (deathMatch.Success)
                 {
                     RectangleItem rItem = (RectangleItem)it;
 
@@ -147,7 +152,7 @@ namespace GameState
         }
 
         // Interactive TextureItems are passed in the Objects layer
-        private static void processObjectsLayer(List<Item> list, ContentManager content)
+        private static void processDynamicObjectsLayer(List<Item> list, ContentManager content)
         {
             foreach (Item it in list)
             {
@@ -321,6 +326,17 @@ namespace GameState
                     _compound.IgnoreCCD = true;
                     _compound.CollisionCategories = Category.Cat2;
                     tItem.addBody(_compound);
+
+                    if (it.CustomProperties.ContainsKey("damage"))
+                    {
+                        double damagePerformed = Double.Parse(it.CustomProperties["damage"].description);
+                        _compound.OnCollision += new OnCollisionEventHandler(GameplayScreen._hero.take10Damage);
+                    }
+                    if (it.CustomProperties.ContainsKey("strength"))
+                    {
+                        double strength = Double.Parse(it.CustomProperties["strength"].description);
+                        //do something with it.
+                    }
                 }
                 it.load(content);
             }

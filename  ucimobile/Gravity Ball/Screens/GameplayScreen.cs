@@ -476,6 +476,8 @@ namespace GameState
                 //Have each object in the Map draw itself.
                 _currentLevel.draw(spriteBatch);
                 _hero.draw(spriteBatch);
+                // Draw player health and energy level.
+                projectHealthEnergy(spriteBatch);
             }
 
             spriteBatch.End();
@@ -498,6 +500,48 @@ namespace GameState
                 float alpha = MathHelper.Lerp(1f - TransitionAlpha, 1f, pauseAlpha / 2);
                 ScreenManager.FadeBackBufferToBlack(alpha);
             }
+        }
+
+        private void projectHealthEnergy(SpriteBatch spriteBatch)
+        {
+            double playerHealth = _hero.getHealth();
+            double playerEnergy = _hero.getEnergy();
+            String health = "Health : " + playerHealth;
+            String energy = "Energy: " + playerEnergy;
+            Color healthColor;
+            Color energyColor;
+
+            if (playerHealth >= 90)
+                healthColor = Color.Green;
+            else if (playerHealth >= 70 && playerHealth < 90)
+                healthColor = Color.GreenYellow;
+            else if (playerHealth >= 40 && playerHealth < 70)
+                healthColor = Color.Yellow;
+            else if (playerHealth >= 20 && playerHealth < 40)
+                healthColor = Color.OrangeRed;
+            else healthColor = Color.Red;
+
+            if (playerEnergy >= 90)
+                energyColor = Color.Green;
+            else if (playerHealth >= 70 && playerHealth < 90)
+                energyColor = Color.GreenYellow;
+            else if (playerHealth >= 40 && playerHealth < 70)
+                energyColor = Color.Yellow;
+            else if (playerHealth >= 20 && playerHealth < 40)
+                energyColor = Color.OrangeRed;
+            else energyColor = Color.Red;
+
+            SpriteFont font = ScreenManager.Font;
+            Vector2 healthLocation = _camera.Position;
+            healthLocation.X += 300 / _camera.Zoom;
+            healthLocation.Y -= 390 / _camera.Zoom;
+
+            Vector2 energyLocation = _camera.Position;
+            energyLocation.X += 300 / _camera.Zoom;
+            energyLocation.Y -= 340 / _camera.Zoom;
+
+            spriteBatch.DrawString(font, health, healthLocation, healthColor);
+            spriteBatch.DrawString(font, energy, energyLocation, energyColor);
         }
 
         public void toggleDebugViewXNA()
@@ -529,6 +573,11 @@ namespace GameState
         public static GameplayScreen getInstance()
         {
             return currentGame;
+        }
+
+        public GameTime getCurrentGameTime()
+        {
+            return privateGameTime;
         }
 
         public bool loadNextLevelHandler(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
