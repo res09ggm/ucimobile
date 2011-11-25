@@ -33,9 +33,17 @@ namespace GameState
             if (_expiringTimers.Contains(expiredTimer))
             {
                 // undo each Ability's change if applicable
-                foreach (Body b in expiredTimer.getBodiesList())
+                if (expiredTimer.getBodiesList() != null)
                 {
-                    b.Dispose();
+                    foreach (Body b in expiredTimer.getBodiesList())
+                    {
+                        b.Dispose();
+                    }
+                }
+                // call method undo if applicable
+                if (expiredTimer.getUndoMethod() != null)
+                {
+                    expiredTimer.getUndoMethod().DynamicInvoke();
                 }
                 _expiringTimers.Remove(expiredTimer);
                 expiredTimer.undoChanges();
@@ -67,6 +75,8 @@ namespace GameState
         double deadline;
         List<Body> bodies;
         Ability ability;
+        Delegate undoMethod;
+        private GameTime gameTime;
 
         public Timer(Ability activeAbility, double expiryTime)
         {
@@ -96,6 +106,13 @@ namespace GameState
             deadline = gameTime.TotalGameTime.TotalMilliseconds + deltaInMilliseconds;
         }
 
+        public Timer(Delegate methodToCall, GameTime gameTime, double delta)
+        {
+            this.undoMethod = methodToCall;
+            this.gameTime = gameTime;
+            this.deadline = gameTime.TotalGameTime.TotalMilliseconds + delta;
+        }
+
         public List<Body> getBodiesList()
         {
             return bodies;
@@ -108,7 +125,13 @@ namespace GameState
 
         public void undoChanges()
         {
-            this.ability.undo();
+            if (this.ability != null)
+                this.ability.undo();
+        }
+
+        public Delegate getUndoMethod()
+        {
+            return this.undoMethod;
         }
     }
 }

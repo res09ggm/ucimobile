@@ -11,4 +11,7 @@
     <VerifyUploadedFiles>false</VerifyUploadedFiles>
     <ProjectView>ProjectFiles</ProjectView>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <StartArguments>E:\ICS\CS113\ucimobile\Content\Levels\lvl1.xml</StartArguments>
+  </PropertyGroup>
 </Project>

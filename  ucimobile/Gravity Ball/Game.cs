@@ -49,6 +49,26 @@ namespace GameState
 
         }
 
+        public GameStateManagementGame(String filename)
+        {
+            Content.RootDirectory = "Content";
+
+            graphics = new GraphicsDeviceManager(this);
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 768;
+            graphics.ApplyChanges();
+            TargetElapsedTime = TimeSpan.FromTicks(333333);
+
+            // Create the screen factory and add it to the Services
+            screenFactory = new ScreenFactory();
+            Services.AddService(typeof(IScreenFactory), screenFactory);
+            IsMouseVisible = true;
+            // Create the screen manager component.
+            screenManager = new ScreenManager(this);
+            Components.Add(screenManager);
+            screenManager.AddScreen(new GameplayScreen(filename), PlayerIndex.One);
+        }
+
         private void AddInitialScreens()
         {
             // Activate the first screens.

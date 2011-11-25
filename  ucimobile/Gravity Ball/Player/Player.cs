@@ -32,6 +32,8 @@ namespace GameState
         private Texture2D _myTexture;
         private Vector2 simPosition;
         private int abilityIndex = 0;
+
+        public delegate void undoGravityFlipDelegate();
         
         public Player(World gameWorld)
         {
@@ -95,7 +97,7 @@ namespace GameState
             {
                 if (!isJumping)
                 {
-                    this._body.ApplyForce(new Vector2(20f, 0f));
+                    this._body.ApplyForce(new Vector2(10f, 0f));
                 }
                 else
                     this._body.ApplyForce(new Vector2(10f, 0f));
@@ -109,7 +111,7 @@ namespace GameState
             {
                 if (!isJumping)
                 {
-                    this._body.ApplyForce(new Vector2(-20f, 0f));
+                    this._body.ApplyForce(new Vector2(-10f, 0f));
                 }
                 else
                     this._body.ApplyForce(new Vector2(-10f, 0f));
@@ -123,7 +125,7 @@ namespace GameState
              if (!isJumping)
             {
                 this.isJumping = true;
-                this._body.ApplyLinearImpulse(new Vector2(0f, -15f)); //change to 10f for normal gameplay
+                this._body.ApplyLinearImpulse(new Vector2(0f, -10f)); //change to 10f for normal gameplay
                 _body.OnCollision += new OnCollisionEventHandler(this.onCollision);
             }    
         }
@@ -178,6 +180,11 @@ namespace GameState
                 if (health < MAX_HEALTH)
                     health += 1;
             }
+
+            if (_body.LinearVelocity.X >= -1f && _body.LinearVelocity.X <= 1f)
+            {
+                _body.Rotation = 0f;
+            }
         }
 
         private void showReplayScreen()
@@ -199,7 +206,7 @@ namespace GameState
             Vector2 origin = new Vector2((_myTexture.Width / 2), (_myTexture.Height / 2));
             Vector2 poss = ConvertUnits.ToDisplayUnits(_body.Position);
 
-            sb.Draw(_myTexture, getWorldPosition(), null, Color.WhiteSmoke, rotation, origin, 1f, SpriteEffects.None, 0);
+            sb.Draw(_myTexture, getWorldPosition(), null, Color.WhiteSmoke, _body.Rotation, origin, 1f, SpriteEffects.None, 0);
         }
 
         public void setWorldPosition(Vector2 worldPos)
@@ -228,8 +235,29 @@ namespace GameState
 
         internal void action()
         {
-           // if (skills[abilityIndex]
-            //skills[abilityIndex].shoot();
+            switch (abilityIndex)
+            {
+                case (int)AbilityType.GRAVITY_BALL:
+                    {
+                        break;
+                    }
+                case (int)AbilityType.GRAVITY_SPHERE:
+                    {
+                        break;
+                    }
+                case (int)AbilityType.GRAVITY_HOLE:
+                    {
+                        break;
+                    }
+                case (int)AbilityType.GRAVITY_FLIP:
+                    {
+                        performGravityFlip();
+                        break;
+                    }
+                default: return;
+            }
+
+                    
         }
 
         internal void selectAbility(int p)
@@ -281,5 +309,26 @@ namespace GameState
             // Always touch
             return true;
         }
+
+        public void undoGravityFlip()
+        {
+            Vector2 oldGravity = GameplayScreen._world.Gravity;
+            GameplayScreen._world.Gravity = new Vector2(0f, -oldGravity.Y);
+        }
+
+        public void performGravityFlip()
+        {
+            Vector2 oldGravity = GameplayScreen._world.Gravity;
+            GameplayScreen._world.Gravity = new Vector2(0f, -oldGravity.Y);
+            //Delegate d = new Delegate(this, "undoGravityFlip");
+            Timer newTimer = new Timer(new undoGravityFlipDelegate(this.undoGravityFlip), GameplayScreen.getInstance().getCurrentGameTime(), 2000);
+            GameplayScreen.getInstance().gameTimers.addTimer(newTimer);
+        }
+
+        public AbilityType getSelectedAbility()
+        {
+            return (AbilityType)abilityIndex;
+        }
+
     }
 }
