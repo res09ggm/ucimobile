@@ -48,7 +48,7 @@ namespace GameState
         public void shoot()
         {
             //logic to shoot gravity ball
-            Player h = GameplayScreen._hero;
+            //Player h = GameplayScreen._hero;
 
         }
 

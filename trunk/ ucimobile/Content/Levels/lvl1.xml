@@ -5,8 +5,8 @@
             <Items>
                 <Item xsi:type="TextureItem" Name="Texture_0602" Visible="true">
                     <Position>
-                        <X>2518</X>
-                        <Y>2850</Y>
+                        <X>2466</X>
+                        <Y>2925</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>1.57078433</Rotation>
@@ -26,14 +26,14 @@
                     <texture_filename>Textures\electricfield.png</texture_filename>
                     <asset_name>Textures\electricfield</asset_name>
                     <Origin>
-                        <X>97.770256</X>
-                        <Y>192.199753</Y>
+                        <X>96</X>
+                        <Y>224</Y>
                     </Origin>
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0603" Visible="true">
                     <Position>
-                        <X>2518</X>
-                        <Y>2923</Y>
+                        <X>2465</X>
+                        <Y>2842</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>1.57078433</Rotation>
@@ -53,14 +53,14 @@
                     <texture_filename>Textures\electricfield.png</texture_filename>
                     <asset_name>Textures\electricfield</asset_name>
                     <Origin>
-                        <X>97.770256</X>
-                        <Y>192.199753</Y>
+                        <X>96</X>
+                        <Y>224</Y>
                     </Origin>
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0600" Visible="true">
                     <Position>
-                        <X>1837</X>
-                        <Y>2850</Y>
+                        <X>1886</X>
+                        <Y>2845</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>4.711914</Rotation>
@@ -80,8 +80,8 @@
                     <texture_filename>Textures\electricfield.png</texture_filename>
                     <asset_name>Textures\electricfield</asset_name>
                     <Origin>
-                        <X>98</X>
-                        <Y>192</Y>
+                        <X>96</X>
+                        <Y>224</Y>
                     </Origin>
                 </Item>
                 <Item xsi:type="TextureItem" Name="corrugated_metal_64" Visible="true">
@@ -8969,7 +8969,7 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0604" Visible="true">
                     <Position>
-                        <X>1837</X>
+                        <X>1887</X>
                         <Y>2919</Y>
                     </Position>
                     <CustomProperties />
@@ -8990,8 +8990,89 @@
                     <texture_filename>Textures\electricfield.png</texture_filename>
                     <asset_name>Textures\electricfield</asset_name>
                     <Origin>
-                        <X>98</X>
-                        <Y>192</Y>
+                        <X>96</X>
+                        <Y>224</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0619" Visible="true">
+                    <Position>
+                        <X>6367.5</X>
+                        <Y>2912.5</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>0.2642998</X>
+                        <Y>0.2642998</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\exit_green.jpg</texture_filename>
+                    <asset_name>Textures\exit_green</asset_name>
+                    <Origin>
+                        <X>598.5</X>
+                        <Y>598.500061</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0620" Visible="true">
+                    <Position>
+                        <X>6046.5</X>
+                        <Y>2912.5</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>0.2642998</X>
+                        <Y>0.2642998</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\exit_green.jpg</texture_filename>
+                    <asset_name>Textures\exit_green</asset_name>
+                    <Origin>
+                        <X>598.5</X>
+                        <Y>598.500061</Y>
+                    </Origin>
+                </Item>
+                <Item xsi:type="TextureItem" Name="Texture_0621" Visible="true">
+                    <Position>
+                        <X>5725.5</X>
+                        <Y>2912.5</Y>
+                    </Position>
+                    <CustomProperties />
+                    <Rotation>0</Rotation>
+                    <Scale>
+                        <X>0.2642998</X>
+                        <Y>0.2642998</Y>
+                    </Scale>
+                    <TintColor>
+                        <R>255</R>
+                        <G>255</G>
+                        <B>255</B>
+                        <A>255</A>
+                        <PackedValue>4294967295</PackedValue>
+                    </TintColor>
+                    <FlipHorizontally>false</FlipHorizontally>
+                    <FlipVertically>false</FlipVertically>
+                    <texture_filename>Textures\exit_green.jpg</texture_filename>
+                    <asset_name>Textures\exit_green</asset_name>
+                    <Origin>
+                        <X>598.5</X>
+                        <Y>598.500061</Y>
                     </Origin>
                 </Item>
             </Items>
@@ -10267,8 +10348,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0060" Visible="true">
                     <Position>
-                        <X>4125</X>
-                        <Y>1952</Y>
+                        <X>4037</X>
+                        <Y>1806</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10321,8 +10402,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0061" Visible="true">
                     <Position>
-                        <X>4061</X>
-                        <Y>1952</Y>
+                        <X>4044</X>
+                        <Y>1949</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10429,8 +10510,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0128" Visible="true">
                     <Position>
-                        <X>2847.53833</X>
-                        <Y>799.373</Y>
+                        <X>2847.538</X>
+                        <Y>799.373047</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10483,8 +10564,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0062" Visible="true">
                     <Position>
-                        <X>3997</X>
-                        <Y>1952</Y>
+                        <X>3839</X>
+                        <Y>1874</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10591,8 +10672,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0063" Visible="true">
                     <Position>
-                        <X>4088</X>
-                        <Y>1735</Y>
+                        <X>4125</X>
+                        <Y>1944</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10618,8 +10699,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0064" Visible="true">
                     <Position>
-                        <X>4068</X>
-                        <Y>1811</Y>
+                        <X>4107</X>
+                        <Y>1798</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10699,8 +10780,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0065" Visible="true">
                     <Position>
-                        <X>3984</X>
-                        <Y>1811</Y>
+                        <X>3954</X>
+                        <Y>1805</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10726,8 +10807,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0066" Visible="true">
                     <Position>
-                        <X>3933</X>
-                        <Y>1952</Y>
+                        <X>3907</X>
+                        <Y>1950</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10753,8 +10834,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0067" Visible="true">
                     <Position>
-                        <X>3805</X>
-                        <Y>1952</Y>
+                        <X>3770</X>
+                        <Y>1946</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10780,8 +10861,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0068" Visible="true">
                     <Position>
-                        <X>3869</X>
-                        <Y>1952</Y>
+                        <X>3840</X>
+                        <Y>1949</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10807,8 +10888,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0069" Visible="true">
                     <Position>
-                        <X>4061</X>
-                        <Y>1888</Y>
+                        <X>4073</X>
+                        <Y>1875</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10834,8 +10915,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0070" Visible="true">
                     <Position>
-                        <X>3997</X>
-                        <Y>1888</Y>
+                        <X>4000</X>
+                        <Y>1878</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10861,8 +10942,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0071" Visible="true">
                     <Position>
-                        <X>3933</X>
-                        <Y>1888</Y>
+                        <X>3978</X>
+                        <Y>1948</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10888,8 +10969,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0072" Visible="true">
                     <Position>
-                        <X>3869</X>
-                        <Y>1888</Y>
+                        <X>3923</X>
+                        <Y>1877</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10942,8 +11023,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0082" Visible="true">
                     <Position>
-                        <X>1228</X>
-                        <Y>1584</Y>
+                        <X>1236</X>
+                        <Y>1587</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10969,8 +11050,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0083" Visible="true">
                     <Position>
-                        <X>1164</X>
-                        <Y>1584</Y>
+                        <X>1168</X>
+                        <Y>1588</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -10997,7 +11078,7 @@
                 <Item xsi:type="TextureItem" Name="Texture_0084" Visible="true">
                     <Position>
                         <X>1100</X>
-                        <Y>1584</Y>
+                        <Y>1589</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11050,8 +11131,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0086" Visible="true">
                     <Position>
-                        <X>1196</X>
-                        <Y>1424</Y>
+                        <X>1208</X>
+                        <Y>1440</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11077,8 +11158,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0087" Visible="true">
                     <Position>
-                        <X>1100</X>
-                        <Y>1424</Y>
+                        <X>1124</X>
+                        <Y>1434</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11104,8 +11185,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0088" Visible="true">
                     <Position>
-                        <X>1036</X>
-                        <Y>1584</Y>
+                        <X>1031</X>
+                        <Y>1591</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11131,8 +11212,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0089" Visible="true">
                     <Position>
-                        <X>908</X>
-                        <Y>1584</Y>
+                        <X>890</X>
+                        <Y>1592</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11158,8 +11239,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0090" Visible="true">
                     <Position>
-                        <X>972</X>
-                        <Y>1584</Y>
+                        <X>961</X>
+                        <Y>1592</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11185,8 +11266,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0091" Visible="true">
                     <Position>
-                        <X>1164</X>
-                        <Y>1520</Y>
+                        <X>1221</X>
+                        <Y>1516</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11212,8 +11293,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0092" Visible="true">
                     <Position>
-                        <X>1100</X>
-                        <Y>1520</Y>
+                        <X>1143</X>
+                        <Y>1518</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11239,8 +11320,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0093" Visible="true">
                     <Position>
-                        <X>1036</X>
-                        <Y>1520</Y>
+                        <X>1068</X>
+                        <Y>1521</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11266,7 +11347,7 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0094" Visible="true">
                     <Position>
-                        <X>972</X>
+                        <X>991</X>
                         <Y>1520</Y>
                     </Position>
                     <CustomProperties />
@@ -11293,8 +11374,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0099" Visible="true">
                     <Position>
-                        <X>2981</X>
-                        <Y>2941</Y>
+                        <X>2936</X>
+                        <Y>2970</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11314,14 +11395,14 @@
                     <texture_filename>Textures\wood_crate2_256.jpg</texture_filename>
                     <asset_name>Textures\wood_crate2_256</asset_name>
                     <Origin>
-                        <X>127.500008</X>
-                        <Y>127.500008</Y>
+                        <X>64</X>
+                        <Y>64</Y>
                     </Origin>
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0100" Visible="true">
                     <Position>
-                        <X>3122</X>
-                        <Y>2941</Y>
+                        <X>3085</X>
+                        <Y>2962</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11341,8 +11422,8 @@
                     <texture_filename>Textures\wood_crate2_256.jpg</texture_filename>
                     <asset_name>Textures\wood_crate2_256</asset_name>
                     <Origin>
-                        <X>127.500008</X>
-                        <Y>127.500008</Y>
+                        <X>64</X>
+                        <Y>64</Y>
                     </Origin>
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0101" Visible="true">
@@ -11374,7 +11455,7 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0102" Visible="true">
                     <Position>
-                        <X>3465.538</X>
+                        <X>3468.538</X>
                         <Y>3168.373</Y>
                     </Position>
                     <CustomProperties />
@@ -11401,7 +11482,7 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0103" Visible="true">
                     <Position>
-                        <X>3389.538</X>
+                        <X>3399.538</X>
                         <Y>3168.373</Y>
                     </Position>
                     <CustomProperties />
@@ -11428,8 +11509,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0104" Visible="true">
                     <Position>
-                        <X>3267.538</X>
-                        <Y>3439.373</Y>
+                        <X>3271.538</X>
+                        <Y>3447.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11455,8 +11536,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0105" Visible="true">
                     <Position>
-                        <X>3203.538</X>
-                        <Y>3439.373</Y>
+                        <X>3198.538</X>
+                        <Y>3446.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11482,8 +11563,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0106" Visible="true">
                     <Position>
-                        <X>3267.538</X>
-                        <Y>3343.373</Y>
+                        <X>3268.538</X>
+                        <Y>3325.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11536,8 +11617,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0108" Visible="true">
                     <Position>
-                        <X>3139.538</X>
-                        <Y>3375.373</Y>
+                        <X>3137.538</X>
+                        <Y>3374.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11563,8 +11644,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0109" Visible="true">
                     <Position>
-                        <X>3107.538</X>
-                        <Y>3439.373</Y>
+                        <X>3110.538</X>
+                        <Y>3441.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11590,7 +11671,7 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0110" Visible="true">
                     <Position>
-                        <X>3075.538</X>
+                        <X>3070.538</X>
                         <Y>3375.373</Y>
                     </Position>
                     <CustomProperties />
@@ -11645,7 +11726,7 @@
                 <Item xsi:type="TextureItem" Name="Texture_0560" Visible="true">
                     <Position>
                         <X>3199.538</X>
-                        <Y>3293.373</Y>
+                        <Y>3297.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11672,7 +11753,7 @@
                 <Item xsi:type="TextureItem" Name="Texture_0561" Visible="true">
                     <Position>
                         <X>3135.538</X>
-                        <Y>3293.373</Y>
+                        <Y>3297.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11698,8 +11779,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0562" Visible="true">
                     <Position>
-                        <X>3313.538</X>
-                        <Y>3158.373</Y>
+                        <X>3331.538</X>
+                        <Y>3168.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11725,7 +11806,7 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0563" Visible="true">
                     <Position>
-                        <X>3135.538</X>
+                        <X>3139.538</X>
                         <Y>3229.373</Y>
                     </Position>
                     <CustomProperties />
@@ -11752,7 +11833,7 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0564" Visible="true">
                     <Position>
-                        <X>3071.538</X>
+                        <X>3072.538</X>
                         <Y>3229.373</Y>
                     </Position>
                     <CustomProperties />
@@ -11779,8 +11860,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0565" Visible="true">
                     <Position>
-                        <X>3039.538</X>
-                        <Y>3293.373</Y>
+                        <X>3042.538</X>
+                        <Y>3297.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11806,8 +11887,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0566" Visible="true">
                     <Position>
-                        <X>3007.538</X>
-                        <Y>3229.373</Y>
+                        <X>3246.538</X>
+                        <Y>3212.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11833,8 +11914,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0567" Visible="true">
                     <Position>
-                        <X>3527.538</X>
-                        <Y>3090.373</Y>
+                        <X>3546.538</X>
+                        <Y>3099.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11860,8 +11941,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0568" Visible="true">
                     <Position>
-                        <X>3451.538</X>
-                        <Y>3092.373</Y>
+                        <X>3470.538</X>
+                        <Y>3101.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11887,8 +11968,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0569" Visible="true">
                     <Position>
-                        <X>3050.538</X>
-                        <Y>2830.373</Y>
+                        <X>3019.538</X>
+                        <Y>2884.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11914,8 +11995,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0570" Visible="true">
                     <Position>
-                        <X>2974.538</X>
-                        <Y>2820.373</Y>
+                        <X>2947.538</X>
+                        <Y>2889.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11941,8 +12022,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0571" Visible="true">
                     <Position>
-                        <X>3112.538</X>
-                        <Y>2754.373</Y>
+                        <X>3051.538</X>
+                        <Y>2812.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11968,8 +12049,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0572" Visible="true">
                     <Position>
-                        <X>3126.538</X>
-                        <Y>2830.373</Y>
+                        <X>3088.538</X>
+                        <Y>2888.373</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -11995,8 +12076,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0573" Visible="true">
                     <Position>
-                        <X>1078</X>
-                        <Y>1346</Y>
+                        <X>919</X>
+                        <Y>1523</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12022,8 +12103,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0574" Visible="true">
                     <Position>
-                        <X>1014</X>
-                        <Y>1346</Y>
+                        <X>1046</X>
+                        <Y>1449</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12049,8 +12130,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0575" Visible="true">
                     <Position>
-                        <X>950</X>
-                        <Y>1346</Y>
+                        <X>971</X>
+                        <Y>1451</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12076,8 +12157,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0576" Visible="true">
                     <Position>
-                        <X>1046</X>
-                        <Y>1122</Y>
+                        <X>1111</X>
+                        <Y>1280</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12103,8 +12184,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0577" Visible="true">
                     <Position>
-                        <X>1046</X>
-                        <Y>1186</Y>
+                        <X>1103</X>
+                        <Y>1363</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12130,8 +12211,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0578" Visible="true">
                     <Position>
-                        <X>950</X>
-                        <Y>1186</Y>
+                        <X>848</X>
+                        <Y>1361</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12157,8 +12238,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0579" Visible="true">
                     <Position>
-                        <X>886</X>
-                        <Y>1346</Y>
+                        <X>893</X>
+                        <Y>1447</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12184,8 +12265,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0580" Visible="true">
                     <Position>
-                        <X>822</X>
-                        <Y>1346</Y>
+                        <X>812</X>
+                        <Y>1593</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12211,8 +12292,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0581" Visible="true">
                     <Position>
-                        <X>1014</X>
-                        <Y>1282</Y>
+                        <X>1025</X>
+                        <Y>1380</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12238,8 +12319,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0582" Visible="true">
                     <Position>
-                        <X>950</X>
-                        <Y>1282</Y>
+                        <X>925</X>
+                        <Y>1378</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12265,8 +12346,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0583" Visible="true">
                     <Position>
-                        <X>886</X>
-                        <Y>1282</Y>
+                        <X>817</X>
+                        <Y>1442</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12292,8 +12373,8 @@
                 </Item>
                 <Item xsi:type="TextureItem" Name="Texture_0584" Visible="true">
                     <Position>
-                        <X>822</X>
-                        <Y>1282</Y>
+                        <X>845</X>
+                        <Y>1520</Y>
                     </Position>
                     <CustomProperties />
                     <Rotation>0</Rotation>
@@ -12326,11 +12407,11 @@
     </Layers>
     <CustomProperties />
     <EditorRelated>
-        <NextItemNumber>613</NextItemNumber>
+        <NextItemNumber>621</NextItemNumber>
         <ContentRootFolder>E:\ICS\CS113\ucimobile\Content</ContentRootFolder>
         <CameraPosition>
-            <X>1835.77026</X>
-            <Y>2919</Y>
+            <X>5725.5</X>
+            <Y>2912.5</Y>
         </CameraPosition>
         <Version>1.3.0.0</Version>
     </EditorRelated>

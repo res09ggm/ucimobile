@@ -50,6 +50,8 @@ namespace GameState
         DateTime timer;
         public TimerManager gameTimers;
         private GameTime privateGameTime;
+        private bool loadFromFile = false;
+        private String customFilename;
 
         public bool completedLevel { get; set; }
 
@@ -65,7 +67,7 @@ namespace GameState
         //Video
         Video video;
         bool IsIntro = true;
-        VideoPlayer player;
+        VideoPlayer videoPlayer;
         Texture2D videoTexture;
 
         #endregion
@@ -89,6 +91,21 @@ namespace GameState
             currentGame = this;
         }
 
+        public GameplayScreen(String filename)
+        {
+            TransitionOnTime = TimeSpan.FromSeconds(1.5);
+            TransitionOffTime = TimeSpan.FromSeconds(0.5);
+
+            pauseAction = new InputAction(
+                new Buttons[] { Buttons.Start, Buttons.Back },
+                new Keys[] { Keys.Escape },
+                true);
+
+            currentGame = this;
+            loadFromFile = true;
+            customFilename = filename;
+        }
+
         public void loadLevel(int levelNumber)
         {
             if (levelNumber >= 0 && levelNumber < _levels.Length)
@@ -97,6 +114,26 @@ namespace GameState
                 contentdir += "/Levels/" + _levels[levelNumber];
                 initializeLevel();
                 _currentLevel = Level.FromFile(contentdir, content);
+            }
+        }
+
+        public void loadLevel(string filename)
+        {
+            if (!filename.Contains(".xml"))
+                filename += ".xml";
+
+            Console.WriteLine("Filename: " + filename);
+            // TODO: check if file exists in current directory
+            //String contentdir = content.RootDirectory;
+            //contentdir = filename;
+            initializeLevel();
+            try
+            {
+                _currentLevel = Level.FromFile(filename, content);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error opening level: " + filename);
             }
         }
 
@@ -164,14 +201,16 @@ namespace GameState
 
                 gameFont = content.Load<SpriteFont>("gamefont");
                 video = content.Load<Video>("intro");
-                player = new VideoPlayer();
+                videoPlayer = new VideoPlayer();
 
                 // A real game would probably have more content than this sample, so
                 // it would take longer to load. We simulate that by delaying for a
                 // while, giving you a chance to admire the beautiful loading screen.
                 //Thread.Sleep(1000);
-                
-                loadLevel(0);
+
+                if (loadFromFile)
+                    loadLevel(customFilename);
+                else loadLevel(0);
 
                 if (_debugMode)
                 {
@@ -182,19 +221,10 @@ namespace GameState
                         Console.WriteLine(b.Position.ToString());
                     }
                 }
-
-                //_world.AddController(new FarseerPhysics.Controllers.GravityController(10f, 300f, 0f));
-                //_world.Enabled = true;
-
-                //_view = Matrix.Identity;
-                //_cameraPosition = Vector2.Zero;
                 _screenCenter = new Vector2(ScreenManager.GraphicsDevice.Viewport.Width / 2f,
                                                 ScreenManager.GraphicsDevice.Viewport.Height / 2f);
                 
                 
-                
-
-
                 // once the load has finished, we use ResetElapsedTime to tell the game's
                 // timing mechanism that we have just finished a very long frame, and that
                 // it should not try to catch up.
@@ -259,12 +289,12 @@ namespace GameState
                 pauseAlpha = Math.Max(pauseAlpha - 1f / 32, 0);
             if(IsIntro)
             {
-                player.IsLooped = false;
-                //player.Play(video);
+                videoPlayer.IsLooped = false;
+                videoPlayer.Play(video);
                 IsIntro = false;
             }
 
-            if(player.State == MediaState.Stopped)
+            if(videoPlayer.State == MediaState.Stopped)
             {
                 if(IsActive)
                 {                                   
@@ -314,10 +344,10 @@ namespace GameState
             {
                 //Handle Cursor
 
-                //
-
-                // Otherwise move the player position.
-                Vector2 movement = Vector2.Zero;
+                if (videoPlayer.State == MediaState.Playing && (keyboardState.IsKeyDown(Keys.E) || keyboardState.IsKeyDown(Keys.Space)))
+                {
+                    videoPlayer.Stop();
+                }
 
                 if (keyboardState.IsKeyDown(Keys.W))
                 {
@@ -452,35 +482,39 @@ namespace GameState
             ScreenManager.GraphicsDevice.Clear(ClearOptions.Target,
                                                Color.Black, 0, 0);
 
-            if(player.State != MediaState.Stopped)
-                videoTexture = player.GetTexture();
+            if(videoPlayer.State != MediaState.Stopped)
+                videoTexture = videoPlayer.GetTexture();
             SpriteBatch spriteBatch = ScreenManager.SpriteBatch;
             
             Rectangle screen = new Rectangle(ScreenManager.GraphicsDevice.Viewport.X,
                 ScreenManager.GraphicsDevice.Viewport.Y,
                 ScreenManager.GraphicsDevice.Viewport.Width,
                 ScreenManager.GraphicsDevice.Viewport.Height);
-
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _camera.View);
-            
-            if(player.State == MediaState.Stopped)
+     
+            if(videoPlayer.State == MediaState.Stopped)
                 videoTexture = null;
             if(videoTexture != null)
             {
-                
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Matrix.Identity);
                 spriteBatch.Draw(videoTexture, screen, Color.White);
-                
             }
             else
             {
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, _camera.View);
                 //Have each object in the Map draw itself.
                 _currentLevel.draw(spriteBatch);
                 _hero.draw(spriteBatch);
-                // Draw player health and energy level.
-                projectHealthEnergy(spriteBatch);
+                
             }
 
             spriteBatch.End();
+            if (videoTexture == null && videoPlayer.State == MediaState.Stopped)
+            {
+                spriteBatch.Begin();
+                // Draw player health and energy level.
+                projectHealthEnergy(spriteBatch);
+                spriteBatch.End();
+            }
 
             if (_showDebugView)
             {
@@ -508,6 +542,7 @@ namespace GameState
             double playerEnergy = _hero.getEnergy();
             String health = "Health : " + playerHealth;
             String energy = "Energy: " + playerEnergy;
+            String selectedAbility = "Ability: " + _hero.getSelectedAbility().ToString();
             Color healthColor;
             Color energyColor;
 
@@ -532,16 +567,13 @@ namespace GameState
             else energyColor = Color.Red;
 
             SpriteFont font = ScreenManager.Font;
-            Vector2 healthLocation = _camera.Position;
-            healthLocation.X += 300 / _camera.Zoom;
-            healthLocation.Y -= 390 / _camera.Zoom;
+            Vector2 healthLocation = new Vector2(1012, 0);
+            Vector2 energyLocation = new Vector2(1012, 43);
+            Vector2 abilityLocation = new Vector2(2, 0);
 
-            Vector2 energyLocation = _camera.Position;
-            energyLocation.X += 300 / _camera.Zoom;
-            energyLocation.Y -= 340 / _camera.Zoom;
-
-            spriteBatch.DrawString(font, health, healthLocation, healthColor);
-            spriteBatch.DrawString(font, energy, energyLocation, energyColor);
+            spriteBatch.DrawString(font, health, healthLocation, healthColor, 0f, Vector2.Zero, .8f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, energy, energyLocation, energyColor, 0f, Vector2.Zero, .8f, SpriteEffects.None, 0);
+            spriteBatch.DrawString(font, selectedAbility, abilityLocation, Color.CornflowerBlue, 0f, Vector2.Zero, .5f, SpriteEffects.None, 0);
         }
 
         public void toggleDebugViewXNA()

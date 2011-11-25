@@ -10,8 +10,24 @@ namespace GameState
     {
         static void Main(string[] args)
         {
-            using (GameStateManagementGame game = new GameStateManagementGame())
-                game.Run();
+            String filename = null;
+            if (args.Length > 0)
+                filename = args[0];
+
+            if (filename == null)
+            {
+                using (GameStateManagementGame game = new GameStateManagementGame())
+                {
+                    game.Run();
+                }
+            }
+            else
+            {
+                using (GameStateManagementGame game = new GameStateManagementGame(filename))
+                {
+                    game.Run();
+                }
+            }
         }
     }
 #endif
