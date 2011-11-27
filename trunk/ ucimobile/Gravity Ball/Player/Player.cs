@@ -126,7 +126,9 @@ namespace GameState
              if (!isJumping)
             {
                 this.isJumping = true;
-                this._body.ApplyLinearImpulse(new Vector2(0f, -10f)); //change to 10f for normal gameplay
+                if (GameplayScreen.getWorld().Gravity.Y > 0)
+                    this._body.ApplyLinearImpulse(new Vector2(0f, -10f)); //change to 10f for normal gameplay
+                else this._body.ApplyLinearImpulse(new Vector2(0f, 10f));
                 _body.OnCollision += new OnCollisionEventHandler(this.onCollision);
             }    
         }
@@ -146,15 +148,14 @@ namespace GameState
                 contact.GetWorldManifold(out norm, out pts);
 
                 // if normal is facing up and vertical velocity is downward we can jump
-                if (norm.Y < 0) // && this._body.LinearVelocity.Y > 0)
+                if ((GameplayScreen.getWorld().Gravity.Y >= 0 && norm.Y < 0) || 
+                    GameplayScreen.getWorld().Gravity.Y <=0 && norm.Y > 0) // && this._body.LinearVelocity.Y > 0)
                 {
                     isJumping = false;
                     this._body.AngularVelocity = 0f;
                     this._body.Rotation = 0f;
-
                 }
                 
-
                 // determine a wall collision to drop horizontal velocity 
                 // if I can't jump and the normal is not the same direction as the
                 // direction player is moving towards then player cant move (IE: wall collision)

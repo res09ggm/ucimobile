@@ -68,6 +68,11 @@ namespace GameState
             }
         }
 
+
+        internal void clear()
+        {
+            _expiringTimers.Clear();
+        }
     }
 
     class Timer
