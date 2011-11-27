@@ -598,8 +598,14 @@ namespace GameState
             _currentLevel = null;
             g._debugView = null;
             completedLevel = false;
+            g.clearTimers();
 
             g.loadLevel(g.currentLevelNum);
+        }
+
+        private void clearTimers()
+        {
+            gameTimers.clear();
         }
 
         public static GameplayScreen getInstance()
