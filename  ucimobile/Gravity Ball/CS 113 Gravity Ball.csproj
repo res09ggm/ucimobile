@@ -124,9 +124,6 @@
     <Reference Include="DebugViewXNA">
       <HintPath>.\DebugViewXNA.dll</HintPath>
     </Reference>
-    <Reference Include="FarseerPhysicsXNA">
-      <HintPath>..\..\..\..\Desktop\Farseer Physics Engine 3.3.1 Samples XNA\Farseer Physics Engine 3.3 XNA\bin\x86\Debug\FarseerPhysicsXNA.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL" />
@@ -154,6 +151,10 @@
       <Project>{44459A75-F2CF-4B58-89EA-79154AF5C1AF}</Project>
       <Name>Content</Name>
       <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
+    <ProjectReference Include="..\Farseer Physics Engine 3.3 XNA\Farseer Physics XNA.csproj">
+      <Project>{0A850700-1ABB-4288-A391-6726B90EBEB9}</Project>
+      <Name>Farseer Physics XNA</Name>
     </ProjectReference>
     <ProjectReference Include="..\GameStateManagement\GameStateManagement %28Windows%29.csproj">
       <Project>{0A551D79-F37E-4529-9CA0-3FD2E9EA715E}</Project>

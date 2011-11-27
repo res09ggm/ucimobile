@@ -28,7 +28,8 @@ namespace GameState
         private Ability[] skills;
         private Vector2 position; //should change to private or protected?
         public Body _body;
-        private Boolean isJumping = false;
+        private bool isJumping = false;
+        private bool performingGravityFlip = false;
         private Texture2D _myTexture;
         private Vector2 simPosition;
         private int abilityIndex = 0;
@@ -136,7 +137,9 @@ namespace GameState
             // we check if it's a wall or dynamic object (Category 2).  Category 1 are waypoints
             // so we want it to return false and allow it into the region.
             if (fixtureA.CollisionCategories == Category.Cat2 
-                || fixtureB.CollisionCategories == Category.Cat2)
+                || fixtureA.CollisionCategories == Category.Cat3
+                || fixtureB.CollisionCategories == Category.Cat2
+                || fixtureB.CollisionCategories == Category.Cat3)
             {
                 Vector2 norm;
                 FixedArray2<Vector2> pts;
@@ -312,17 +315,26 @@ namespace GameState
 
         public void undoGravityFlip()
         {
+            performingGravityFlip = false;
             Vector2 oldGravity = GameplayScreen._world.Gravity;
             GameplayScreen._world.Gravity = new Vector2(0f, -oldGravity.Y);
+            
         }
 
         public void performGravityFlip()
         {
-            Vector2 oldGravity = GameplayScreen._world.Gravity;
-            GameplayScreen._world.Gravity = new Vector2(0f, -oldGravity.Y);
-            //Delegate d = new Delegate(this, "undoGravityFlip");
-            Timer newTimer = new Timer(new undoGravityFlipDelegate(this.undoGravityFlip), GameplayScreen.getInstance().getCurrentGameTime(), 2000);
-            GameplayScreen.getInstance().gameTimers.addTimer(newTimer);
+
+             if (!performingGravityFlip && energy > 40)
+            {
+                performingGravityFlip = true;
+                energy -= 40;
+                Vector2 oldGravity = GameplayScreen._world.Gravity;
+                GameplayScreen._world.Gravity = new Vector2(0f, -oldGravity.Y);
+                //Delegate d = new Delegate(this, "undoGravityFlip");
+                Timer newTimer = new Timer(new undoGravityFlipDelegate(this.undoGravityFlip), GameplayScreen.getInstance().getCurrentGameTime(), 2000);
+                GameplayScreen.getInstance().gameTimers.addTimer(newTimer);
+            }
+            //else flash screen/make error sound.
         }
 
         public AbilityType getSelectedAbility()

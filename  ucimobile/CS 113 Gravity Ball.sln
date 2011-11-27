@@ -6,8 +6,13 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameStateManagement (Windows)", "GameStateManagement\GameStateManagement (Windows).csproj", "{0A551D79-F37E-4529-9CA0-3FD2E9EA715E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CS 113 Gravity Ball", "Gravity Ball\CS 113 Gravity Ball.csproj", "{CE4C1E0D-7E54-4BF6-9959-FB4BCC16B68E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0A850700-1ABB-4288-A391-6726B90EBEB9} = {0A850700-1ABB-4288-A391-6726B90EBEB9}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F74C99DD-FBBE-42F7-948F-C2B50A03A430}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Farseer Physics XNA", "..\ucimobile\Farseer Physics Engine 3.3 XNA\Farseer Physics XNA.csproj", "{0A850700-1ABB-4288-A391-6726B90EBEB9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,8 +30,15 @@ Global
 		{CE4C1E0D-7E54-4BF6-9959-FB4BCC16B68E}.Debug|x86.Build.0 = Debug|x86
 		{CE4C1E0D-7E54-4BF6-9959-FB4BCC16B68E}.Release|x86.ActiveCfg = Release|x86
 		{CE4C1E0D-7E54-4BF6-9959-FB4BCC16B68E}.Release|x86.Build.0 = Release|x86
+		{0A850700-1ABB-4288-A391-6726B90EBEB9}.Debug|x86.ActiveCfg = Debug|x86
+		{0A850700-1ABB-4288-A391-6726B90EBEB9}.Debug|x86.Build.0 = Debug|x86
+		{0A850700-1ABB-4288-A391-6726B90EBEB9}.Release|x86.ActiveCfg = Release|x86
+		{0A850700-1ABB-4288-A391-6726B90EBEB9}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0A850700-1ABB-4288-A391-6726B90EBEB9} = {F74C99DD-FBBE-42F7-948F-C2B50A03A430}
 	EndGlobalSection
 EndGlobal
