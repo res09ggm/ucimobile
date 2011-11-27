@@ -210,7 +210,7 @@ namespace GameState
                     Body _compound = BodyFactory.CreateCompoundPolygon(GameplayScreen.getWorld(), listOfVertices, 1f, ConvertUnits.ToSimUnits(worldPosition));
                     _compound.BodyType = BodyType.Dynamic;
                     _compound.IgnoreCCD = true;
-                    _compound.CollisionCategories = Category.Cat2;
+                    _compound.CollisionCategories = Category.Cat3;
                     
                     tItem.addBody(_compound);
                     tItem.load(content);
