@@ -40,11 +40,9 @@ namespace GameState
         private bool performingGravityFlip = false;
         private Texture2D _myTexture;
         private Vector2 simPosition;
-        private int abilityIndex = 0;
-
-<<<<<<< .mine        private AbilityType currentAbility;
-=======        public delegate void undoGravityFlipDelegate();
->>>>>>> .theirs        
+        private AbilityType currentAbility = 0;
+        public delegate void undoGravityFlipDelegate();
+   
         public Player(World gameWorld)
         {
             name = "Player 1";
@@ -69,7 +67,7 @@ namespace GameState
 
             _myTexture = GameplayScreen.content.Load<Texture2D>("textures/gravityball_128");
             float radius = _myTexture.Width / 2;
-            _body = BodyFactory.CreateCircle(gameWorld, ConvertUnits.ToSimUnits(radius), 1f, ConvertUnits.ToSimUnits(new Vector2(30f,30f)), this);
+            _body = BodyFactory.CreateCircle(gameWorld, ConvertUnits.ToSimUnits(radius), 1f, ConvertUnits.ToSimUnits(new Vector2(300f,300f)), this);
             _body.BodyType = BodyType.Dynamic;
             _body.Friction = 5f;
             _body.Mass = 0f;
@@ -134,6 +132,7 @@ namespace GameState
         {
              if (!isJumping)
             {
+                _body.Rotation = 0f;
                 this.isJumping = true;
                 if (GameplayScreen.getWorld().Gravity.Y > 0)
                     this._body.ApplyLinearImpulse(new Vector2(0f, -10f)); //change to 10f for normal gameplay
@@ -207,15 +206,11 @@ namespace GameState
         
         public void draw(SpriteBatch sb)
         {
-            Vector2 wpos = getWorldPosition();
-            double xpos = getWorldPosition().X;
             float rotation;
             if (isJumping)
                 rotation = 0f;
-            else rotation = (float)Math.Sin(_body.Rotation)/3;
-            wpos.X = wpos.X - (_myTexture.Width / 2);
-            wpos.Y = wpos.Y - (_myTexture.Height / 2);
-            
+            else rotation = (float)Math.Sin(_body.Rotation)/4;
+                     
             Vector2 origin = new Vector2((_myTexture.Width / 2), (_myTexture.Height / 2));
             Vector2 poss = ConvertUnits.ToDisplayUnits(_body.Position);
 
@@ -246,79 +241,64 @@ namespace GameState
             return _body.Position;
         }
 
-        internal void action(Vector2 postion, World cWorld)
+        internal void action()
         {
-            switch (abilityIndex)
+            switch (currentAbility)
             {
-                case (int)AbilityType.GRAVITY_BALL:
+                case AbilityType.GRAVITY_BALL:
                     {
                         break;
                     }
-                case (int)AbilityType.GRAVITY_SPHERE:
+                case AbilityType.GRAVITY_SPHERE:
                     {
                         break;
                     }
-                case (int)AbilityType.GRAVITY_HOLE:
+                case AbilityType.GRAVITY_HOLE:
                     {
+                        //performGravityHole();
                         break;
                     }
-                case (int)AbilityType.GRAVITY_FLIP:
+                case AbilityType.GRAVITY_FLIP:
                     {
                         performGravityFlip();
                         break;
                     }
                 default: return;
             }
-
-                    
-            if(energy >10)
-            {
-                if(currentAbility == AbilityType.GRAVITY_HOLE)
-                {
-                    energy = energy - abilityEnergy;
-                    this.setSimPosition(postion);
-                }
-                else if(currentAbility == AbilityType.GRAVITY_FLIP)
-                {
-                    energy = energy - abilityEnergy;
-                    cWorld.Gravity = new Vector2(0,-10);
-
-                }
-            }
             
         }
 
-        internal void selectAbility(int p)
+        public void performGravityHole(Vector2 transport)
         {
-            //abilityIndex = p;
+            if (energy > 15)
+            {
+                this.setSimPosition(transport);
+                energy -= 15;
+            }
+        }
 
-            
-            if((AbilityType) p == AbilityType.GRAVITY_HOLE)
-            {
-                
-                currentAbility = (AbilityType) p;
-                abilityEnergy = 10;
-            }
-            else if((AbilityType) p == AbilityType.GRAVITY_FLIP)
-            {
-                currentAbility = (AbilityType) p;
-                abilityEnergy = 10;
-            }
+        internal void selectAbility(AbilityType p)
+        {
+            currentAbility = p;
         }
 
         public bool die(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
         {
-            health -= 10;
-            if (contact.IsTouching() && this.health <= 0)
+            if (fixtureA.Body.Equals(this._body) || fixtureB.Body.Equals(this._body)
+                && contact.IsTouching())
             {
-                float x = _body.LinearVelocity.X;
-                float y = _body.LinearVelocity.Y * 1.7f;
-                _body.Inertia = 0f;
-                _body.AngularVelocity = 0f;
-                _body.ApplyLinearImpulse(new Vector2(-x, -y));
-                _body.CollisionCategories = Category.None;
-                this.health = 0;
-                GameplayScreen.getInstance().showRetryScreen();
+                health -= 10;
+                if (this.health <= 0)
+                {
+                    float x = _body.LinearVelocity.X;
+                    float y = _body.LinearVelocity.Y * 1.7f;
+                    _body.Inertia = 0f;
+                    _body.AngularVelocity = 0f;
+                    _body.ApplyLinearImpulse(new Vector2(-x, -y));
+                    _body.CollisionCategories = Category.None;
+                    this.health = 0;
+                    GameplayScreen.getInstance().showRetryScreen();
+                }
                 return false;
             }
             else return false;
@@ -377,7 +357,7 @@ namespace GameState
 
         public AbilityType getSelectedAbility()
         {
-            return (AbilityType)abilityIndex;
+            return currentAbility;
         }
 
     }

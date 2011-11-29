@@ -1,22 +1,18 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Xml;
 using System.Xml.Serialization;
-using System.Text.RegularExpressions;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Content;
-using FarseerPhysics.SamplesFramework;
-using FarseerPhysics.Factories;
-using FarseerPhysics.Dynamics;
 using FarseerPhysics.Common;
-using FarseerPhysics.Collision;
-using FarseerPhysics.Controllers;
-using FarseerPhysics;
 using FarseerPhysics.Common.Decomposition;
 using FarseerPhysics.Common.PolygonManipulation;
-using GameStateManagement;
+using FarseerPhysics.Dynamics;
+using FarseerPhysics.Factories;
+using FarseerPhysics.SamplesFramework;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace GameState
 {
@@ -158,6 +154,18 @@ namespace GameState
             {
                 if (it.GetType() == typeof(TextureItem))
                 {
+                    double damagePerformed;
+                    double strength;
+                    if (it.CustomProperties.ContainsKey("damage"))
+                    {
+                        damagePerformed = Double.Parse(it.CustomProperties["damage"].description);
+                    }
+                    if (it.CustomProperties.ContainsKey("strength"))
+                    {
+                        strength = Double.Parse(it.CustomProperties["strength"].description);
+                        //do something with it.
+                    }
+
                     TextureItem tItem = (TextureItem)it;
                     String textureName = tItem.asset_name;
                     //tItem.
@@ -211,6 +219,8 @@ namespace GameState
                     _compound.BodyType = BodyType.Dynamic;
                     _compound.IgnoreCCD = true;
                     _compound.CollisionCategories = Category.Cat3;
+
+                    
                     
                     tItem.addBody(_compound);
                     tItem.load(content);
@@ -337,6 +347,8 @@ namespace GameState
                         double strength = Double.Parse(it.CustomProperties["strength"].description);
                         //do something with it.
                     }
+
+                    
                 }
                 it.load(content);
             }
