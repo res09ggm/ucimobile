@@ -6,9 +6,9 @@ using Microsoft.Xna.Framework;
 using FarseerPhysics.Dynamics;
 namespace GameState
 {
-    enum AbilityType { GRAVITY_BALL, GRAVITY_SPHERE, GRAVITY_HOLE, GRAVITY_FLIP };
+    
 
-    interface Ability
+    public interface Ability
     {
         int energyRequired
         {

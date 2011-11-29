@@ -351,7 +351,7 @@ namespace GameState
 
                 if (keyboardState.IsKeyDown(Keys.W))
                 {
-                    
+                    _hero.action(movement, _world);
                 }
                 if (keyboardState.IsKeyDown(Keys.A))
                 {
@@ -385,7 +385,7 @@ namespace GameState
                 if ((keyboardState.IsKeyDown(Keys.LeftShift) || keyboardState.IsKeyDown(Keys.RightShift)) &&
                         keyboardState.IsKeyDown(Keys.Space))
                 {
-                    _hero.action();
+                    //_hero.action();
                 }
 
                 if (keyboardState.IsKeyDown(Keys.NumPad1) || keyboardState.IsKeyDown(Keys.D1))
@@ -464,9 +464,14 @@ namespace GameState
                 if(input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
                     Vector2 position = _camera.ConvertScreenToWorld(input.Cursor);
-                    //Console.WriteLine("World Position: " +position);
-                    //Console.WriteLine("Cursor Pos: "+input.Cursor);
-                    _hero.setSimPosition(position);
+                    Vector2 sides = position-_hero.getSimPosition();
+                    float C = (sides.X*sides.X) + (sides.Y*sides.Y);
+                    double distance = Math.Sqrt(C);
+                    //Console.WriteLine(distance);
+                    //Console.WriteLine(position-_hero.getSimPosition());
+
+                    if(distance < 10)
+                        _hero.action(position, null);
 
                 }
             }
