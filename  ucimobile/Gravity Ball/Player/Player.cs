@@ -15,6 +15,14 @@ using FarseerPhysics;
 
 namespace GameState
 {
+    enum AbilityType
+    {
+        GRAVITY_BALL,
+        GRAVITY_SPHERE,
+        GRAVITY_HOLE,
+        GRAVITY_FLIP
+    };
+
     class Player
     {
         private double MAX_HEALTH;
@@ -34,8 +42,9 @@ namespace GameState
         private Vector2 simPosition;
         private int abilityIndex = 0;
 
-        public delegate void undoGravityFlipDelegate();
-        
+<<<<<<< .mine        private AbilityType currentAbility;
+=======        public delegate void undoGravityFlipDelegate();
+>>>>>>> .theirs        
         public Player(World gameWorld)
         {
             name = "Player 1";
@@ -66,7 +75,7 @@ namespace GameState
             _body.Mass = 0f;
             _body.Inertia = 0f;
             _body.Restitution = .01f;
-
+            
             Fixture f = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(radius), 0f, _body);
             return true;
         }
@@ -237,7 +246,7 @@ namespace GameState
             return _body.Position;
         }
 
-        internal void action()
+        internal void action(Vector2 postion, World cWorld)
         {
             switch (abilityIndex)
             {
@@ -262,11 +271,39 @@ namespace GameState
             }
 
                     
+            if(energy >10)
+            {
+                if(currentAbility == AbilityType.GRAVITY_HOLE)
+                {
+                    energy = energy - abilityEnergy;
+                    this.setSimPosition(postion);
+                }
+                else if(currentAbility == AbilityType.GRAVITY_FLIP)
+                {
+                    energy = energy - abilityEnergy;
+                    cWorld.Gravity = new Vector2(0,-10);
+
+                }
+            }
+            
         }
 
         internal void selectAbility(int p)
         {
-            abilityIndex = p;
+            //abilityIndex = p;
+
+            
+            if((AbilityType) p == AbilityType.GRAVITY_HOLE)
+            {
+                
+                currentAbility = (AbilityType) p;
+                abilityEnergy = 10;
+            }
+            else if((AbilityType) p == AbilityType.GRAVITY_FLIP)
+            {
+                currentAbility = (AbilityType) p;
+                abilityEnergy = 10;
+            }
         }
 
         public bool die(Fixture fixtureA, Fixture fixtureB, FarseerPhysics.Dynamics.Contacts.Contact contact)
