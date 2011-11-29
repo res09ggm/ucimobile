@@ -40,6 +40,7 @@ namespace GameState
         InputAction pauseAction;
         static GameplayScreen currentGame;
         KeyboardState lastKeyboardState;
+        public Vector2 lastMousePosition { get; set; }
 
         //Level Variables
         public static Player _hero;
@@ -52,6 +53,7 @@ namespace GameState
         private GameTime privateGameTime;
         private bool loadFromFile = false;
         private String customFilename;
+        
 
         public bool completedLevel { get; set; }
 
@@ -131,9 +133,11 @@ namespace GameState
             {
                 _currentLevel = Level.FromFile(filename, content);
             }
-            catch (Exception e)
+            catch (System.IO.FileNotFoundException e)
             {
-                Console.WriteLine("Error opening level: " + filename);
+                System.Windows.Forms.MessageBox.Show(e.Message, "File Not Found");
+                this.ExitScreen();
+                System.Environment.Exit(-1);
             }
         }
 
@@ -158,7 +162,6 @@ namespace GameState
             if (_world == null)
             {
                 _world = new World(new Vector2(0f, 12f));
-                //_world.Clear();
             }
             if (_hero == null)
                 _hero = new Player(_world);
@@ -251,6 +254,13 @@ namespace GameState
         public override void Unload()
         {
             content.Unload();
+            content = null;
+            _hero = null;
+            _world.Clear();
+            //_world = null;
+            _camera = null;
+            _currentLevel = null;
+            _debugView = null; 
 
 #if WINDOWS_PHONE
             Microsoft.Phone.Shell.PhoneApplicationService.Current.State.Remove("PlayerPosition");
@@ -351,7 +361,7 @@ namespace GameState
 
                 if (keyboardState.IsKeyDown(Keys.W))
                 {
-                    _hero.action(movement, _world);
+                    //_hero.action(movement, _world);
                 }
                 if (keyboardState.IsKeyDown(Keys.A))
                 {
@@ -374,7 +384,7 @@ namespace GameState
                         Console.WriteLine("Hero moving right.");
                 }
 
-                if (keyboardState.IsKeyDown(Keys.Space))
+                if (keyboardState.IsKeyDown(Keys.Space) && keyboardState.IsKeyUp(Keys.LeftShift))
                 {
                     if (_debugMode)
                         Console.WriteLine("Hero jumping.");
@@ -385,27 +395,31 @@ namespace GameState
                 if ((keyboardState.IsKeyDown(Keys.LeftShift) || keyboardState.IsKeyDown(Keys.RightShift)) &&
                         keyboardState.IsKeyDown(Keys.Space))
                 {
-                    //_hero.action();
+                    _hero.action();
                 }
 
                 if (keyboardState.IsKeyDown(Keys.NumPad1) || keyboardState.IsKeyDown(Keys.D1))
                 {
-                    _hero.selectAbility((int)AbilityType.GRAVITY_BALL);
+                    _hero.selectAbility(AbilityType.GRAVITY_BALL);
+                    ScreenManager.Game.IsMouseVisible = false;
                 }
 
                 if (keyboardState.IsKeyDown(Keys.NumPad2) || keyboardState.IsKeyDown(Keys.D2))
                 {
-                    _hero.selectAbility((int)AbilityType.GRAVITY_SPHERE);
+                    _hero.selectAbility(AbilityType.GRAVITY_SPHERE);
+                    ScreenManager.Game.IsMouseVisible = true;
                 }
 
                 if (keyboardState.IsKeyDown(Keys.NumPad3) || keyboardState.IsKeyDown(Keys.D3))
                 {
-                    _hero.selectAbility((int)AbilityType.GRAVITY_HOLE);
+                    _hero.selectAbility(AbilityType.GRAVITY_HOLE);
+                    ScreenManager.Game.IsMouseVisible = true;
                 }
 
                 if (keyboardState.IsKeyDown(Keys.NumPad4) || keyboardState.IsKeyDown(Keys.D4))
                 {
-                    _hero.selectAbility((int)AbilityType.GRAVITY_FLIP);
+                    _hero.selectAbility(AbilityType.GRAVITY_FLIP);
+                    ScreenManager.Game.IsMouseVisible = false;
                 }
 
                 if (keyboardState.IsKeyDown(Keys.Left))
@@ -461,18 +475,22 @@ namespace GameState
                     }
                 }
 
-                if(input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                if(_hero.getSelectedAbility() == AbilityType.GRAVITY_HOLE 
+                    && input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
                     Vector2 position = _camera.ConvertScreenToWorld(input.Cursor);
                     Vector2 sides = position-_hero.getSimPosition();
                     float C = (sides.X*sides.X) + (sides.Y*sides.Y);
                     double distance = Math.Sqrt(C);
+
                     //Console.WriteLine(distance);
                     //Console.WriteLine(position-_hero.getSimPosition());
 
-                    if(distance < 10)
-                        _hero.action(position, null);
-
+                    if (distance < 10)
+                    {
+                        lastMousePosition = position;
+                        _hero.performGravityHole(position);
+                    }
                 }
             }
         }

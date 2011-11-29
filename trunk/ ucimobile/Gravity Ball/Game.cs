@@ -41,7 +41,7 @@ namespace GameState
             // Create the screen factory and add it to the Services
             screenFactory = new ScreenFactory();
             Services.AddService(typeof(IScreenFactory), screenFactory);
-            IsMouseVisible = true;
+            //IsMouseVisible = true;
             // Create the screen manager component.
             screenManager = new ScreenManager(this);
             Components.Add(screenManager);
