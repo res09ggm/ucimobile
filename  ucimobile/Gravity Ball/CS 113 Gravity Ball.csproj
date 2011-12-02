@@ -22,7 +22,8 @@
     <TileImage>Background.png</TileImage>
     <TileTitle>GameStateManagementSample</TileTitle>
     <ApplicationIcon>Game.ico</ApplicationIcon>
-    <Thumbnail>ball_128.png</Thumbnail>
+    <Thumbnail>
+    </Thumbnail>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -90,7 +91,6 @@
     <Compile Include="Sprite.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="ball_128.png" />
     <Content Include="Game.ico" />
     <Content Include="GameThumbnail.png" />
   </ItemGroup>

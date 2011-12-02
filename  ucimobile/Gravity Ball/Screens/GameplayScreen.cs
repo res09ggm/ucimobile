@@ -46,7 +46,7 @@ namespace GameState
         public static Player _hero;
         public static Level _currentLevel;
         public static World _world;
-        String[] _levels = { "lvl1.xml", "test.xml" };
+        String[] _levels = { "lvl1.xml", "test.xml"  };
         int currentLevelNum = 0;
         DateTime timer;
         public TimerManager gameTimers;
@@ -68,10 +68,14 @@ namespace GameState
 
         //Video
         Video video;
-        bool IsIntro = true;
+        bool IsIntro = false;
         VideoPlayer videoPlayer;
         Texture2D videoTexture;
 
+
+
+        //ClickedPosition
+        public static Vector2 clickedPosition;
         #endregion
 
         #region Initialization
@@ -393,10 +397,11 @@ namespace GameState
                 }
 
                 if ((keyboardState.IsKeyDown(Keys.LeftShift) || keyboardState.IsKeyDown(Keys.RightShift)) &&
-                        keyboardState.IsKeyDown(Keys.Space))
+                        keyboardState.IsKeyDown(Keys.Space) && (_hero.getSelectedAbility() == AbilityType.GRAVITY_FLIP) )
                 {
-                    _hero.action();
+                    _hero.performGravityFlip();
                 }
+                
 
                 if (keyboardState.IsKeyDown(Keys.NumPad1) || keyboardState.IsKeyDown(Keys.D1))
                 {
@@ -475,22 +480,30 @@ namespace GameState
                     }
                 }
 
-                if(_hero.getSelectedAbility() == AbilityType.GRAVITY_HOLE 
+                if (_hero.getSelectedAbility() == AbilityType.GRAVITY_HOLE
                     && input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
                     Vector2 position = _camera.ConvertScreenToWorld(input.Cursor);
-                    Vector2 sides = position-_hero.getSimPosition();
-                    float C = (sides.X*sides.X) + (sides.Y*sides.Y);
+                    Vector2 sides = position - _hero.getSimPosition();
+                    float C = (sides.X * sides.X) + (sides.Y * sides.Y);
                     double distance = Math.Sqrt(C);
 
-                    //Console.WriteLine(distance);
-                    //Console.WriteLine(position-_hero.getSimPosition());
-
+                  
                     if (distance < 10)
                     {
                         lastMousePosition = position;
                         _hero.performGravityHole(position);
                     }
+
+                    //_hero.setSimPosition(position);
+
+                }
+                else if(_hero.getSelectedAbility() == AbilityType.GRAVITY_SPHERE && input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                {
+
+                    Vector2 position = _camera.ConvertScreenToWorld(input.Cursor);
+                    clickedPosition = position;
+                    _hero.performGravitySphere();
                 }
             }
         }
