@@ -59,7 +59,7 @@ namespace GameState
                     processMainLayer(layer.Items, cm);
                 }
 
-                //CollisionCategory 2
+                //CollisionCategory 3
                 if (layer.Name == "DynamicObjects")
                 {
                     processDynamicObjectsLayer(layer.Items, cm);
@@ -137,7 +137,7 @@ namespace GameState
                     worldPosition.Y = rItem.Position.Y + (rItem.Height / 2);
 
                     Body exitBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(worldPosition));
-                    exitBody.IgnoreCCD = true;
+                    exitBody.IgnoreCCD = false;
                     exitBody.CollisionCategories = Category.Cat1;
                     exitBody.IsSensor = true;
                     FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(rItem.Width), ConvertUnits.ToSimUnits(rItem.Height), 1f, new Vector2(0f), exitBody);
@@ -217,7 +217,7 @@ namespace GameState
                     //BreakableBody _compoundbb = BodyFactory.CreateBreakableBody(GameplayScreen.getWorld(), textureVertices, 1f, ConvertUnits.ToSimUnits(worldPosition));
                     Body _compound = BodyFactory.CreateCompoundPolygon(GameplayScreen.getWorld(), listOfVertices, 1f, ConvertUnits.ToSimUnits(worldPosition));
                     _compound.BodyType = BodyType.Dynamic;
-                    _compound.IgnoreCCD = true;
+                    _compound.IgnoreCCD = false;
                     _compound.CollisionCategories = Category.Cat3;
 
                     
@@ -246,6 +246,7 @@ namespace GameState
                     Body collisionBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(position), rItem);
                     collisionBody.BodyType = BodyType.Static;
                     collisionBody.IgnoreCCD = true;
+                    collisionBody.CollisionCategories = Category.Cat2;
 
 
                     Fixture rectangleFixture = FixtureFactory.AttachRectangle(ConvertUnits.ToSimUnits(width), ConvertUnits.ToSimUnits(height), 1f, new Vector2(0f, 0f), collisionBody);
@@ -272,7 +273,7 @@ namespace GameState
 
                     Body collisionBody = BodyFactory.CreateBody(GameplayScreen.getWorld(), ConvertUnits.ToSimUnits(position), cItem);
                     collisionBody.BodyType = BodyType.Static;
-                    collisionBody.IgnoreCCD = true;
+                    collisionBody.IgnoreCCD = false;
 
                     Fixture circleFixture = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(radius), 1f, collisionBody);
                     circleFixture.CollisionCategories = Category.Cat2;
@@ -333,7 +334,7 @@ namespace GameState
                     Body _compound = BodyFactory.CreateCompoundPolygon(GameplayScreen.getWorld(), listOfVertices, 1f, ConvertUnits.ToSimUnits(worldPosition));
                     _compound.BodyType = BodyType.Static;
                     _compound.Mass = 100f;
-                    _compound.IgnoreCCD = true;
+                    _compound.IgnoreCCD = false;
                     _compound.CollisionCategories = Category.Cat2;
                     tItem.addBody(_compound);
 

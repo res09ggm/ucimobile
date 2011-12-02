@@ -8,9 +8,11 @@ using Microsoft.Xna.Framework.Content;
 using GameStateManagement;
 using FarseerPhysics.Factories;
 using FarseerPhysics.Collision;
+using FarseerPhysics.Collision.Shapes;
 using FarseerPhysics.Common;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.SamplesFramework;
+using FarseerPhysics.Controllers;
 using FarseerPhysics;
 
 namespace GameState
@@ -38,11 +40,16 @@ namespace GameState
         public Body _body;
         private bool isJumping = false;
         private bool performingGravityFlip = false;
+        private bool performingGravitySphere = false;
         private Texture2D _myTexture;
         private Vector2 simPosition;
         private AbilityType currentAbility = 0;
+        Body planet;
+        CircleShape planetShape;
+        GravityController gravity;
         public delegate void undoGravityFlipDelegate();
-   
+        public delegate void undoGravitySphereDelegate();
+        
         public Player(World gameWorld)
         {
             name = "Player 1";
@@ -73,7 +80,9 @@ namespace GameState
             _body.Mass = 0f;
             _body.Inertia = 0f;
             _body.Restitution = .01f;
-            
+            _body.CollisionCategories = Category.Cat4;
+            //_body.CollisionGroup = 2;
+
             Fixture f = FixtureFactory.AttachCircle(ConvertUnits.ToSimUnits(radius), 0f, _body);
             return true;
         }
@@ -251,6 +260,7 @@ namespace GameState
                     }
                 case AbilityType.GRAVITY_SPHERE:
                     {
+                        performGravitySphere();
                         break;
                     }
                 case AbilityType.GRAVITY_HOLE:
@@ -354,6 +364,55 @@ namespace GameState
             }
             //else flash screen/make error sound.
         }
+
+        public void undoGravitySphere()
+        {
+            performingGravitySphere = false;
+            planet.Dispose();
+            gravity.DisabledOnCategories = Category.All;
+            gravity.DisabledOnGroup = 2;
+        }
+
+        public void performGravitySphere()
+        {
+            //create sphere first
+            gravity = new GravityController(5f, 10f, 2f);
+            //gravity.DisabledOnGroup = 3;
+            //gravity.EnabledOnGroup = 2;
+            gravity.DisabledOnCategories = Category.Cat4;
+            gravity.EnabledOnCategories = Category.Cat3;
+           
+
+            GameplayScreen._world.AddController(gravity);
+            
+            // fixture for planet (the one that has gravity)
+            planet = BodyFactory.CreateBody(GameplayScreen._world);
+            planet.Position = GameplayScreen.clickedPosition;
+            CircleShape planetShape = new CircleShape(2, 1);
+            planet.CreateFixture(planetShape);
+            planet.CollidesWith = Category.None;
+            planet.IgnoreCCD = false;
+            gravity.AddBody(planet);
+
+           
+
+            
+            for (int i = 0; i < GameplayScreen._world.BodyList.Count; i++)
+            {
+                Body p  = GameplayScreen._world.BodyList[i];
+                //p.CollisionCategories = Category.Cat2;
+                //p.CollisionGroup = 3;
+                GameplayScreen._world.BodyList[i] = p;
+                //gravity.AddBody(p);
+            }
+
+           
+
+
+            Timer newTimer = new Timer(new undoGravitySphereDelegate(this.undoGravitySphere), GameplayScreen.getInstance().getCurrentGameTime(), 2000);
+            GameplayScreen.getInstance().gameTimers.addTimer(newTimer);
+        }
+
 
         public AbilityType getSelectedAbility()
         {
