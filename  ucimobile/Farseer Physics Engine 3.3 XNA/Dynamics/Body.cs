@@ -426,6 +426,8 @@ namespace FarseerPhysics.Dynamics
         /// </summary>
         /// <value>The user data.</value>
         public object UserData { get; set; }
+        public object UserItem { get; set; }
+        public float strength { get; set; }
 
         /// <summary>
         /// Get the world body origin position.

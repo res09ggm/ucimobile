@@ -52,8 +52,16 @@ Content\Textures\ironCrate.xnb
 Content\Textures\laser.xnb
 Content\Textures\exit_green.xnb
 Content\Textures\AOE.xnb
+Content\menu.xnb
+Content\InGamePlay.xnb
+Content\Textures\securityDoor.xnb
+Content\Textures\blue.xnb
 Content\video.wmv
 Content\Intro.wmv
+Content\menu.wma
+Content\InGamePlay.wma
 Content\Levels\lvl1.xml
 Content\Levels\sandbox.xml
-Content\Levels\test.xml
+Content\Levels\lvl3.xml
+Content\Levels\lvl2.xml
+Content\Levels\lvl4.xml

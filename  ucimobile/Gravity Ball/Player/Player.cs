@@ -19,7 +19,7 @@ namespace GameState
 {
     enum AbilityType
     {
-        GRAVITY_BALL,
+        NONE,
         GRAVITY_SPHERE,
         GRAVITY_HOLE,
         GRAVITY_FLIP
@@ -27,6 +27,8 @@ namespace GameState
 
     class Player
     {
+        private static Vector2 LEFT = new Vector2(-1, 0);
+        private static Vector2 RIGHT = new Vector2(1, 0);
         private double MAX_HEALTH;
         private double MAX_ENERGY;
         private String name;
@@ -37,10 +39,12 @@ namespace GameState
         private Vector2 position; //should change to private or protected?
         public Body _body;
         private bool isJumping = false;
+        private Vector2 direction = Vector2.Zero;
         private bool performingGravityFlip = false;
         private bool performingGravitySphere = false;
         private Texture2D _myTexture;
         private Texture2D AOETexture;
+        private Texture2D AOERange;
         private AbilityType currentAbility = 0;
         Body planet;
         GravityController gravity;
@@ -74,6 +78,7 @@ namespace GameState
 
             _myTexture = GameplayScreen.content.Load<Texture2D>("textures/gravityball_128");
             AOETexture = GameplayScreen.content.Load<Texture2D>("textures/AOE");
+            AOERange = GameplayScreen.content.Load<Texture2D>("textures/blue");
             float radius = _myTexture.Width / 2;
             _body = BodyFactory.CreateCircle(gameWorld, ConvertUnits.ToSimUnits(radius), 1f, ConvertUnits.ToSimUnits(new Vector2(300f,300f)), this);
             _body.BodyType = BodyType.Dynamic;
@@ -111,6 +116,13 @@ namespace GameState
 
         internal void moveRight()
         {
+            if (direction == LEFT)
+            {
+                this._body.LinearVelocity = new Vector2(0f, this._body.LinearVelocity.Y);
+                this._body.AngularVelocity = 0f;
+            }
+            this.direction = RIGHT;
+            
             if (_body.LinearVelocity.X <= 10f) // change to 7f for normal gameplay
             {
                 if (!isJumping)
@@ -125,6 +137,12 @@ namespace GameState
 
         internal void moveLeft()
         {
+            if (direction == RIGHT)
+            {
+                this._body.LinearVelocity = new Vector2(0f, this._body.LinearVelocity.Y);
+                this._body.AngularVelocity = 0f;
+            }
+            this.direction = LEFT;
             if (_body.LinearVelocity.X >= -10f) // Change to -7f for normal gameplay
             {
                 if (!isJumping)
@@ -194,13 +212,15 @@ namespace GameState
                 showReplayScreen();
             
             elapsedTime += milliseconds;
-            if (elapsedTime > 2000)
+            if (elapsedTime > 1500)
             {
                 elapsedTime -= 1500;
-                if (energy < MAX_ENERGY)
-                    energy += 1.5;
-                if (health < MAX_HEALTH)
-                    health += 1;
+                energy += 1.5;
+                health += 1;
+                if (energy > MAX_ENERGY)
+                    energy = MAX_ENERGY;
+                if (health > MAX_HEALTH)
+                    health = MAX_HEALTH;
             }
 
             if (_body.LinearVelocity.X >= -1f && _body.LinearVelocity.X <= 1f)
@@ -216,15 +236,6 @@ namespace GameState
         
         public void draw(SpriteBatch sb)
         {
-
-
-
-            double time = 100;
-            
-            float pulsate = (float)Math.Sin(time * 6) + 1;
-
-            float scale = 1 + pulsate * 0.08f * 0.05f;
-
             float rotation;
             if (isJumping)
                 rotation = 0f;
@@ -235,8 +246,17 @@ namespace GameState
             sb.Draw(_myTexture, getWorldPosition(), null, Color.WhiteSmoke, _body.Rotation, origin, 1f, SpriteEffects.None, 0);
             if (performingGravitySphere)
             {
-                sb.Draw(AOETexture, ConvertUnits.ToDisplayUnits(planet.Position),null , Color.White, 0, new Vector2(AOETexture.Width/2, AOETexture.Height/2), scale, SpriteEffects.None, 0);
-                 
+                float pulsate = (float)Math.Abs(Math.Sin(GameplayScreen.getInstance().getCurrentGameTime().TotalGameTime.Milliseconds / 75)) + 1f;
+                sb.Draw(AOETexture, ConvertUnits.ToDisplayUnits(planet.Position),null , Color.White, 0, new Vector2(AOETexture.Width/2, AOETexture.Height/2), pulsate, SpriteEffects.None, 0);
+                
+            }
+            else if (currentAbility == AbilityType.GRAVITY_SPHERE)
+            {
+                sb.Draw(AOERange, ConvertUnits.ToDisplayUnits(_body.Position), null, Color.White, 0, new Vector2(AOERange.Width / 2, AOERange.Height / 2), 4.4f, SpriteEffects.None, 0);
+            }
+            else if (currentAbility == AbilityType.GRAVITY_HOLE)
+            {
+                sb.Draw(AOERange, ConvertUnits.ToDisplayUnits(_body.Position), null, Color.White, 0, new Vector2(AOERange.Width / 2, AOERange.Height / 2), 4.4f, SpriteEffects.None, 0);
             }
         
         }
@@ -269,7 +289,7 @@ namespace GameState
         {
             switch (currentAbility)
             {
-                case AbilityType.GRAVITY_BALL:
+                case AbilityType.NONE:
                     {
                         break;
                     }
@@ -295,10 +315,10 @@ namespace GameState
 
         public void performGravityHole(Vector2 transport)
         {
-            if (energy > 75)
+            if (energy > 25)
             {
                 this.setSimPosition(transport);
-                energy -= 75;
+                energy -= 25;
             }
         }
 
@@ -374,7 +394,7 @@ namespace GameState
                 Vector2 oldGravity = GameplayScreen._world.Gravity;
                 GameplayScreen._world.Gravity = new Vector2(0f, -oldGravity.Y);
                 //Delegate d = new Delegate(this, "undoGravityFlip");
-                Timer newTimer = new Timer(new undoGravityFlipDelegate(this.undoGravityFlip), GameplayScreen.getInstance().getCurrentGameTime(), 2000);
+                Timer newTimer = new Timer(new undoGravityFlipDelegate(this.undoGravityFlip), GameplayScreen.getInstance().getCurrentGameTime(), 2200);
                 GameplayScreen.getInstance().gameTimers.addTimer(newTimer);
             }
             //else flash screen/make error sound.
@@ -433,7 +453,7 @@ namespace GameState
 
 
 
-                Timer newTimer = new Timer(new undoGravitySphereDelegate(this.undoGravitySphere), GameplayScreen.getInstance().getCurrentGameTime(), 2000);
+                Timer newTimer = new Timer(new undoGravitySphereDelegate(this.undoGravitySphere), GameplayScreen.getInstance().getCurrentGameTime(), 2500);
                 GameplayScreen.getInstance().gameTimers.addTimer(newTimer);
             }
         }

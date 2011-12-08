@@ -37,6 +37,8 @@ namespace GameState
         /// </summary>
         public SerializableDictionary CustomProperties;
 
+        //public List<Body> objectList;
+
         public Level()
         {
             Visible = true;
@@ -154,8 +156,9 @@ namespace GameState
             {
                 if (it.GetType() == typeof(TextureItem))
                 {
-                    double damagePerformed;
-                    double strength;
+                    double damagePerformed = 0;
+                    double strength = Double.MinValue;
+                    double mass = double.MinValue;
                     if (it.CustomProperties.ContainsKey("damage"))
                     {
                         damagePerformed = Double.Parse(it.CustomProperties["damage"].description);
@@ -163,6 +166,11 @@ namespace GameState
                     if (it.CustomProperties.ContainsKey("strength"))
                     {
                         strength = Double.Parse(it.CustomProperties["strength"].description);
+                        //do something with it.
+                    }
+                    if (it.CustomProperties.ContainsKey("mass"))
+                    {
+                        mass = Double.Parse(it.CustomProperties["mass"].description);
                         //do something with it.
                     }
 
@@ -219,10 +227,10 @@ namespace GameState
                     _compound.BodyType = BodyType.Dynamic;
                     _compound.IgnoreCCD = false;
                     _compound.CollisionCategories = Category.Cat3;
-
-                    
-                    
+                    _compound.Mass = (float)mass;
+                    _compound.UserItem = it;
                     tItem.addBody(_compound);
+                    
                     tItem.load(content);
                 }
 
@@ -567,6 +575,10 @@ namespace GameState
             //this.texture = cm.Load<Texture2D>(asset_name);
             this.texture = cm.Load<Texture2D>(asset_name);
             Origin = new Vector2(texture.Width / 2, texture.Height / 2);
+            if (this.Rotation != 0f && this.body != null)
+            {
+                this.body.Rotation = this.Rotation;
+            }
         }
 
 
@@ -581,6 +593,11 @@ namespace GameState
             {
                 this.Position = ConvertUnits.ToDisplayUnits(body.Position);
                 this.Rotation = body.Rotation;
+            }
+            if (this.asset_name.Equals("Textures\\laser"))
+            {
+                //
+                Console.Write("");
             }
             sb.Draw(texture, Position, null, TintColor, Rotation, Origin, Scale, effects, 0);
         }
