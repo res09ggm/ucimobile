@@ -397,11 +397,11 @@ namespace GameState
                 }
 
                 if ((keyboardState.IsKeyDown(Keys.LeftShift) || keyboardState.IsKeyDown(Keys.RightShift)) &&
-                        keyboardState.IsKeyDown(Keys.Space) && (_hero.getSelectedAbility() == AbilityType.GRAVITY_FLIP) )
+                        keyboardState.IsKeyDown(Keys.Space) && (_hero.getSelectedAbility() == AbilityType.GRAVITY_FLIP))
                 {
                     _hero.performGravityFlip();
                 }
-                
+
 
                 if (keyboardState.IsKeyDown(Keys.NumPad1) || keyboardState.IsKeyDown(Keys.D1))
                 {
@@ -443,7 +443,7 @@ namespace GameState
                 {
                     _camera.MoveCamera(ConvertUnits.ToSimUnits(new Vector2(0f, 50f)));
                 }
-                
+
 
                 if (keyboardState.IsKeyDown(Keys.LeftControl) || keyboardState.IsKeyDown(Keys.RightControl))
                 {
@@ -483,12 +483,10 @@ namespace GameState
                 if (_hero.getSelectedAbility() == AbilityType.GRAVITY_HOLE
                     && input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
-                    Vector2 position = _camera.ConvertScreenToWorld(input.Cursor);
-                    Vector2 sides = position - _hero.getSimPosition();
-                    float C = (sides.X * sides.X) + (sides.Y * sides.Y);
-                    double distance = Math.Sqrt(C);
 
-                  
+                    Vector2 position = _camera.ConvertScreenToWorld(input.Cursor);
+
+                    double distance = calculateDistanceOfVectors(position, _hero.getSimPosition());
                     if (distance < 10)
                     {
                         lastMousePosition = position;
@@ -498,17 +496,32 @@ namespace GameState
                     //_hero.setSimPosition(position);
 
                 }
-                else if(_hero.getSelectedAbility() == AbilityType.GRAVITY_SPHERE && input.IsNewMouseButtonPress(MouseButtons.LeftButton))
+                else if (_hero.getSelectedAbility() == AbilityType.GRAVITY_SPHERE && input.IsNewMouseButtonPress(MouseButtons.LeftButton))
                 {
 
                     Vector2 position = _camera.ConvertScreenToWorld(input.Cursor);
                     clickedPosition = position;
-                    _hero.performGravitySphere();
+
+                    double distance = calculateDistanceOfVectors(position, _hero.getSimPosition());
+
+                    if (distance < 10)
+                    {
+                        _hero.performGravitySphere();
+
+                    }
                 }
             }
+
         }
 
 
+        public double calculateDistanceOfVectors(Vector2 v1, Vector2 v2)
+        {
+            Vector2 dist = v1 - v2;
+            float d = dist.X * dist.X + dist.Y + dist.Y;
+            return Math.Sqrt(d);
+            
+        }
         /// <summary>
         /// Draws the gameplay screen.
         /// </summary>
@@ -669,7 +682,10 @@ namespace GameState
                 // GameplayScreen.getInstance().showNewLevelScreen();
                 completedLevel = false;
                 timer = DateTime.MinValue;
-                loadNextLevel();
+
+                //load level completion screen
+                LevelCompletionScreen.Load(ScreenManager, ControllingPlayer, this);
+                //loadNextLevel();
 
                 return true;
             }
