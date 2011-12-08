@@ -222,8 +222,13 @@ namespace GameState
                      
             Vector2 origin = new Vector2((_myTexture.Width / 2), (_myTexture.Height / 2));
             Vector2 poss = ConvertUnits.ToDisplayUnits(_body.Position);
-
             sb.Draw(_myTexture, getWorldPosition(), null, Color.WhiteSmoke, _body.Rotation, origin, 1f, SpriteEffects.None, 0);
+
+            if (performingGravitySphere)
+            {
+                Console.WriteLine(gravity.IsActiveOn(planet));
+            }
+        
         }
 
         public void setWorldPosition(Vector2 worldPos)
@@ -375,6 +380,7 @@ namespace GameState
 
         public void performGravitySphere()
         {
+            performingGravitySphere = true;
             //create sphere first
             gravity = new GravityController(5f, 10f, 2f);
             //gravity.DisabledOnGroup = 3;
