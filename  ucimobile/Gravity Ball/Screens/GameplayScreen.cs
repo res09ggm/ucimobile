@@ -49,8 +49,8 @@ namespace GameState
         String[] _levels = { "lvl1.xml", "test.xml"  };
         int currentLevelNum = 0;
         DateTime timer;
-        public TimerManager gameTimers;
-        private GameTime privateGameTime;
+        private TimerManager gameTimers;
+        public GameTime privateGameTime;
         private bool loadFromFile = false;
         private String customFilename;
         
@@ -503,7 +503,8 @@ namespace GameState
                     clickedPosition = position;
 
                     double distance = calculateDistanceOfVectors(position, _hero.getSimPosition());
-
+                    Console.WriteLine(distance);
+                    //limitting radius
                     if (distance < 10)
                     {
                         _hero.performGravitySphere();
@@ -514,11 +515,11 @@ namespace GameState
 
         }
 
-
+        // calculates distance between two vectors
         public double calculateDistanceOfVectors(Vector2 v1, Vector2 v2)
         {
             Vector2 dist = v1 - v2;
-            float d = dist.X * dist.X + dist.Y + dist.Y;
+            float d = dist.X * dist.X + dist.Y * dist.Y;
             return Math.Sqrt(d);
             
         }

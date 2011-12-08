@@ -149,6 +149,7 @@ namespace GameState
 
             // Modify the alpha to fade text out during transitions.
             color *= screen.TransitionAlpha;
+            
 
             // Draw text, centered on the middle of each line.
             ScreenManager screenManager = screen.ScreenManager;
