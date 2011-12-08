@@ -160,6 +160,14 @@ namespace GameState
 
         public void initializeLevel()
         {
+            // prepare the sound then play the song forever.
+            if (!OptionsMenuScreen.isMuted)
+            {
+                Song inGameSound = content.Load<Song>("InGamePlay");
+                MediaPlayer.Play(inGameSound);
+                MediaPlayer.IsRepeating = true;
+            }
+
             ConvertUnits.SetDisplayUnitToSimUnitRatio(64);
             if (_currentLevel == null)
                 _currentLevel = new Level();

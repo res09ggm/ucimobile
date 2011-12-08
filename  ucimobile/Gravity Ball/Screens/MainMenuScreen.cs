@@ -9,6 +9,7 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 #endregion
 
 namespace GameState
@@ -58,6 +59,8 @@ namespace GameState
         /// </summary>
         void PlayGameMenuEntrySelected(object sender, PlayerIndexEventArgs e)
         {
+            // when the user selects the 'Play Game' then stop the current instance of MediaPlayer
+            MediaPlayer.Stop();
             LoadingScreen.Load(ScreenManager, true, e.PlayerIndex,
                                new GameplayScreen());
         }

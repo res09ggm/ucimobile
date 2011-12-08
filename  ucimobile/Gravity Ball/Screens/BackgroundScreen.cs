@@ -13,6 +13,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using GameStateManagement;
+using Microsoft.Xna.Framework.Media;
 #endregion
 
 namespace GameState
@@ -26,7 +27,7 @@ namespace GameState
     {
         #region Fields
 
-        ContentManager content;
+        public static ContentManager content;
         Texture2D backgroundTexture;
 
         #endregion
@@ -60,6 +61,13 @@ namespace GameState
 
                 backgroundTexture = content.Load<Texture2D>("textures/background");
                 
+                // background sound play until user press something
+                if (!OptionsMenuScreen.isMuted)
+                {
+                    Song sound = content.Load<Song>("menu");
+                    MediaPlayer.Play(sound);
+                    MediaPlayer.IsRepeating = true;
+                }
             }
         }
 
