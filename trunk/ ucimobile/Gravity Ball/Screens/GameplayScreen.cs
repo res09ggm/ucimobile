@@ -46,7 +46,7 @@ namespace GameState
         public static Player _hero;
         public static Level _currentLevel;
         public static World _world;
-        String[] _levels = { "lvl1.xml", "test.xml"  };
+        String[] _levels = {  "sandbox.xml", "lvl1.xml", "lvl2.xml", "lvl3.xml", "lvl4.xml"};
         int currentLevelNum = 0;
         DateTime timer;
         public TimerManager gameTimers;
@@ -68,7 +68,7 @@ namespace GameState
 
         //Video
         Video video;
-        bool IsIntro = false;
+        bool IsIntro = true;
         VideoPlayer videoPlayer;
         Texture2D videoTexture;
 
@@ -160,13 +160,7 @@ namespace GameState
 
         public void initializeLevel()
         {
-            // prepare the sound then play the song forever.
-            if (!OptionsMenuScreen.isMuted)
-            {
-                Song inGameSound = content.Load<Song>("InGamePlay");
-                MediaPlayer.Play(inGameSound);
-                MediaPlayer.IsRepeating = true;
-            }
+
 
             ConvertUnits.SetDisplayUnitToSimUnitRatio(64);
             if (_currentLevel == null)
@@ -217,6 +211,13 @@ namespace GameState
                 gameFont = content.Load<SpriteFont>("gamefont");
                 video = content.Load<Video>("intro");
                 videoPlayer = new VideoPlayer();
+
+                /*// prepare the sound then play the song forever.
+                if (!OptionsMenuScreen.isMuted)
+                {
+                    Song inGameSound = content.Load<Song>("InGamePlay");
+                    MediaPlayer.IsRepeating = true;
+                }*/
 
                 // A real game would probably have more content than this sample, so
                 // it would take longer to load. We simulate that by delaying for a
@@ -319,7 +320,13 @@ namespace GameState
             if(videoPlayer.State == MediaState.Stopped)
             {
                 if(IsActive)
-                {                                   
+                {
+                    if (!IsIntro && !OptionsMenuScreen.isMuted && (MediaPlayer.State == MediaState.Stopped))
+                    {
+                        Song inGameSound = content.Load<Song>("InGamePlay");
+                        MediaPlayer.IsRepeating = true;
+                        MediaPlayer.Play(inGameSound);
+                    }
                     // TODO: this game isn't very fun! You could probably improve
                     // it by inserting something more interesting in this space :-)
                     gameTimers.update(gameTime);
@@ -413,7 +420,7 @@ namespace GameState
 
                 if (keyboardState.IsKeyDown(Keys.NumPad1) || keyboardState.IsKeyDown(Keys.D1))
                 {
-                    _hero.selectAbility(AbilityType.GRAVITY_BALL);
+                    _hero.selectAbility(AbilityType.NONE);
                     ScreenManager.Game.IsMouseVisible = false;
                 }
 
@@ -482,7 +489,7 @@ namespace GameState
                     }
                     if (keyboardState.IsKeyDown(Keys.OemPlus))
                     {
-                        if (!lastKeyboardState.IsKeyDown(Keys.OemPlus))
+                        //if (!lastKeyboardState.IsKeyDown(Keys.OemPlus))
                             loadNextLevel();
                         lastKeyboardState = keyboardState;
                     }
@@ -604,23 +611,23 @@ namespace GameState
             Color healthColor;
             Color energyColor;
 
-            if (playerHealth >= 90)
+            if (playerHealth >= 90.0)
                 healthColor = Color.Green;
-            else if (playerHealth >= 70 && playerHealth < 90)
+            else if (playerHealth >= 70.0 && playerHealth < 90.0)
                 healthColor = Color.GreenYellow;
-            else if (playerHealth >= 40 && playerHealth < 70)
+            else if (playerHealth >= 40.0 && playerHealth < 70.0)
                 healthColor = Color.Yellow;
-            else if (playerHealth >= 20 && playerHealth < 40)
+            else if (playerHealth >= 20.0 && playerHealth < 40.0)
                 healthColor = Color.OrangeRed;
             else healthColor = Color.Red;
 
-            if (playerEnergy >= 90)
+            if (playerEnergy >= 90.0)
                 energyColor = Color.Green;
-            else if (playerHealth >= 70 && playerHealth < 90)
+            else if (playerEnergy >= 70.0 && playerEnergy < 90.0)
                 energyColor = Color.GreenYellow;
-            else if (playerHealth >= 40 && playerHealth < 70)
+            else if (playerEnergy >= 40.0 && playerEnergy < 70.0)
                 energyColor = Color.Yellow;
-            else if (playerHealth >= 20 && playerHealth < 40)
+            else if (playerEnergy >= 20.0 && playerEnergy < 40.0)
                 energyColor = Color.OrangeRed;
             else energyColor = Color.Red;
 

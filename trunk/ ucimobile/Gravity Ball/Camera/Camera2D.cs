@@ -7,7 +7,7 @@ namespace FarseerPhysics.SamplesFramework
 {
     public class Camera2D
     {
-        private const float _minZoom = 0.02f;
+        private const float _minZoom = 0.5f;
         private const float _maxZoom = 20f;
         private static GraphicsDevice _graphics;
 
