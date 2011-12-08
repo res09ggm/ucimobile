@@ -49,7 +49,7 @@ namespace GameState
         String[] _levels = { "lvl1.xml", "test.xml"  };
         int currentLevelNum = 0;
         DateTime timer;
-        private TimerManager gameTimers;
+        public TimerManager gameTimers;
         public GameTime privateGameTime;
         private bool loadFromFile = false;
         private String customFilename;
