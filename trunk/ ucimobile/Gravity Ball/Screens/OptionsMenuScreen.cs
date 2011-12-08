@@ -2,6 +2,8 @@
 
 #region Using Statements
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Content;
 #endregion
 
 namespace GameState
@@ -39,8 +41,8 @@ namespace GameState
         #endregion
 
         #region Initialization
-
-
+        public static bool isMuted = false;
+        private MenuEntry muteMusic;
         /// <summary>
         /// Constructor.
         /// </summary>
@@ -56,6 +58,7 @@ namespace GameState
             SetMenuEntryText();
 
             MenuEntry back = new MenuEntry("Back");
+            muteMusic = new MenuEntry("Music On");
 
             // Hook up menu event handlers.
             /*
@@ -65,7 +68,8 @@ namespace GameState
             elfMenuEntry.Selected += ElfMenuEntrySelected;
             */
             back.Selected += OnCancel;
-            
+            muteMusic.Selected += ShouldPlaySong;
+
             // Add entries to the menu.
             /*
             MenuEntries.Add(ungulateMenuEntry);
@@ -73,6 +77,8 @@ namespace GameState
             MenuEntries.Add(frobnicateMenuEntry);
             MenuEntries.Add(elfMenuEntry);
             */
+
+            MenuEntries.Add(muteMusic);
             MenuEntries.Add(back);
         }
 
@@ -94,7 +100,28 @@ namespace GameState
         #endregion
 
         #region Handle Input
+        /// <summary>
+        /// Helper overload makes it easy to use ShouldPlaySong as a MenuEntry event handler.
+        /// </summary>
+        protected void ShouldPlaySong(object sender, PlayerIndexEventArgs e)
+        {
+            MediaPlayer.IsMuted = !MediaPlayer.IsMuted;
+            isMuted = MediaPlayer.IsMuted;
+            ContentManager content = BackgroundScreen.content;
 
+            if (!isMuted && content != null)
+            {
+                Song song = content.Load<Song>("menu");
+                MediaPlayer.Play(song);
+                MediaPlayer.IsRepeating = true;
+
+                muteMusic.Text = "Music On";
+            }
+            else
+            {
+                muteMusic.Text = "Music Off";
+            }
+        }
 
         /// <summary>
         /// Event handler for when the Ungulate menu entry is selected.
