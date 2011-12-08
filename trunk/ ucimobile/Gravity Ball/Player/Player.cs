@@ -30,8 +30,6 @@ namespace GameState
         private double MAX_HEALTH;
         private double MAX_ENERGY;
         private String name;
-        private int level;
-        private int exp;
         private double elapsedTime = 0f;
         private Double health;
         private Double energy;
@@ -42,13 +40,15 @@ namespace GameState
         private bool performingGravityFlip = false;
         private bool performingGravitySphere = false;
         private Texture2D _myTexture;
-        private Vector2 simPosition;
+        private Texture2D AOETexture;
         private AbilityType currentAbility = 0;
         Body planet;
-        CircleShape planetShape;
         GravityController gravity;
+        ArrayList listOfCurrentPlanets = new ArrayList();
         public delegate void undoGravityFlipDelegate();
         public delegate void undoGravitySphereDelegate();
+        private int level;
+        private int exp;
         
         public Player(World gameWorld)
         {
@@ -73,6 +73,7 @@ namespace GameState
             skills = new Ability[4];
 
             _myTexture = GameplayScreen.content.Load<Texture2D>("textures/gravityball_128");
+            AOETexture = GameplayScreen.content.Load<Texture2D>("textures/AOE");
             float radius = _myTexture.Width / 2;
             _body = BodyFactory.CreateCircle(gameWorld, ConvertUnits.ToSimUnits(radius), 1f, ConvertUnits.ToSimUnits(new Vector2(300f,300f)), this);
             _body.BodyType = BodyType.Dynamic;
@@ -197,7 +198,7 @@ namespace GameState
             {
                 elapsedTime -= 1500;
                 if (energy < MAX_ENERGY)
-                    energy += .5;
+                    energy += 1.5;
                 if (health < MAX_HEALTH)
                     health += 1;
             }
@@ -215,6 +216,15 @@ namespace GameState
         
         public void draw(SpriteBatch sb)
         {
+
+
+
+            double time = 100;
+            
+            float pulsate = (float)Math.Sin(time * 6) + 1;
+
+            float scale = 1 + pulsate * 0.08f * 0.05f;
+
             float rotation;
             if (isJumping)
                 rotation = 0f;
@@ -223,10 +233,10 @@ namespace GameState
             Vector2 origin = new Vector2((_myTexture.Width / 2), (_myTexture.Height / 2));
             Vector2 poss = ConvertUnits.ToDisplayUnits(_body.Position);
             sb.Draw(_myTexture, getWorldPosition(), null, Color.WhiteSmoke, _body.Rotation, origin, 1f, SpriteEffects.None, 0);
-
             if (performingGravitySphere)
             {
-                Console.WriteLine(gravity.IsActiveOn(planet));
+                sb.Draw(AOETexture, ConvertUnits.ToDisplayUnits(planet.Position),null , Color.White, 0, new Vector2(AOETexture.Width/2, AOETexture.Height/2), scale, SpriteEffects.None, 0);
+                 
             }
         
         }
@@ -285,10 +295,10 @@ namespace GameState
 
         public void performGravityHole(Vector2 transport)
         {
-            if (energy > 15)
+            if (energy > 75)
             {
                 this.setSimPosition(transport);
-                energy -= 15;
+                energy -= 75;
             }
         }
 
@@ -357,10 +367,10 @@ namespace GameState
         public void performGravityFlip()
         {
 
-             if (!performingGravityFlip && energy > 40)
+             if (!performingGravityFlip && energy > 20)
             {
                 performingGravityFlip = true;
-                energy -= 40;
+                energy -= 20;
                 Vector2 oldGravity = GameplayScreen._world.Gravity;
                 GameplayScreen._world.Gravity = new Vector2(0f, -oldGravity.Y);
                 //Delegate d = new Delegate(this, "undoGravityFlip");
@@ -372,51 +382,60 @@ namespace GameState
 
         public void undoGravitySphere()
         {
-            performingGravitySphere = false;
-            planet.Dispose();
+           
+            
+
+            foreach (Body p in listOfCurrentPlanets)
+            {
+                p.Dispose();
+            }
             gravity.DisabledOnCategories = Category.All;
             gravity.DisabledOnGroup = 2;
+            performingGravitySphere = false;
+            listOfCurrentPlanets.Clear();
         }
 
         public void performGravitySphere()
         {
-            performingGravitySphere = true;
-            //create sphere first
-            gravity = new GravityController(5f, 10f, 2f);
-            //gravity.DisabledOnGroup = 3;
-            //gravity.EnabledOnGroup = 2;
-            gravity.DisabledOnCategories = Category.Cat4;
-            gravity.EnabledOnCategories = Category.Cat3;
-           
-
-            GameplayScreen._world.AddController(gravity);
-            
-            // fixture for planet (the one that has gravity)
-            planet = BodyFactory.CreateBody(GameplayScreen._world);
-            planet.Position = GameplayScreen.clickedPosition;
-            CircleShape planetShape = new CircleShape(2, 1);
-            planet.CreateFixture(planetShape);
-            planet.CollidesWith = Category.None;
-            planet.IgnoreCCD = false;
-            gravity.AddBody(planet);
-
-           
-
-            
-            for (int i = 0; i < GameplayScreen._world.BodyList.Count; i++)
+            if (!performingGravitySphere && energy > 10)
             {
-                Body p  = GameplayScreen._world.BodyList[i];
-                //p.CollisionCategories = Category.Cat2;
-                //p.CollisionGroup = 3;
-                GameplayScreen._world.BodyList[i] = p;
-                //gravity.AddBody(p);
+                performingGravitySphere = true;
+                energy -= 10;
+                //create sphere first
+                gravity = new GravityController(5f, 10f, 2f);
+                //gravity.DisabledOnGroup = 3;
+                //gravity.EnabledOnGroup = 2;
+                gravity.DisabledOnCategories = Category.Cat4;
+                gravity.EnabledOnCategories = Category.Cat3;
+
+
+                GameplayScreen._world.AddController(gravity);
+
+                // fixture for planet (the one that has gravity)
+                planet = BodyFactory.CreateBody(GameplayScreen._world);
+                planet.Position = GameplayScreen.clickedPosition;
+                CircleShape planetShape = new CircleShape(2, 1);
+                planet.CreateFixture(planetShape);
+                planet.CollidesWith = Category.None;
+                planet.IgnoreCCD = false;
+                gravity.AddBody(planet);
+
+
+                listOfCurrentPlanets.Add(planet);
+
+
+                for (int i = 0; i < GameplayScreen._world.BodyList.Count; i++)
+                {
+                    Body p = GameplayScreen._world.BodyList[i];
+                    GameplayScreen._world.BodyList[i] = p;
+                }
+
+
+
+
+                Timer newTimer = new Timer(new undoGravitySphereDelegate(this.undoGravitySphere), GameplayScreen.getInstance().getCurrentGameTime(), 2000);
+                GameplayScreen.getInstance().gameTimers.addTimer(newTimer);
             }
-
-           
-
-
-            Timer newTimer = new Timer(new undoGravitySphereDelegate(this.undoGravitySphere), GameplayScreen.getInstance().getCurrentGameTime(), 2000);
-            GameplayScreen.getInstance().gameTimers.addTimer(newTimer);
         }
 
 
